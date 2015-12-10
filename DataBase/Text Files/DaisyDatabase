@@ -1,0 +1,14 @@
+Daisy:
+
+Journeys:
+
+WelcomeToTheDaisyFlowerGarden(SID, TheWateringCanAward, TheGoldenHoneyBee, TheAmazingDaisy)
+BetweenEarthAndSky(SID, TheBlueBucket, TheFirefly, TheCoverAward)
+5Flowers4Stories3Cheers(SID, BirdbathAward, RedRobinAward, TulaAward)
+
+Bridging:
+
+DaisyBridging(SID, PassItOn, LookAhead, PlanACeremony)
+
+PassItOn(SID, TeachYoungGirlsTheGSPower, TellYoungGirlsAboutTheFlower, PlayAGame)
+LookAhead(SID, SayTheGirlScoutPromise, AskTheBrowniesToTeachYou, AskTheBrowniesToShowYou)

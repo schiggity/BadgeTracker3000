@@ -1,0 +1,33 @@
+Brownie:
+
+EmergencyContact(SID, Name, Address, PrimaryPhoneNumber, SecondryPhoneNumber, Relationship)
+
+Journeys:
+
+It'sYourWorldChangeIt(SID, TheDiscoveryKey, TheConnectKey, TheTakeActionKey, TheBrownieQuestAward)
+
+TheDiscoverKey(SID, QualitiesAndTalents, GirlScoutLaw, QualitiesAndValues)
+TheConnectKey(SID, AsABrownieKey, HealthyLivingActivity, HealthyLivingOpportunities)
+TheTakeActionKey(SID, TakeAction, PlanToTakeAction, TakeActionPlan)
+TheBrownieQuestAward(SID, MasterLock)
+
+It'sYourPlanetChangeIt(SID, LOVEWater, SAVEWater, SHAREWater, WOW)
+
+LOVEWater(SID, ShowTwoThings, MakeAndCarryOut)
+SAVEWater(SID, BrowniesTeamUp)
+SHAREWater(SID, CreateAnEvenBiggerRipple)
+WOW(SID, PowerfulChange)
+
+IT'sYourStoryTellIt(SID, HearAStory, ChangeAStory, TellAStory, BetterWorldForGirls)
+
+HearAStory(SID, ReadShalisStory)
+ChangeAStory(SID, GivingSharingCaring)
+TellAStory(SID, TellOurStoryofChange)
+BetterWorldForGirls(SID, ReflectionTime)
+
+Bridging:
+
+BrownieBridging(SID, PassItOn, LookAhead, PlanACeremony)
+
+PassItOn(SID, TeachASong, HelpDasiesDecorate, InviteDasies)
+LookAhead(AskJuniorFriends, TalkTOGirlScoutJuniors, GoToJuniorsMeeting)

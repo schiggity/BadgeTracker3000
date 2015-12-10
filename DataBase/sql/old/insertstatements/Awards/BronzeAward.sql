@@ -1,0 +1,15 @@
+INSERT into Awards VALUES(1000, "Bronze");
+INSERT into AwardRequirements VALUES(10001, "Go on a Girl Scout Junior Journey", "");
+INSERT into AwardRequirements VALUES(10002, "Build your Girl Scout Junior Team", "");
+INSERT into AwardRequirements VALUES(10003, "Explore your community", "");
+INSERT into AwardRequirements VALUES(10004, "Choose your Bronze project", "");
+INSERT into AwardRequirements VALUES(10005, "Make a plan", "");
+INSERT into AwardRequirements VALUES(10006, "Put your plan in motion", "");
+INSERT into AwardRequirements VALUES(10007, "Spread the word", "");
+INSERT into AwardHasRequirements VALUES(1000,10001);
+INSERT into AwardHasRequirements VALUES(1000,10002);
+INSERT into AwardHasRequirements VALUES(1000,10003);
+INSERT into AwardHasRequirements VALUES(1000,10004);
+INSERT into AwardHasRequirements VALUES(1000,10005);
+INSERT into AwardHasRequirements VALUES(1000,10006);
+INSERT into AwardHasRequirements VALUES(1000,10007);

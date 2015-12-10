@@ -1,0 +1,54 @@
+INSERT into Quests(60001,'Service Unit');
+INSERT into Quests(59991,'Troop');
+INSERT into Journeys(6000,'   Enter A for credit');
+INSERT into Quests(60001,'');
+INSERT into Journeys(6001,'It's Your World -- Change It!');
+INSERT into Journeys(6002,'"Your Voice');
+INSERT into Quests(60021,'The Girl Scout Advocate Award');
+INSERT into Requirements(600211,'Eight steps to advocacy','complete the eight Steps to Advocacy 
+');
+INSERT into Requirements(600212,'Explore','Explore an issue that you find intriguing and exciting.
+');
+INSERT into Requirements(600213,'Engage','Engage community partners and advocate for change.
+');
+INSERT into Quests(60021,'');
+INSERT into Quests(60022,'');
+INSERT into Journeys(6003,'It's Your Planet -- Love It!');
+INSERT into Journeys(6004,'JUSTICE');
+INSERT into Quests(60041,'Sage Award');
+INSERT into Requirements(600411,'"LOOK HIGH','"·see how images can be used to tell many different stories
+');
+INSERT into Journeys(6005,'·consider what parts of their equations for justice are starting to take shape"
+');
+INSERT into Requirements(600412,'DO the MATH','"·create a smiple survey to explore the environmental concerns of others
+');
+INSERT into Journeys(6006,'·create a ""guilty habits"" list to help them commit to Doing the Math"
+');
+INSERT into Requirements(600513,'Be HAWK-EYED','"·explore how media and advertising persuades viewers
+');
+INSERT into Journeys(6007,'·check in on how they are Doing the Math"
+');
+INSERT into Requirements(600614,'Take the SCIENTIFIC View','"·explore how ""expert"" opinions intertwine in environmental justice issues
+');
+INSERT into Journeys(6008,'·consider what science can and cannot do for the environment"
+');
+INSERT into Requirements(600715,'DECIPHER Decisions','"·interview decision-makers about the many variables they grapple with
+');
+INSERT into Journeys(6009,'·share some of the great decisions they have made in their own lives"
+');
+INSERT into Requirements(600816,'Write Your Equation & PRESENT It','·begin planning the final celebration of the journey
+');
+INSERT into Quests(60091,'');
+INSERT into Quests(60091,'');
+INSERT into Journeys(6010,'It's Your Story -- Tell It!');
+INSERT into Journeys(6011,'BLISS: Live it! Give It!');
+INSERT into Quests(60111,'Dream Maker Award');
+INSERT into Requirements(601111,'Meet Successful Dreamers','Find and then interview three successful women in your community about their dreams and how they have pursued and/or achieved them. (This will show you the path to a successful dream and how dreams get moved forward; even in small ways!)
+');
+INSERT into Requirements(601112,'Seek and Select a Dreamer(s)','Identify a woman or girl (or a group of women and/or girls) who would benefit from your assistance in realizing a dream and who welcomes your assistance.
+');
+INSERT into Requirements(601113,'Define the Dream','Together you and the dreamer(s) draft a mission statement that clearly sets out the dream. Then you draw up the steps that will move the dream forward. Coming up with the correct steps will involve a little research! (A mission statement will give the dream vision and focus. Planning out the steps to the dream makes the dream tangible--if you get stuck or a step seems too big; return to the plan! You might have to step it out more; or you may have to change some steps altogether!)
+');
+INSERT into Requirements(601114,'Give It! Gift It!','Help your dreamer(s) take a step forward in the dream plan; and gift the set of stpes for the dream to her. (Taking a step forward will energize your dreamer(s) and start the momentum that will keep the dream progressing! When you are ready to gift the plan; consider making a ceremony of it; perhaps at the journey's closing celebration. The plan may serve as a symbolic rememberance of your collaboration on this dream!)
+');
+INSERT into Quests(60111,'');

@@ -1,0 +1,25 @@
+Financial Tracking-Special Purposes
+	the user will navigate to the financial tracking page and select the filter for special purpose.
+the page will then display all the financial information labeled for a special purpose. the troop leader 
+can then enter financial information and click submit.  then the page will insert the new data into the table
+and update the pagee view.
+
+Shopping List
+	the troop leader will select generate shopping list from the home page and the system will
+find all the badges marked earned but not awarded and add them to the shopping list.  this list is then 
+displayed to the troop leader. the troop leader can then save this list or email it to the nearest scout shop.
+when the troop leader selects either of these options the badges on the shopping list are then marked as
+awarded.
+
+Email shopping list
+	the troop leader selects email shopping list from the shopping list page. the system then prompts the
+troop leader to enter the email address of the scout shop they wish to pick up thier badges.  the system then
+generates an email to send to the address specified and presents the troop leader
+with a success or failure message.
+
+Health Forms
+	The troop leader Selects the health forms Link from the home page and the system presents the 
+leader with a list of the girls in her troop.  the leader can then select a girl and the system will
+grab information from the database and present it to the troop leader.  the leader may also enter new/ updated information
+for each girl. the leader will input health informattion and click submit. the system will then update
+the records for the specified girl.

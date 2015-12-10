@@ -1,0 +1,33 @@
+Juniors:
+
+Journeys:
+
+AgentOfChange(SID, ThePowerofOneAward, ThePowerofTeamAward, ThePowerofCommunityAward)
+
+ThePowerofOneAward(SID, DiscoverandShare, UseTheirOwnPowerLog, DiscoverWhatTheGirlScoutLaw)
+ThePowerofTeamAward(SID, CreateAShorySupergirlStory, MakeATeamDecision)
+ThePowerofCommunityAward(SID, TakeActionOnYourPlan, JoinInTheirGirlScoutJuniorCycle)
+
+GetMoving(SID, EnergizeAward, InvestigateAward, InnovateAward)
+
+EnergizeAward(SID, MakeAnEnergyPledge, TryAtLeastTwoOtherEnergize, CheckOutHowOtherPeople)
+InvestigateAward(SID, LearnAboutEnergyUse, WorkWithTheirFamilies, InvestigateEnergyUse)
+InnovateAward(SID, IdentifyAnEnergyIssue, ShareTheNews)
+
+Amuse(SID, ReachOut, SpeakOut, TryOut)
+
+ReachOut(SID, ReachOut)
+SpeakOut(SID, SpeakOut)
+TryOut(SID, TryOut)
+
+BronzeAward:
+
+BronzeAward(SID,GoOnAGirlScoutJuniorJourney, BuildYourGirlScoutJuniorTeam, ExploreYourCommunity
+ChooseYourBronzeProject, MakeAPlan, PutYourPlanInMotion, SpreadTheWord)
+
+JuniorBridging:
+
+JuniorBridging(SID, PassItOn, LookAhead PlanACeremony)
+
+PassItOn(SID, InviteBrownies, InviteGirlsNonGirlScouts, TeamUpWithGirls)
+LookAhead(SID, AskACadette, DoYoWantToWorkOnGirlScout, TalkToCadetttesAbotJourneys)

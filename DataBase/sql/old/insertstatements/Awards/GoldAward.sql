@@ -1,0 +1,15 @@
+INSERT into Awards VALUES(3000, "Gold");
+INSERT into AwardRequirements VALUES(30001, "Choose an issue", "Use your values and skills to identify a community issue you care about.");
+INSERT into AwardRequirements VALUES(30002, "Investigate", "Research everything you can about the issue.");
+INSERT into AwardRequirements VALUES(30003, "Get help", "Invite others to support and take action with you.");
+INSERT into AwardRequirements VALUES(30004, "Create a plan", "Create a project plan that achieves sustainable and measurable impact.");
+INSERT into AwardRequirements VALUES(30005, "Present your plan and get feedback", "Sum up your project plan for your Girl Scout council.");
+INSERT into AwardRequirements VALUES(30006, "Take action", "Take the lead to carry out your plan.");
+INSERT into AwardRequirements VALUES(30007, "Educate and inspire", "Share what you have experienced with others.");
+INSERT into AwardHasRequirements VALUES(3000,30001);
+INSERT into AwardHasRequirements VALUES(3000,30002);
+INSERT into AwardHasRequirements VALUES(3000,30003);
+INSERT into AwardHasRequirements VALUES(3000,30004);
+INSERT into AwardHasRequirements VALUES(3000,30005);
+INSERT into AwardHasRequirements VALUES(3000,30006);
+INSERT into AwardHasRequirements VALUES(3000,30007);

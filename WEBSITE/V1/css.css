@@ -1,0 +1,102 @@
+h1 {
+    color: white;
+    text-align: center;
+    border-style: solid;
+    border-color: black;
+}
+
+html {
+    background-color: #00ae58;
+    }
+    
+div.blee {
+    
+   float: left;
+    border-style: solid;
+    border-color: red;
+    
+}    
+
+.class {
+
+    border-style: solid;
+    border-color: red;
+}
+     
+h1.bloo {
+  position: absolute;
+  margin-right: -50%;
+}     
+
+/*
+GIRLSCOUT COLORS
+Green: #00ae58
+black
+white
+Daisies: #00AAE5
+Brownies: #733900
+Juniors: #DD3640
+Cadettes: #DD3640
+Seniors: #F27536
+Ambassadors: #FAA61A
+Volunteers: #BCBEC0
+
+/* root element for tabs  
+ul.tabs {
+    margin:0 !important;
+    padding:0;
+    height:30px;
+    border-bottom:1px solid #666;
+}
+
+/* single tab 
+ul.tabs li {
+    float:left;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+}
+
+/* link inside the tab. uses a background image 
+ul.tabs a {
+    float:left;
+    font-size:13px;
+    display:block;
+    padding:5px 30px;
+    text-decoration:none;
+    border:1px solid #666;
+    border-bottom:0px;
+    height:18px;
+    background-color:#efefef;
+    color:#777;
+    margin-right:2px;
+    position:relative;
+    top:1px;
+    outline:0;
+    -moz-border-radius:4px 4px 0 0;
+}
+
+ul.tabs a:hover {
+    background-color:#F7F7F7;
+    color:#333;
+}
+
+/* selected tab 
+ul.tabs a.current {
+    background-color:#ddd;
+    border-bottom:1px solid #ddd;
+    color:#000;
+    cursor:default;
+}
+
+
+/* tab pane 
+.info div {
+    display:none;
+    border:1px solid #666;
+    border-width:0 1px 1px 1px;
+    min-height:150px;
+    padding:15px 20px;
+    background-color:#ddd;
+}
+*/

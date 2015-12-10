@@ -1,0 +1,39 @@
+Cadettes:
+
+Journeys:
+
+Amaze(SID, TheInteractAward, TheDiplomatAward, ThePeacemakerAward, AmazeLeaderInAction)
+
+TheInteractAward(SID, CallAnOldFriend, DesignYourOwnNoteCards, IdentifyAStereotypeUsed,
+ReachOutTalkWithSomeone, ChooseAMovie, GoingOut, PromiseToHaveNoGossip, GetDirect, AntiBullying)
+TheDiplomatAward(SID, IdentifyARelatioshipIssue, BrainstormASolution, AssessYourResources,
+CreateARealisticPlan, SpreadtheWord, CarryOutTakeActionPlan, ReflectOnResults))
+ThePeacemakerAward(SID, ReviewAllTools)
+AmazeLeaderInAction(SID, DemonstrateCommitment, OrganizingSkill, SpecialSkill, WhileOnQuest,
+TalkToAdultsGuidingQuest)
+
+Breath(SID, Aware, Alert, Affirm, BreathLeaderInAction)
+
+Aware(SID, KeepAnAirLog, IdentifyTwoExperts, IncreaseYourAwareness, DecideTheMostImportant)
+Alert(SID, WithYourCadetteTeam, DecideWhomToEducate, DecideWhatouWillAsk, DecideHowToReach,
+EducateAndInspire)
+Affirm(SID, GathernProofOfProgress, ShareTheImpact, GetWithYourCadetteTeam, AffirmYourCommitment)
+BreathLeaderInAction(SID, IdentifyATeamOfBrownies, TalkToTheVolunteer, GuideTheBrownies,
+InspireTheBrownies, EngageTheBrownies, ShareWithTheBrownies, After YouveCompleted, NowthatYoveEnjoyed)
+
+Media(SID, Monitor, Influence, MediaCultivate, MediaLeaderInAction)
+
+MediaLeaderInAction(SID, IdentifyATeamOfBrownies, TalkToTheVolunteer, GuideTheBrownies,
+InspireTheBrownies, EngageTheBrownies, ShareWithTheBrownies, After YouveCompleted, NowthatYoveEnjoyed)
+
+SilverAward:
+
+SilverAward(SID, GoOnACadetteJourney, IdentifyIssuesYouCareAbout, BuildYourGSTeamOrGoSolo,
+ExploreYourCommunity, PickYourTakeActionProject, DevelopYourProject,MakeAPlan, Reflect)
+
+CadetteBridging:
+
+CadetteBridging(SID, PassItON, LookAhead, PlanACeremony)
+
+PassItOn(SID, ShareFavoriteThings, TakeGroupOfJuniorsToFavoriteThing, DidYouEarnSilverAward)
+LookAhead(SID, AsASenior, IfYourIntrestedInGold, FindOutHowSeniorsCustomize)

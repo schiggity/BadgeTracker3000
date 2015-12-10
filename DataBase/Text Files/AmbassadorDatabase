@@ -1,0 +1,23 @@
+Ambassador:
+
+Journeys:
+
+YourVoiceYourWorld(SID, EightStepsToAdvocacy, Explore, Engage)
+
+Justice(SID, LookHighLookWide, DoTheMath, BeHawkEyed, TakeTheScientificView,
+DecipherDecision, WriteYourEquation)
+BlissLiveItGiveIt(SID, MeetSuccessfulDreamers, SeekAndSelectDreamers, 
+DefineTheDream, GiveItGiftIt)
+
+GoldAward:
+
+GoldAward(SID, ChooseAnIssue, Investigate, GetHelp, CreateAPlan, PresentYourPlan,
+TakeAction, EducateAndInspire)
+
+Bridging:
+
+AmbassadorBridging(SID, PassItOn, LookAhead, PlanACeremony)
+
+PassItOn(SID, ShareFavoiteThings, ShareWithSeniors, InspireYoungerGirls)
+LookAhead(SID, GetTogetherWithAGirlScoutAdult, HoldAppreciationBreakfastOrLunch,
+CreateASlideShowOfYourBest)

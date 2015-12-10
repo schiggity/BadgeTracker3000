@@ -1,0 +1,17 @@
+INSERT into Awards VALUES(2000, "Silver");
+INSERT into AwardRequirements VALUES(20001, "Go on a Cadette Journey", "");
+INSERT into AwardRequirements VALUES(20002, "Identify issues you care about", "");
+INSERT into AwardRequirements VALUES(20003, "Build your GS Silver Team or go solo", "");
+INSERT into AwardRequirements VALUES(20004, "Explore your community", "");
+INSERT into AwardRequirements VALUES(20005, "Pick your Take Action Project", "");
+INSERT into AwardRequirements VALUES(20006, "Develop your Project", "");
+INSERT into AwardRequirements VALUES(20007, "Make a plan and put it into motion", "");
+INSERT into AwardRequirements VALUES(20008, "Reflect, share your story, and celebrate", "");
+INSERT into AwardHasRequirements VALUES(2000,20001);
+INSERT into AwardHasRequirements VALUES(2000,20002);
+INSERT into AwardHasRequirements VALUES(2000,20003);
+INSERT into AwardHasRequirements VALUES(2000,20004);
+INSERT into AwardHasRequirements VALUES(2000,20005);
+INSERT into AwardHasRequirements VALUES(2000,20006);
+INSERT into AwardHasRequirements VALUES(2000,20007);
+INSERT into AwardHasRequirements VALUES(2000,20008);

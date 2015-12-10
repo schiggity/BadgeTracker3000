@@ -1,0 +1,6 @@
+Function GetComments(pRng As Range) As String
+'Updateby20140509
+If Not pRng.Comment Is Nothing Then
+    GetComments = pRng.Comment.Text
+End If
+End Function
