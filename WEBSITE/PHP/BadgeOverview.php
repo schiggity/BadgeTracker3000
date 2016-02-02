@@ -80,7 +80,7 @@
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -100,17 +100,17 @@
 															</tr>
 															<tr>														
 																<!-- modal activated by button -->
-																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalD1">Badge Requirements</button></td>
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																<!-- Modal -->
-																<div id="ModalD1" class="modal fade" role="dialog">
+																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 
 																		<!-- Modal content displaying badge requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title">***BADGE NAME***</h4>
+																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
 																			</div>
 																			<div class="modal-body">
 																				<p>***ALL REQUIREMENTS***</p>
@@ -167,17 +167,17 @@
 															</tr>
 															<tr>														
 																<!-- modal activated by button -->
-																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalD1">Badge Requirements</button></td>
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																<!-- Modal -->
-																<div id="ModalD1" class="modal fade" role="dialog">
+																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 
 																		<!-- Modal content displaying badge requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title">***BADGE NAME***</h4>
+																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
 																			</div>
 																			<div class="modal-body">
 																				<p>***ALL REQUIREMENTS***</p>
@@ -234,17 +234,17 @@
 															</tr>
 															<tr>														
 																<!-- modal activated by button -->
-																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalD1">Badge Requirements</button></td>
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																<!-- Modal -->
-																<div id="ModalD1" class="modal fade" role="dialog">
+																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 
 																		<!-- Modal content displaying badge requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title">***BADGE NAME***</h4>
+																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
 																			</div>
 																			<div class="modal-body">
 																				<p>***ALL REQUIREMENTS***</p>
@@ -301,17 +301,17 @@
 															</tr>
 															<tr>														
 																<!-- modal activated by button -->
-																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalD1">Badge Requirements</button></td>
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																<!-- Modal -->
-																<div id="ModalD1" class="modal fade" role="dialog">
+																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 
 																		<!-- Modal content displaying badge requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title">***BADGE NAME***</h4>
+																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
 																			</div>
 																			<div class="modal-body">
 																				<p>***ALL REQUIREMENTS***</p>
@@ -368,17 +368,17 @@
 															</tr>
 															<tr>														
 																<!-- modal activated by button -->
-																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalD1">Badge Requirements</button></td>
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																<!-- Modal -->
-																<div id="ModalD1" class="modal fade" role="dialog">
+																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 
 																		<!-- Modal content displaying badge requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title">***BADGE NAME***</h4>
+																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
 																			</div>
 																			<div class="modal-body">
 																				<p>***ALL REQUIREMENTS***</p>
@@ -435,17 +435,17 @@
 															</tr>
 															<tr>														
 																<!-- modal activated by button -->
-																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalD1">Badge Requirements</button></td>
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																<!-- Modal -->
-																<div id="ModalD1" class="modal fade" role="dialog">
+																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 
 																		<!-- Modal content displaying badge requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title">***BADGE NAME***</h4>
+																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
 																			</div>
 																			<div class="modal-body">
 																				<p>***ALL REQUIREMENTS***</p>
