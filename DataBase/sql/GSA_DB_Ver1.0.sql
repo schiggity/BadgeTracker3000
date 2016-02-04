@@ -5865,10 +5865,6 @@ CREATE TABLE `users` (
   `Email` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---########
---TRIGGERS
---########
-
 
 
 --
