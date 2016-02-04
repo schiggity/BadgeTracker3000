@@ -5747,9 +5747,10 @@ CREATE TABLE `scoutsdobadge` (
 -- Table structure for table `scoutsdobridgequest`
 --
 
-CREATE TABLE `scoutsdobridgequest` (
+CREATE TABLE `scoutsdobridge` (
   `SID` int(11) DEFAULT NULL,
   `BQID` int(11) DEFAULT NULL,
+  `BRID` int(11) DEFAULT NULL,
   `TheDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -5759,11 +5760,6 @@ CREATE TABLE `scoutsdobridgequest` (
 -- Table structure for table `scoutsdobridgerequirements`
 --
 
-CREATE TABLE `scoutsdobridgerequirements` (
-  `SID` int(11) DEFAULT NULL,
-  `BRID` int(11) DEFAULT NULL,
-  `TheDate` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -5773,7 +5769,7 @@ CREATE TABLE `scoutsdobridgerequirements` (
 
 CREATE TABLE `scoutsdojourney` (
   `SID` int(11) DEFAULT NULL,
-  `JID` int(11) DEFAULT NULL,
+  `QID` int(11) DEFAULT NULL,
   `RID` int(11) DEFAULT NULL,
   `TheDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -5869,9 +5865,11 @@ CREATE TABLE `users` (
   `Email` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Indexes for dumped tables
---
+--########
+--TRIGGERS
+--########
+
+
 
 --
 -- Indexes for table `awardhasrequirements`
@@ -6081,23 +6079,19 @@ ALTER TABLE `scoutsdobadge`
 --
 -- Indexes for table `scoutsdobridgequest`
 --
-ALTER TABLE `scoutsdobridgequest`
+ALTER TABLE `scoutsdobridge`
   ADD KEY `BQID` (`BQID`),
+  ADD KEY `BRID` (`BRID`),
   ADD KEY `SID` (`SID`);
 
---
--- Indexes for table `scoutsdobridgerequirements`
---
-ALTER TABLE `scoutsdobridgerequirements`
-  ADD KEY `SID` (`SID`),
-  ADD KEY `BRID` (`BRID`);
+
 
 --
 -- Indexes for table `scoutsdojourney`
 --
 ALTER TABLE `scoutsdojourney`
   ADD KEY `SID` (`SID`),
-  ADD KEY `JID` (`JID`),
+  ADD KEY `QID` (`QID`),
   ADD KEY `RID` (`RID`);
 
 --
@@ -6262,23 +6256,18 @@ ALTER TABLE `scoutsdobadge`
 --
 -- Constraints for table `scoutsdobridgequest`
 --
-ALTER TABLE `scoutsdobridgequest`
-  ADD CONSTRAINT `scoutsdobridgequest_ibfk_1` FOREIGN KEY (`BQID`) REFERENCES `bridgequests` (`BQID`),
-  ADD CONSTRAINT `scoutsdobridgequest_ibfk_2` FOREIGN KEY (`SID`) REFERENCES `scouts` (`SID`);
+ALTER TABLE `scoutsdobridge`
+  ADD CONSTRAINT `scoutsdobridge_ibfk_1` FOREIGN KEY (`BQID`) REFERENCES `bridgequests` (`BQID`),
+  ADD CONSTRAINT `scoutsdobridge_ibfk_2` FOREIGN KEY (`BRID`) REFERENCES `bridgerequirements` (`BRID`),
+  ADD CONSTRAINT `scoutsdobridge_ibfk_3` FOREIGN KEY (`SID`) REFERENCES `scouts` (`SID`);
 
---
--- Constraints for table `scoutsdobridgerequirements`
---
-ALTER TABLE `scoutsdobridgerequirements`
-  ADD CONSTRAINT `scoutsdobridgerequirements_ibfk_1` FOREIGN KEY (`SID`) REFERENCES `scouts` (`SID`),
-  ADD CONSTRAINT `scoutsdobridgerequirements_ibfk_2` FOREIGN KEY (`BRID`) REFERENCES `bridgerequirements` (`BRID`);
 
 --
 -- Constraints for table `scoutsdojourney`
 --
 ALTER TABLE `scoutsdojourney`
   ADD CONSTRAINT `scoutsdojourney_ibfk_1` FOREIGN KEY (`SID`) REFERENCES `scouts` (`SID`),
-  ADD CONSTRAINT `scoutsdojourney_ibfk_2` FOREIGN KEY (`JID`) REFERENCES `journey` (`JID`),
+  ADD CONSTRAINT `scoutsdojourney_ibfk_2` FOREIGN KEY (`QID`) REFERENCES `quests` (`QID`),
   ADD CONSTRAINT `scoutsdojourney_ibfk_3` FOREIGN KEY (`RID`) REFERENCES `questrequirements` (`RID`);
 
 --
