@@ -33,6 +33,19 @@ function getRequirementsForBadge($baid){
 	
 	return $reqs;	
 }
+function getRequirementsForBadgeQuest($baqid){
+	global $conn;
+	$reqs = array();
+	$sql = "SELECT * from badgerequirements where barid IN (select barid from badgequesthasrequirements where baqid = " . $baqid . ");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$reqs[$i] = $row;
+	}
+	
+	return $reqs;	
+}
 
 #returns array of BAQID, Name and Comments of all Quests for badge x
 function getQuestsForBadge($baid){
@@ -207,8 +220,7 @@ function getScoutCountForJourney($jid){
 	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdojourney WHERE jid = " . $jid . ";";
 	$Compsql  = "SELECT COUNT(DISTINCT qid) as completed FROM scoutsdojourney JOIN questshasquestrequirements ON scoutsdojourney.rid = questshasquestrequirements.rid WHERE jid = " . $jid . " GROUP BY sid;";	
 	$QNsql	  = "SELECT COUNT(qid) as questsNeeded FROM journeyhasquests WHERE jid = " . $jid . ";";
-	#SCOUTS ARE AWARDED QUESTS NOT JOURNEYS HELP!!!!!!!!!!!
-	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedquests WHERE qid = " . $jid . ";";
+	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedquests WHERE qid IN(select qid from journeyhasquests where jid = " . $jid . ");";
 	
 	#scouts who started/completed/awarded
 	$result = $conn->query($Startsql);

@@ -110,10 +110,21 @@
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
+																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
 																			</div>
 																			<div class="modal-body">
-																				<p>***ALL REQUIREMENTS***</p>
+																				<p>
+																				<?php
+																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
 																			</div>
 																			<div class="modal-footer">
 																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -147,10 +158,10 @@
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"];?> href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $badge["Name"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 
 													<p>***DESCRIPTION***</p>            
@@ -177,10 +188,21 @@
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
+																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
 																			</div>
 																			<div class="modal-body">
-																				<p>***ALL REQUIREMENTS***</p>
+																				<p>
+																				<?php
+																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
 																			</div>
 																			<div class="modal-footer">
 																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -244,10 +266,21 @@
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
+																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
 																			</div>
-																			<div class="modal-body">
-																				<p>***ALL REQUIREMENTS***</p>
+																				<div class="modal-body">
+																				<p>
+																				<?php
+																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
 																			</div>
 																			<div class="modal-footer">
 																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -311,10 +344,21 @@
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
+																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
 																			</div>
-																			<div class="modal-body">
-																				<p>***ALL REQUIREMENTS***</p>
+																				<div class="modal-body">
+																				<p>
+																				<?php
+																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
 																			</div>
 																			<div class="modal-footer">
 																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -378,11 +422,21 @@
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
+																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
 																			</div>
 																			<div class="modal-body">
-																				<p>***ALL REQUIREMENTS***</p>
-																			</div>
+																				<p>
+																				<?php
+																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
 																			<div class="modal-footer">
 																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																			</div>
@@ -445,11 +499,21 @@
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["BAID"]?></h4>
+																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
 																			</div>
 																			<div class="modal-body">
-																				<p>***ALL REQUIREMENTS***</p>
-																			</div>
+																				<p>
+																				<?php
+																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
 																			<div class="modal-footer">
 																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																			</div>
