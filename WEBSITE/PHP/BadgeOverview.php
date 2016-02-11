@@ -118,7 +118,7 @@
 																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 																						echo "<b>" . $quest["Name"] . ":</b><br>";
 																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"]. '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comment"] . '">?</a>' . "<br>" ;											
 																						}
 																					}
 																				
