@@ -37,9 +37,9 @@
 				<ul class="dropdown-menu">
 					<li><a href="#"></a></li>
 					<li><a href="home.html">Home</a></li>
-					<li><a href="BadgeTracking.html">Badge Tracking</a></li>
-					<li><a href="BadgeOverview.html">Badge Overview</a></li>
-					<li><a href="Journeys.html">Journeys</a></li>
+					<li><a href="UpdateBadgeRecords.php">Badge Tracking</a></li>
+					<li><a href="BadgeOverview.php">Badge Overview</a></li>
+					<li><a href="Journeys.php">Journeys</a></li>
 				</ul>
 			</li>		
 		</ul>
@@ -83,10 +83,10 @@
 												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse" style="background: url(img/badges/Daisy/<?php echo $badge["BAID"] ?>.png) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">
 											<ul class="list-group">
 												<div class="container"> 
-													<p>***DESCRIPTION***</p>            
+													       
 													<table  style="width: 90%;">														
 														<tbody>
 															<tr><?php $c = getScoutCountForBadge($badge["BAID"]); ?>
@@ -100,6 +100,8 @@
 															</tr>
 															<tr>														
 																<!-- modal activated by button -->
+																
+																
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																<!-- Modal -->
@@ -118,7 +120,7 @@
 																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 																						echo "<b>" . $quest["Name"] . ":</b><br>";
 																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"]. '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comment"] . '">?</a>' . "<br>" ;											
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
 																						}
 																					}
 																				
@@ -132,7 +134,7 @@
 																		</div>
 																	</div>	
 																</div>	
-																<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
+																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
 													</table>
@@ -158,10 +160,10 @@
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"];?> href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"];?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["Name"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse" style="background: url(img/badges/Brownie/<?php echo $badge["BAID"] ?>.png) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">
 											<ul class="list-group">
 												<div class="container"> 
 													<p>***DESCRIPTION***</p>            
@@ -196,7 +198,7 @@
 																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 																						echo "<b>" . $quest["Name"] . ":</b><br>";
 																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;											
 																						}
 																					}
 																				
@@ -210,7 +212,7 @@
 																		</div>
 																	</div>	
 																</div>	
-																<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
+																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
 													</table>
@@ -239,7 +241,7 @@
 												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse" class="panel-collapse collapse" style="background: url(img/badges/Junior/<?php echo $badge["BAID"] ?>.png) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">
 											<ul class="list-group">
 												<div class="container"> 
 													<p>***DESCRIPTION***</p>            
@@ -274,7 +276,7 @@
 																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 																						echo "<b>" . $quest["Name"] . ":</b><br>";
 																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;											
 																						}
 																					}
 																				
@@ -288,7 +290,7 @@
 																		</div>
 																	</div>	
 																</div>	
-																<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
+																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
 													</table>
@@ -317,7 +319,7 @@
 												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse" class="panel-collapse collapse" style="background: url(img/badges/Caddette/<?php echo $badge["BAID"] ?>.png) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">
 											<ul class="list-group">
 												<div class="container"> 
 													<p>***DESCRIPTION***</p>            
@@ -352,7 +354,7 @@
 																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 																						echo "<b>" . $quest["Name"] . ":</b><br>";
 																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;											
 																						}
 																					}
 																				
@@ -366,7 +368,7 @@
 																		</div>
 																	</div>	
 																</div>	
-																<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
+																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
 													</table>
@@ -395,7 +397,7 @@
 												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse" class="panel-collapse collapse" style="background: url(img/badges/Senior/<?php echo $badge["BAID"] ?>.jpg) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">
 											<ul class="list-group">
 												<div class="container"> 
 													<p>***DESCRIPTION***</p>            
@@ -430,7 +432,7 @@
 																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 																						echo "<b>" . $quest["Name"] . ":</b><br>";
 																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;										
 																						}
 																					}
 																				
@@ -443,7 +445,7 @@
 																		</div>
 																	</div>	
 																</div>	
-																<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
+																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
 													</table>
@@ -472,7 +474,7 @@
 												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse" class="panel-collapse collapse" style="background: url(img/badges/Ambassador/<?php echo $badge["BAID"] ?>.jpg) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">
 											<ul class="list-group">
 												<div class="container"> 
 													<p>***DESCRIPTION***</p>            
@@ -507,7 +509,7 @@
 																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 																						echo "<b>" . $quest["Name"] . ":</b><br>";
 																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $req["Name"] . "<br>";											
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;											
 																						}
 																					}
 																				
@@ -520,7 +522,7 @@
 																		</div>
 																	</div>	
 																</div>	
-																<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
+																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
 													</table>
@@ -539,3 +541,8 @@
     </div>
 </body>
 </html>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>

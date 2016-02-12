@@ -33,6 +33,7 @@ function getRequirementsForBadge($baid){
 	
 	return $reqs;	
 }
+#returns array of BARID, Name, and comments of all requirements given questID
 function getRequirementsForBadgeQuest($baqid){
 	global $conn;
 	$reqs = array();
@@ -124,6 +125,22 @@ function completeBadgeReq($sid, $baid, $barid, $date){
 }
 
 function getBadgesByRank($rank){
+	
+	$r = determineRank($rank);
+	global $conn;
+	$badgeArr = array();
+	$sql = "select * from badges where BAID like '" . $r . "' ORDER BY Name;";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$badgeArr[$i] = $row;
+	}	
+	return $badgeArr;	
+}
+#endregion
+
+function determineRank($rank){
 	switch($rank){
 		case "Daisy":
 		case "daisy":
@@ -157,19 +174,8 @@ function getBadgesByRank($rank){
 			break;
 	}
 	
-	global $conn;
-	$badgeArr = array();
-	$sql = "select * from badges where BAID like '" . $r . "' ORDER BY Name;";
-	
-	#fill array to be returned
-	$result = $conn->query($sql);
-	for($i = 0; $row = $result->fetch_assoc(); $i++){
-		$badgeArr[$i] = $row;
-	}	
-	return $badgeArr;	
+	return $r;
 }
-#endregion
-
 
 #region---------------------------JOURNEYS-----------------------------------
 function getAllJourneys(){
@@ -197,6 +203,20 @@ function getRequirementsForJourney($jid){
 		$reqs[$i] = $row;
 	}
 	return $reqs;
+}
+
+function getRequirementsForJourneyQuest($qid){
+		global $conn;
+	$reqs = array();
+	$sql = "SELECT * from questRequirements where RID IN (select Rid from QuestsHasQuestRequirements where qid = " . $qid . ");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$reqs[$i] = $row;
+	}
+	
+	return $reqs;	
 }
 
 function getQuestsForJourney($jid){
@@ -273,38 +293,8 @@ function completeJourneyReq($sid, $jid, $rid, $date){
 }
 
 function getJourneysByRank($rank){
-	switch($rank){
-		case "Daisy":
-		case "daisy":
-		case "d":
-			$r = '10%';
-			break;
-		case "Brownie":
-		case "brownie":
-		case "b":
-			$r = '20%';
-			break;
-		case "Junior":
-		case "junior":
-		case "j":
-			$r = '30%';
-			break;
-		case "Cadette":
-		case "cadette":
-		case "c":
-			$r = '40%';
-			break;
-		case "Senior":
-		case "senior":
-		case "s":
-			$r = '50%';
-			break;
-		case "Ambassador":
-		case "ambassador":
-		case "a":
-			$r = '60%';
-			break;
-	}
+	
+	$r = determineRank($rank);
 	
 	global $conn;
 	$jarr = array();

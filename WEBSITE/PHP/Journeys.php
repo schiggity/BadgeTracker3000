@@ -102,7 +102,39 @@
 																<td>Number of Scouts Started: <?php echo $c[0]; ?></td>																	
 																</tr>
 																<tr>														
-																	<td align="right"> <button class="btn btn-secondary btn-lg">Specific Requirements</button> </td>
+																
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $j["JID"]?>">Badge Requirements</button></td>
+
+																<!-- Modal -->
+																<div id="Modal<?php echo $j["JID"]?>" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+
+																		<!-- Modal content displaying badge requirements-->
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal">&times;</button>
+																				<h4 class="modal-title"><?php echo $j["Name"]?></h4>
+																			</div>
+																			<div class="modal-body">
+																				<p>
+																				<?php
+																					foreach(getQuestsForJourney($j["JID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																			</div>
+																		</div>
+																	</div>	
+																</div>
 																	<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
 																</tr>
 															</tbody>
@@ -147,7 +179,39 @@
 																<td>Number of Scouts Started: <?php echo $c[0]; ?></td>																	
 																</tr>
 																<tr>														
-																	<td align="right"> <button class="btn btn-secondary btn-lg">Specific Requirements</button> </td>
+																
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $j["JID"]?>">Badge Requirements</button></td>
+
+																<!-- Modal -->
+																<div id="Modal<?php echo $j["JID"]?>" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+
+																		<!-- Modal content displaying badge requirements-->
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal">&times;</button>
+																				<h4 class="modal-title"><?php echo $j["Name"]?></h4>
+																			</div>
+																			<div class="modal-body">
+																				<p>
+																				<?php
+																					foreach(getQuestsForJourney($j["JID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																			</div>
+																		</div>
+																	</div>	
+																</div>
 																	<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
 																</tr>
 															</tbody>
@@ -192,7 +256,39 @@
 																<td>Number of Scouts Started: <?php echo $c[0]; ?></td>																	
 																</tr>
 																<tr>														
-																	<td align="right"> <button class="btn btn-secondary btn-lg">Specific Requirements</button> </td>
+																
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $j["JID"]?>">Badge Requirements</button></td>
+
+																<!-- Modal -->
+																<div id="Modal<?php echo $j["JID"]?>" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+
+																		<!-- Modal content displaying badge requirements-->
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal">&times;</button>
+																				<h4 class="modal-title"><?php echo $j["Name"]?></h4>
+																			</div>
+																			<div class="modal-body">
+																				<p>
+																				<?php
+																					foreach(getQuestsForJourney($j["JID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																			</div>
+																		</div>
+																	</div>	
+																</div>
 																	<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
 																</tr>
 															</tbody>
@@ -237,7 +333,39 @@
 																<td>Number of Scouts Started: <?php echo $c[0]; ?></td>																	
 																</tr>
 																<tr>														
-																	<td align="right"> <button class="btn btn-secondary btn-lg">Specific Requirements</button> </td>
+																
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $j["JID"]?>">Badge Requirements</button></td>
+
+																<!-- Modal -->
+																<div id="Modal<?php echo $j["JID"]?>" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+
+																		<!-- Modal content displaying badge requirements-->
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal">&times;</button>
+																				<h4 class="modal-title"><?php echo $j["Name"]?></h4>
+																			</div>
+																			<div class="modal-body">
+																				<p>
+																				<?php
+																					foreach(getQuestsForJourney($j["JID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																			</div>
+																		</div>
+																	</div>	
+																</div>
 																	<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
 																</tr>
 															</tbody>
@@ -282,7 +410,39 @@
 																<td>Number of Scouts Started: <?php echo $c[0]; ?></td>																	
 																</tr>
 																<tr>														
-																	<td align="right"> <button class="btn btn-secondary btn-lg">Specific Requirements</button> </td>
+																
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $j["JID"]?>">Badge Requirements</button></td>
+
+																<!-- Modal -->
+																<div id="Modal<?php echo $j["JID"]?>" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+
+																		<!-- Modal content displaying badge requirements-->
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal">&times;</button>
+																				<h4 class="modal-title"><?php echo $j["Name"]?></h4>
+																			</div>
+																			<div class="modal-body">
+																				<p>
+																				<?php
+																					foreach(getQuestsForJourney($j["JID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																			</div>
+																		</div>
+																	</div>	
+																</div>
 																	<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
 																</tr>
 															</tbody>
@@ -316,7 +476,7 @@
 												<div class="container"> 
 													<p>***DESCRIPTION***</p>            
 														<table  style="width: 90%;">														
-															<tbody><?php $c = getScoutCountForJourney["JID"]; ?>
+															<tbody><?php $c = getScoutCountForJourney($j["JID"]); ?>
 																<tr>
 																<td>Number of Scouts Earned: <?php echo $c[1]; ?></td>																	
 																</tr>
@@ -327,7 +487,39 @@
 																<td>Number of Scouts Started: <?php echo $c[0]; ?></td>																	
 																</tr>
 																<tr>														
-																	<td align="right"> <button class="btn btn-secondary btn-lg">Specific Requirements</button> </td>
+																
+																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $j["JID"]?>">Badge Requirements</button></td>
+
+																<!-- Modal -->
+																<div id="Modal<?php echo $j["JID"]?>" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+
+																		<!-- Modal content displaying badge requirements-->
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal">&times;</button>
+																				<h4 class="modal-title"><?php echo $j["Name"]?></h4>
+																			</div>
+																			<div class="modal-body">
+																				<p>
+																				<?php
+																					foreach(getQuestsForJourney($j["JID"]) as $quest){
+																						echo "<b>" . $quest["Name"] . ":</b><br>";
+																						foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+																						}
+																					}
+																				
+																				
+																				?>
+																				</p>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																			</div>
+																		</div>
+																	</div>	
+																</div>
 																	<td align="right"> <button class="btn btn-secondary btn-lg">Update Records</button> </td>
 																</tr>
 															</tbody>
@@ -347,3 +539,8 @@
     </div>
 </body>
 </html>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
