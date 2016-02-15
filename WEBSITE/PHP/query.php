@@ -2,6 +2,8 @@
 #this file creates the connection object: $conn
 include 'connect.php';
 
+function determineRank($rank){
+	
 #region--------------------------- BADGES -----------------------------------
 
 #returns array of BAID and Name of every badge
@@ -108,7 +110,7 @@ function getScoutCountForBadge($baid){
 }
 
 #updates the scoutsDoBadge table when a requirement has been done
-#--if no date is provided the function will default to the current date
+#--if the date provided is 0 the function will default to 'NOW'
 function completeBadgeReq($sid, $baid, $barid, $date){
 	global $conn;
 	if($date == 0){
@@ -124,6 +126,33 @@ function completeBadgeReq($sid, $baid, $barid, $date){
 	}
 }
 
+#takes an array of scouts to be updated, prepares the statement and executes the insert for each scout
+#--this is more efficient than the above function on the DB side.
+function largeBadgeUpdate($sidArr, $baid,$barid,$date){
+	global $conn;
+		
+	$sql = $conn->prepare("INSERT INTO scoutsdobadge VALUES(?,?,?,?);");
+	
+	$sql->bind_param("ssss",$sid,$baid,$barid,$date);
+	
+	if($date == 0){
+		$date = "NOW()";
+	}
+	
+	foreach($sidArr as $sid){
+		$sql->execute();
+	}
+	
+	
+	if($result = $conn->query($sql)){
+		#echo 'inserted';		
+	}
+	else{
+		echo $conn->error;
+	}
+}
+
+#returns the Badges for a certian rank given a rank string like 'Daisy' for example
 function getBadgesByRank($rank){
 	
 	$r = determineRank($rank);
@@ -138,46 +167,13 @@ function getBadgesByRank($rank){
 	}	
 	return $badgeArr;	
 }
+
+
 #endregion
 
-function determineRank($rank){
-	switch($rank){
-		case "Daisy":
-		case "daisy":
-		case "d":
-			$r = '10%';
-			break;
-		case "Brownie":
-		case "brownie":
-		case "b":
-			$r = '20%';
-			break;
-		case "Junior":
-		case "junior":
-		case "j":
-			$r = '30%';
-			break;
-		case "Cadette":
-		case "cadette":
-		case "c":
-			$r = '40%';
-			break;
-		case "Senior":
-		case "senior":
-		case "s":
-			$r = '50%';
-			break;
-		case "Ambassador":
-		case "ambassador":
-		case "a":
-			$r = '60%';
-			break;
-	}
-	
-	return $r;
-}
-
 #region---------------------------JOURNEYS-----------------------------------
+
+#returns the JID and name of every journey
 function getAllJourneys(){
 	global $conn;
 	$jarr = array();
@@ -192,6 +188,7 @@ function getAllJourneys(){
 	return $jarr;
 }
 
+#returns the requirements for a journey given the Journey ID
 function getRequirementsForJourney($jid){
 	global $conn;
 	$reqs = array();
@@ -205,8 +202,9 @@ function getRequirementsForJourney($jid){
 	return $reqs;
 }
 
+#returns the Requirements for a journey given the journey Quest ID
 function getRequirementsForJourneyQuest($qid){
-		global $conn;
+	global $conn;
 	$reqs = array();
 	$sql = "SELECT * from questRequirements where RID IN (select Rid from QuestsHasQuestRequirements where qid = " . $qid . ");";
 	
@@ -219,6 +217,7 @@ function getRequirementsForJourneyQuest($qid){
 	return $reqs;	
 }
 
+#returns the Quests for a journey given the JID
 function getQuestsForJourney($jid){
 	global $conn;
 	$reqs = array();
@@ -232,6 +231,7 @@ function getQuestsForJourney($jid){
 	return $reqs;	
 }
 
+#returns array of the Number of scouts: started, completed, and awarded for a Journey
 function getScoutCountForJourney($jid){
 	global $conn;
 	$NumComp = 0;
@@ -277,6 +277,8 @@ function getScoutCountForJourney($jid){
 	
 }
 
+#inserts that a scout has completed a journey requirement.
+#--if date passed is 0 the date will be the current date
 function completeJourneyReq($sid, $jid, $rid, $date){
 	global $conn;
 	if($date == 0){
@@ -292,6 +294,7 @@ function completeJourneyReq($sid, $jid, $rid, $date){
 	}	
 }
 
+#returns all the journey available to a particular rank given the ranke string "brownie" or "b" for example
 function getJourneysByRank($rank){
 	
 	$r = determineRank($rank);
@@ -311,9 +314,217 @@ function getJourneysByRank($rank){
 
 #endregion
 
+#region-------------------------SCOUT RECORD---------------------------------
 
+###
+### do more on this when user auth is working these should be by troop ###
+###
+function getAllScouts(){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM scouts ORDER BY DoB;";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;	
+}
 
+#returns all the badges a scout has completed given the scoutID
+function getBadgesByScout($sid){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM badges where BAID IN(select BAID from ScoutsDoBadge JOIN scouts ON scoutsdobadge.sid = scouts.sid where scoutsdobadge.sid = ". $sid .");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;
+	
+}
 
+#returns all the journeys a scout has completed given the scoutID
+function getAwardsByScout($sid){
+	global $conn;
+	$arr = array();
+	$sql = "select * from awards where AID in (select AID from scoutsdoaward JOIN scouts ON scouts.sid = scoutsdoaward.sid where scoutsdoaward.sid = ". $sid .");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;
+	
+}
+
+#returns all the bridges a scout has completed given the scoutID
+function getBridgesByScout($sid){
+######not the updated db on my system will do soon##########
+}
+
+#returns all the financial records a scout is tied to given scoutID
+function getFinancesByScout($sid){
+	global $conn;
+	$arr = array();
+	$sql = "select * from finances where FID in (select FID from scoutspayduesfinances JOIN scouts ON scouts.sid = scoutspayduesfinances.sid where scoutspayduesfinances.sid = ". $sid .");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;
+	
+}
+
+#returns all the events a scout has gone to given scoutID
+function getEventsByScout($sid){
+		global $conn;
+	$arr = array();
+	$sql = "select * from events where EID in (select EID from ScoutsGoToEvents JOIN scouts ON scouts.sid = scoutsGoToEvents.sid where scoutsGoToEvents.sid = ". $sid .");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;
+	
+}
+#endregion
+
+#region---------------------------MY TROOP--------------------------------------
+
+function getAllFinance(){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM finances ORDER BY thedate;";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;	
+}
+
+function getAllEvents(){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM events ORDER BY thedate;";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;
+}
+#endregion
+
+#region--------------------------AWARDS-----------------------------------------
+
+#returns AID(Award ID),Name of every award
+function getAllAwards(){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM awards ORDER BY AID;";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;	
+	
+	
+}
+
+#returns the requirements for the given awardID
+function getAwardRequirements($aid){
+	global $conn;
+	$reqs = array();
+	$sql = "SELECT * from awardrequirements where ARID IN(select ARID from awardhasrequirements join awards on awardhasrequirements.aid = awards.aid where aid = ". $aid .");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$reqs[$i] = $row;
+	}
+	
+	return $reqs;	
+}
+
+#returns array of the Number of scouts: started, completed, and awarded for an Award
+function getAwardScoutCount($aid){
+	### sigh ###	
+}
+
+#endregion
+
+#region-------------------------BRIDGING----------------------------------------
+
+#returns the BID and Name for every bridge
+function getAllBridges(){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM awards ORDER BY BID;";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;
+}
+
+#returns the requirements for a bridgeQuest given the BridgeQuestID
+function getBridgeRequirementsByQuest($bqid){
+	global $conn;
+	$reqs = array();
+	$sql = "SELECT * from BridgeRequirements where BRID IN (select BRID from BridgeQuestsHasBridgeRequirements where bqid = " . $bqid . ");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$reqs[$i] = $row;
+	}
+	
+	return $reqs;
+}
+
+##returns the BridgeQuests given the BridgeID
+function getBridgeQuests($bid){
+	global $conn;
+	$reqs = array();
+	$sql = "SELECT * from BridgeQuests where BQID IN (select BQID from BridgingHasBridgeQuest where bid = " . $bid . ");";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$reqs[$i] = $row;
+	}
+	
+	return $reqs;
+}
+
+#returns array of the Number of scouts: started, completed, and awarded for a Bridge
+function getBridgeScoutCount($bid){
+	
+	
+	
+}
+
+#endregion
+
+#region--------------------------FINANCES--------------------------------------- 
+
+#endregion
 
 
 ?>

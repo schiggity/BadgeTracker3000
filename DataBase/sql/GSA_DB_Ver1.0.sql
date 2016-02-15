@@ -5230,7 +5230,8 @@ CREATE TABLE `events` (
 CREATE TABLE `finances` (
   `FID` int(11) NOT NULL DEFAULT '0',
   `Purpose` text,
-  `Amount` int(11) DEFAULT NULL
+  `Amount` int(11) DEFAULT NULL,
+  `TheDate` date DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -5241,7 +5242,7 @@ CREATE TABLE `finances` (
 
 CREATE TABLE `financescreateduesevents` (
   `FID` int(11) DEFAULT NULL,
-  `EID` int(11) DEFAULT NULL
+  `EID` int(11) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
