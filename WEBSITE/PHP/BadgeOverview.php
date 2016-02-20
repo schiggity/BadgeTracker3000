@@ -1,17 +1,14 @@
-<?php include 'query.php'; ?>
-
+<?php 
+include 'query.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Badge Overview</title> <!-- Change Page Tiltle Here -->
-  <!-- Stuff that is necessary for Bootstrap -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="TemplateCSS.css">
+	<!-- Change Page Tiltle Here -->
+	<title>Badge Overview</title> 
+	<?php include 'bootstrap.html';?>
 </head>
+
 
 <script>
 $(document).ready(function(){
@@ -21,45 +18,9 @@ $(document).ready(function(){
 
 <body>
 
-<!---------------------------------------------------------------- NAV BAR -------------------------------------------------------->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-	  <img class="navbar-brand" src="girlscout2.png"></img>
-    </div>
+<?php include 'navBar.html'; ?>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		<!-- Navigation dropdown -->
-		<ul class="nav navbar-nav">        
-			<li class="dropdown"> 
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Navigation <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#"></a></li>
-					<li><a href="home.html">Home</a></li>
-					<li><a href="UpdateBadgeRecords.php">Badge Tracking</a></li>
-					<li><a href="BadgeOverview.php">Badge Overview</a></li>
-					<li><a href="Journeys.php">Journeys</a></li>
-				</ul>
-			</li>		
-		</ul>
-		
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Welcome User</a></li>        
-		</ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
-<!-------------------------------------------------------------- TABS ------------------------------------------------------------->
+<!-------------------------------------------------------------- TABS STUFF ------------------------------------------------------>
 <div class="container">
         <div class="row-fluid">
             <div class="col-md-12">
@@ -99,7 +60,10 @@ $(document).ready(function(){
 													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 														echo "<b>" . $quest["Name"] . ":</b><br>";
 														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															$Comments = str_replace(array('"','\''), "", $req["Comments"]);
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $Comments . '">' . $Name. '</a>' . "<br>" ;
+															
 														}
 													}
 												
@@ -181,7 +145,10 @@ $(document).ready(function(){
 													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 														echo "<b>" . $quest["Name"] . ":</b><br>";
 														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															$Comments = str_replace(array('"','\''), "", $req["Comments"]);
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $Comments . '">' . $Name. '</a>' . "<br>" ;
+															
 														}
 													}
 												
@@ -260,7 +227,10 @@ $(document).ready(function(){
 													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 														echo "<b>" . $quest["Name"] . ":</b><br>";
 														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															$Comments = str_replace(array('"','\''), "", $req["Comments"]);
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $Comments . '">' . $Name. '</a>' . "<br>" ;
+															
 														}
 													}
 												
@@ -339,7 +309,10 @@ $(document).ready(function(){
 													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 														echo "<b>" . $quest["Name"] . ":</b><br>";
 														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															$Comments = str_replace(array('"','\''), "", $req["Comments"]);
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $Comments . '">' . $Name. '</a>' . "<br>" ;
+															
 														}
 													}
 												
@@ -418,7 +391,10 @@ $(document).ready(function(){
 													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 														echo "<b>" . $quest["Name"] . ":</b><br>";
 														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															$Comments = str_replace(array('"','\''), "", $req["Comments"]);
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $Comments . '">' . $Name. '</a>' . "<br>" ;
+															
 														}
 													}
 												
@@ -497,7 +473,10 @@ $(document).ready(function(){
 													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
 														echo "<b>" . $quest["Name"] . ":</b><br>";
 														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															$Comments = str_replace(array('"','\''), "", $req["Comments"]);
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $Comments . '">' . $Name. '</a>' . "<br>" ;
+															
 														}
 													}
 												
