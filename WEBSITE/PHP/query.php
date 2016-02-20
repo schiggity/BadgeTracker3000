@@ -3,6 +3,40 @@
 include 'connect.php';
 
 function determineRank($rank){
+	switch($rank){
+		case "Daisy":
+		case "daisy":
+		case "d":
+			$r = '10%';
+			break;
+		case "Brownie":
+		case "brownie":
+		case "b":
+			$r = '20%';
+			break;
+		case "Junior":
+		case "junior":
+		case "j":
+			$r = '40%';
+			break;
+		case "Cadette":
+		case "cadette":
+		case "c":
+			$r = '30%';
+			break;
+		case "Senior":
+		case "senior":
+		case "s":
+			$r = '50%';
+			break;
+		case "Ambassador":
+		case "ambassador":
+		case "a":
+			$r = '60%';
+			break;
+	}
+	return $r;
+}
 	
 #region--------------------------- BADGES -----------------------------------
 
@@ -232,15 +266,15 @@ function getQuestsForJourney($jid){
 }
 
 #returns array of the Number of scouts: started, completed, and awarded for a Journey
-function getScoutCountForJourney($jid){
+function getScoutCountForJourneyQuest($qid){
 	global $conn;
 	$NumComp = 0;
 	$QuestsCompleted = array();
 	
-	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdojourney WHERE jid = " . $jid . ";";
-	$Compsql  = "SELECT COUNT(DISTINCT qid) as completed FROM scoutsdojourney JOIN questshasquestrequirements ON scoutsdojourney.rid = questshasquestrequirements.rid WHERE jid = " . $jid . " GROUP BY sid;";	
-	$QNsql	  = "SELECT COUNT(qid) as questsNeeded FROM journeyhasquests WHERE jid = " . $jid . ";";
-	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedquests WHERE qid IN(select qid from journeyhasquests where jid = " . $jid . ");";
+	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdojourney WHERE qid = " . $qid . ";";
+	$Compsql  = "SELECT COUNT(DISTINCT scoutsdojourney.rid) as completed FROM scoutsdojourney JOIN questshasquestrequirements ON scoutsdojourney.rid = questshasquestrequirements.rid WHERE scoutsdojourney.qid =". $qid ." GROUP BY sid;";	
+	$QNsql	  = "SELECT COUNT(qid) as questsNeeded FROM questshasquestrequirements WHERE qid = " . $qid . ";";
+	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedquests WHERE qid = ". $qid .";";
 	
 	#scouts who started/completed/awarded
 	$result = $conn->query($Startsql);
@@ -331,6 +365,46 @@ function getAllScouts(){
 	}
 	return $arr;	
 }
+
+function getScout($sid){
+	global $conn;
+	$sql = "SELECT * FROM scouts WHERE sid = ". $sid .";";
+		
+	$result = $conn->query($sql);
+	$row = $result->fetch_assoc();
+	return $row;	
+}
+
+
+#returns the color status of the badge for the specified scout
+#complete green
+#started yellow
+#neither grey
+function BadgeColor($sid,$baid){
+	global $conn;
+	$Needed = "SELECT COUNT(baqid) as questsNeeded FROM badgehasquest WHERE baid = " . $baid . ";";
+	$Done	= "SELECT COUNT(DISTINCT baqid) as completed FROM scoutsdobadge JOIN badgequesthasrequirements ON scoutsdobadge.barid = badgequesthasrequirements.barid WHERE baid = ". $baid ." AND sid = ". $sid .";";
+	
+	$result = $conn->query($Needed);
+	$N = $result->fetch_assoc()["questsNeeded"];
+	
+	$result = $conn->query($Done);
+	$D = $result->fetch_assoc()["completed"];
+	
+	#if complete return GREEN
+	if($N == $D){
+		return "GREEN";
+	}
+	#if started return YELLOW
+	else if ($D > 0){
+		return "YELLOW";
+	}
+	#not started or finished return GREY
+	else{
+		return "GREY";
+	}
+}
+
 
 #returns all the badges a scout has completed given the scoutID
 function getBadgesByScout($sid){

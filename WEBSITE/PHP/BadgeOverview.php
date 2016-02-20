@@ -12,6 +12,13 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="TemplateCSS.css">
 </head>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
 <body>
 
 <!---------------------------------------------------------------- NAV BAR -------------------------------------------------------->
@@ -76,6 +83,36 @@
 									$badges = getBadgesByRank("daisy");
 									foreach($badges as $badge){
 								?>
+								<!-- Modal shit -->
+								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content displaying badge requirements-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+											</div>
+											<div class="modal-body">
+												<p>
+												<?php
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+														}
+													}
+												
+												
+												?>
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>	
+								</div>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
@@ -101,40 +138,12 @@
 															<tr>														
 																<!-- modal activated by button -->
 																
-																
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
-
-																<!-- Modal -->
-																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
-																	<div class="modal-dialog">
-
-																		<!-- Modal content displaying badge requirements-->
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
-																			</div>
-																			<div class="modal-body">
-																				<p>
-																				<?php
-																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-																						echo "<b>" . $quest["Name"] . ":</b><br>";
-																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
-																						}
-																					}
-																				
-																				
-																				?>
-																				</p>
-																			</div>
-																			<div class="modal-footer">
-																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																			</div>
-																		</div>
-																	</div>	
-																</div>	
+																
 																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
+															</tr>
+															<tr>
+															
 															</tr>
 														</tbody>
 													</table>
@@ -156,6 +165,36 @@
 									$badges = getBadgesByRank("brownie");
 									foreach($badges as $badge){
 								?>
+								<!-- Modal shit -->
+								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content displaying badge requirements-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+											</div>
+											<div class="modal-body">
+												<p>
+												<?php
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+														}
+													}
+												
+												
+												?>
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>	
+								</div>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
@@ -182,36 +221,7 @@
 																<!-- modal activated by button -->
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
-																<!-- Modal -->
-																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
-																	<div class="modal-dialog">
-
-																		<!-- Modal content displaying badge requirements-->
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
-																			</div>
-																			<div class="modal-body">
-																				<p>
-																				<?php
-																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-																						echo "<b>" . $quest["Name"] . ":</b><br>";
-																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;											
-																						}
-																					}
-																				
-																				
-																				?>
-																				</p>
-																			</div>
-																			<div class="modal-footer">
-																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																			</div>
-																		</div>
-																	</div>	
-																</div>	
+																	
 																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
@@ -234,6 +244,36 @@
 									$badges = getBadgesByRank("junior");
 									foreach($badges as $badge){
 								?>
+								<!-- Modal shit -->
+								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content displaying badge requirements-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+											</div>
+											<div class="modal-body">
+												<p>
+												<?php
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+														}
+													}
+												
+												
+												?>
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>	
+								</div>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
@@ -260,36 +300,7 @@
 																<!-- modal activated by button -->
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
-																<!-- Modal -->
-																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
-																	<div class="modal-dialog">
-
-																		<!-- Modal content displaying badge requirements-->
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
-																			</div>
-																				<div class="modal-body">
-																				<p>
-																				<?php
-																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-																						echo "<b>" . $quest["Name"] . ":</b><br>";
-																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;											
-																						}
-																					}
-																				
-																				
-																				?>
-																				</p>
-																			</div>
-																			<div class="modal-footer">
-																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																			</div>
-																		</div>
-																	</div>	
-																</div>	
+																	
 																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
@@ -312,6 +323,36 @@
 									$badges = getBadgesByRank("cadette");
 									foreach($badges as $badge){
 								?>
+								<!-- Modal shit -->
+								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content displaying badge requirements-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+											</div>
+											<div class="modal-body">
+												<p>
+												<?php
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+														}
+													}
+												
+												
+												?>
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>	
+								</div>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
@@ -338,36 +379,7 @@
 																<!-- modal activated by button -->
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
-																<!-- Modal -->
-																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
-																	<div class="modal-dialog">
-
-																		<!-- Modal content displaying badge requirements-->
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
-																			</div>
-																				<div class="modal-body">
-																				<p>
-																				<?php
-																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-																						echo "<b>" . $quest["Name"] . ":</b><br>";
-																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;											
-																						}
-																					}
-																				
-																				
-																				?>
-																				</p>
-																			</div>
-																			<div class="modal-footer">
-																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																			</div>
-																		</div>
-																	</div>	
-																</div>	
+																	
 																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
@@ -390,6 +402,36 @@
 									$badges = getBadgesByRank("senior");
 									foreach($badges as $badge){
 								?>
+								<!-- Modal shit -->
+								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content displaying badge requirements-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+											</div>
+											<div class="modal-body">
+												<p>
+												<?php
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+														}
+													}
+												
+												
+												?>
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>	
+								</div>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
@@ -416,35 +458,7 @@
 																<!-- modal activated by button -->
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
-																<!-- Modal -->
-																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
-																	<div class="modal-dialog">
-
-																		<!-- Modal content displaying badge requirements-->
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
-																			</div>
-																			<div class="modal-body">
-																				<p>
-																				<?php
-																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-																						echo "<b>" . $quest["Name"] . ":</b><br>";
-																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;										
-																						}
-																					}
-																				
-																				
-																				?>
-																				</p>
-																			<div class="modal-footer">
-																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																			</div>
-																		</div>
-																	</div>	
-																</div>	
+																
 																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
@@ -467,6 +481,36 @@
 									$badges = getBadgesByRank("ambassador");
 									foreach($badges as $badge){
 								?>
+								<!-- Modal shit -->
+								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+
+										<!-- Modal content displaying badge requirements-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+											</div>
+											<div class="modal-body">
+												<p>
+												<?php
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;
+														}
+													}
+												
+												
+												?>
+												</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											</div>
+										</div>
+									</div>	
+								</div>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
@@ -493,35 +537,7 @@
 																<!-- modal activated by button -->
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
-																<!-- Modal -->
-																<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
-																	<div class="modal-dialog">
-
-																		<!-- Modal content displaying badge requirements-->
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																				<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
-																			</div>
-																			<div class="modal-body">
-																				<p>
-																				<?php
-																					foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-																						echo "<b>" . $quest["Name"] . ":</b><br>";
-																						foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-																							echo "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . '<a href="#" data-toggle="tooltip" data-placement="right" title="'. $req["Comments"] . '">' . $req["Name"]. '</a>' . "<br>" ;											
-																						}
-																					}
-																				
-																				
-																				?>
-																				</p>
-																			<div class="modal-footer">
-																				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																			</div>
-																		</div>
-																	</div>	
-																</div>	
+																	
 																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
 															</tr>
 														</tbody>
@@ -541,8 +557,4 @@
     </div>
 </body>
 </html>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
+
