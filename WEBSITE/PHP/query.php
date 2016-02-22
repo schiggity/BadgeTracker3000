@@ -377,6 +377,18 @@ function getScout($sid){
 	return $row;	
 }
 
+#returns all scouts in a given rank
+function getScoutsByRank($rank){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM scouts WHERE Ranks='" . $rank . "' ORDER BY Name";
+	$result = $conn->query($sql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$arr[$i] = $row;
+	}
+	return $arr;
+}
+
 
 #returns the badge status for the specified scout
 #complete 1
