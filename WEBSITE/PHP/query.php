@@ -164,26 +164,19 @@ function completeBadgeReq($sid, $baid, $barid, $date){
 #--this is more efficient than the above function on the DB side.
 function largeBadgeUpdate($sidArr, $baid,$barid,$date){
 	global $conn;
-		
-	$sql = $conn->prepare("INSERT INTO scoutsdobadge VALUES(?,?,?,?);");
-	
-	$sql->bind_param("ssss",$sid,$baid,$barid,$date);
 	
 	if($date == 0){
-		$date = "NOW()";
+		$date = time();
 	}
+	
+	$sql = $conn->prepare("INSERT INTO scoutsdobadge VALUES(?,?,?,?);");
+	
+	$sql->bind_param("ssss",$sid,$baid,$barid,date("Y-m-d",$date));
 	
 	foreach($sidArr as $sid){
 		$sql->execute();
 	}
-	
-	
-	if($result = $conn->query($sql)){
-		#echo 'inserted';		
-	}
-	else{
-		echo $conn->error;
-	}
+
 }
 
 #returns the Badges for a certian rank given a rank string like 'Daisy' for example
