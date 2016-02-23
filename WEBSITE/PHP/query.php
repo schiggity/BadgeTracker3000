@@ -144,13 +144,13 @@ function getScoutCountForBadge($baid){
 }
 
 #updates the scoutsDoBadge table when a requirement has been done
-#--if the date provided is 0 the function will default to 'NOW'
+#--if the date provided is 0 the function will default to current time
 function completeBadgeReq($sid, $baid, $barid, $date){
 	global $conn;
 	if($date == 0){
-		$date = "NOW()";
+		$date = time();
 	}
-	$sql = "INSERT INTO scoutsdobadge VALUES(". $sid . "," . $baid . "," . $barid . "," . $date . ");";
+	$sql = "INSERT INTO scoutsdobadge VALUES(". $sid . "," . $baid . "," . $barid . "," . date("Y-m-d", $date) . ");";
 	
 	if($result = $conn->query($sql)){
 		echo 'inserted';		
@@ -309,9 +309,9 @@ function getScoutCountForJourneyQuest($qid){
 function completeJourneyReq($sid, $jid, $rid, $date){
 	global $conn;
 	if($date == 0){
-		$date = "NOW()";
+		$date = time();
 	}
-	$sql = "INSERT INTO scoutsdojourney VALUES(". $sid . "," . $baid . "," . $barid . "," . $date . ");";
+	$sql = "INSERT INTO scoutsdojourney VALUES(". $sid . "," . $baid . "," . $barid . "," . date("Y-m-d",$date) . ");";
 	
 	if($result = $conn->query($sql)){
 		echo 'inserted';		
