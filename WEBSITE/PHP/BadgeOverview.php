@@ -1,5 +1,6 @@
 <?php 
 include 'query.php'; 
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +82,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse" style="background: url(img/badges/Daisy/<?php echo $badge["BAID"] ?>.png) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">
@@ -100,11 +101,17 @@ $(document).ready(function(){
 																<td>Number of Scouts Started: <?php echo $c[0]; ?></td>																	
 															</tr>
 															<tr>														
-																<!-- modal activated by button -->
 																
-																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 																
-																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
+															<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
+															
+															<td align="right"> 
+																<form action="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="1">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"] ?>">	
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
+															</td>
 															</tr>
 															<tr>
 															
@@ -189,7 +196,13 @@ $(document).ready(function(){
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																	
-																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
+																<td align="right"> 
+																<form action="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="2">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"] ?>">
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
+															</td>
 															</tr>
 														</tbody>
 													</table>
@@ -271,7 +284,13 @@ $(document).ready(function(){
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																	
-																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
+																<td align="right"> 
+																<form action="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="3">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"] ?>">
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
+															</td>
 															</tr>
 														</tbody>
 													</table>
@@ -353,7 +372,13 @@ $(document).ready(function(){
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																	
-																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
+																<td align="right"> 
+																<form action="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="4">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"] ?>">
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
+															</td>
 															</tr>
 														</tbody>
 													</table>
@@ -435,7 +460,13 @@ $(document).ready(function(){
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																
-																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
+																<td align="right"> 
+																<form action="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="5">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"] ?>">
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
+															</td>
 															</tr>
 														</tbody>
 													</table>
@@ -517,7 +548,13 @@ $(document).ready(function(){
 																<td align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Badge Requirements</button></td>
 
 																	
-																<td align="right"> <a href="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" ><button class="btn btn-secondary btn-lg">Update Records</button></a> </td>
+																<td align="right"> 
+																<form action="/UpdateBadgeRecords.php#<?php echo $badge["BAID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="6">
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"] ?>">																	
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
+															</td>
 															</tr>
 														</tbody>
 													</table>

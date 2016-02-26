@@ -2,6 +2,8 @@
 include 'query.php';
 include 'bootstrap.html';
 
+session_start();
+
 if(isset($_POST['submitform'])){
 	echo substr($_POST['requirements'][0], 0,4) . "<br>";
 	
@@ -22,12 +24,13 @@ if(isset($_POST['submitform'])){
 <html lang="en">
 <head>
 <!-- Change Page Title Here -->
-<title>Badge Overview</title> 
+<title>Badge Update</title> 
 </head>
 
 <script>
 $(document).ready(function(){
-$('[data-toggle="tooltip"]').tooltip();   
+$('[data-toggle="tooltip"]').tooltip();
+$(<?php echo $_POST['Bcollapse']; ?>).collapse('show');   
 });
 </script>
 
@@ -40,6 +43,20 @@ $('[data-toggle="tooltip"]').tooltip();
 <div class="row-fluid">
 <div class="col-md-12">
 <h1>Update Badge</h1>
+
+<?php if(isset($_POST['BTab'])){ ?>
+
+<ul class="nav nav-tabs" id="myTab">
+<li <?php if($_POST['BTab'] == '1'){echo 'class="active"';} ?> ><a href="#Tab1" data-toggle="tab">Daisies</a></li>
+<li <?php if($_POST['BTab'] == '2'){echo 'class="active"';} ?> ><a href="#Tab2" data-toggle="tab">Brownies</a></li>
+<li <?php if($_POST['BTab'] == '3'){echo 'class="active"';} ?> ><a href="#Tab3" data-toggle="tab">Juniors</a></li>
+<li <?php if($_POST['BTab'] == '4'){echo 'class="active"';} ?> ><a href="#Tab4" data-toggle="tab">Cadettes</a></li>
+<li <?php if($_POST['BTab'] == '5'){echo 'class="active"';} ?> ><a href="#Tab5" data-toggle="tab">Seniors</a></li>
+<li <?php if($_POST['BTab'] == '6'){echo 'class="active"';} ?> ><a href="#Tab6" data-toggle="tab">Ambassadors</a></li>
+</ul>
+
+<?php } else { ?>
+
 <ul class="nav nav-tabs" id="myTab">
 <li class="active"><a href="#Tab1" data-toggle="tab">Daisies</a></li>
 <li><a href="#Tab2" data-toggle="tab">Brownies</a></li>
@@ -48,10 +65,12 @@ $('[data-toggle="tooltip"]').tooltip();
 <li><a href="#Tab5" data-toggle="tab">Seniors</a></li>
 <li><a href="#Tab6" data-toggle="tab">Ambassadors</a></li>
 </ul>
+<?php } ?>
+
 <div class="tab-content my-tab">  
 
 <!----------------------------------------- Daisies tab collapsing panel start ------------------------------------------->                    
-<div class="tab-pane active" id="Tab1">
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '1'){echo "";}else{ echo "active";} ?>" id="Tab1">
 <div class="row">
 <div class="col-md-12">
 <h3>Daisies</h3>
@@ -124,7 +143,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -154,7 +173,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Brownies tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane" id="Tab2">  
+<div class="tab-pane <?php if($_POST['BTab'] == '2'){echo "active";} ?>"id="Tab2">  
 <div class="row">
 <div class="col-md-12">
 <h3>Brownies</h3>
@@ -227,7 +246,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -257,7 +276,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Juniors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane" id="Tab3">  
+<div class="tab-pane <?php if($_POST['BTab'] == '3'){echo "active";} ?>"id="Tab3">  
 <div class="row">
 <div class="col-md-12">
 <h3>Juniors</h3>
@@ -330,7 +349,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -360,7 +379,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Cadettes tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane" id="Tab4">  
+<div class="tab-pane <?php if($_POST['BTab'] == '4'){echo "active";} ?>"id="Tab4">  
 <div class="row">
 <div class="col-md-12">
 <h3>Cadettes</h3>
@@ -433,7 +452,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -463,7 +482,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Seniors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane" id="Tab5">  
+<div class="tab-pane <?php if($_POST['BTab'] == '5'){echo "active";} ?>" id="Tab5">  
 <div class="row">
 <div class="col-md-12">
 <h3>Seniors</h3>
@@ -536,7 +555,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -566,7 +585,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Ambassadors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane" id="Tab6">  
+<div class="tab-pane <?php if($_POST['BTab'] == '6'){echo "active";} ?>" id="Tab6">  
 <div class="row">
 <div class="col-md-12">
 <h3>Ambassadors</h3>
@@ -639,7 +658,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -677,3 +696,9 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </body>
 </html>
 
+
+<script>
+$(document).ready(function(){	
+	
+}
+</script>
