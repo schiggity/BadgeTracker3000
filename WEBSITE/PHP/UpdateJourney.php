@@ -1,20 +1,23 @@
-<?php 
+<<?php 
 include 'query.php';
 include 'bootstrap.html';
 
 session_start();
 
 if(isset($_POST['submitform'])){
-	echo substr($_POST['requirements'][0], 0,4) . "<br>";
+	echo substr($_POST['requirements'][0], 0,5) . "<br>";
+	
+	foreach($_POST['requirements'] as $reqs){
+		echo $reqs . "<br>";
+	}
 	
 	foreach($_POST['names'] as $names){
 		echo $names . "<br>";
 	}
 	
 	foreach($_POST['requirements'] as $reqs){
-		largeBadgeUpdate($_POST['names'],substr($_POST['requirements'][0], 0,4),$reqs,0);
+		largeJourneyUpdate($_POST['names'],substr($_POST['requirements'][0], 0, 5), $reqs, 0);
 	}
-	
 	
 	echo "Submitted";
 }
@@ -42,7 +45,7 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 <div class="container">
 <div class="row-fluid">
 <div class="col-md-12">
-<h1>Update Badge</h1>
+<h1>Update Journeys</h1>
 
 <?php if(isset($_POST['BTab'])){ ?>
 
@@ -75,12 +78,12 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 <div class="col-md-12">
 <h3>Daisies</h3>
 <?php
-$badges = getBadgesByRank("daisy");
+$journeys = getJourneysByRank("daisy");
 $scoutsInRank = getScoutsByRank("daisy");
-foreach($badges as $badge){
+foreach($journeys as $journey){
 ?>
 <!-- Modal content displaying Scout names-->
-<div id="ModalScout<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -107,24 +110,24 @@ echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $s
 </div>
 
 <!-- Modal content displaying badge requirements-->
-<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="Modal<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+<h4 class="modal-title"><?php echo $journey["Name"]?></h4>
 </div>
 <div class="modal-body">
 <div id="reqCheckboxes">
 <form method="post">
 <p>
 <?php
-foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-echo "<b>" . $quest["Name"] . ":</b><br>";
-foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-$Name = str_replace(array('"','\''), "", $req["Name"]);
-$Comments = str_replace(array('"','\''), "", $req["Comments"]);
-echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
+foreach(getQuestsForJourney($journey["JID"]) as $jquest){
+echo "<b>" . $jquest["Name"] . ":</b><br>";
+foreach(getRequirementsForJourneyQuest($jquest["QID"]) as $jreq){
+$Name = str_replace(array('"','\''), "", $jreq["Name"]);
+$Comments = str_replace(array('"','\''), "", $jreq["Comments"]);
+echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
 }
 }
 ?>
@@ -143,17 +146,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" class="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 </h4>
 </div>
-<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
 <div class="container"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
 <td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
 </tr>
 
@@ -173,17 +176,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Brownies tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '2'){echo "active";} ?>"id="Tab2">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '2'){echo "";}else{ echo "active";} ?>" id="Tab2">
 <div class="row">
 <div class="col-md-12">
 <h3>Brownies</h3>
 <?php
-$badges = getBadgesByRank("brownie");
+$journeys = getJourneysByRank("brownie");
 $scoutsInRank = getScoutsByRank("brownie");
-foreach($badges as $badge){
+foreach($journeys as $journey){
 ?>
 <!-- Modal content displaying Scout names-->
-<div id="ModalScout<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -210,24 +213,24 @@ echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $s
 </div>
 
 <!-- Modal content displaying badge requirements-->
-<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="Modal<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+<h4 class="modal-title"><?php echo $journey["Name"]?></h4>
 </div>
 <div class="modal-body">
 <div id="reqCheckboxes">
 <form method="post">
 <p>
 <?php
-foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-echo "<b>" . $quest["Name"] . ":</b><br>";
-foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-$Name = str_replace(array('"','\''), "", $req["Name"]);
-$Comments = str_replace(array('"','\''), "", $req["Comments"]);
-echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
+foreach(getQuestsForJourney($journey["JID"]) as $jquest){
+echo "<b>" . $jquest["Name"] . ":</b><br>";
+foreach(getRequirementsForJourneyQuest($jquest["QID"]) as $jreq){
+$Name = str_replace(array('"','\''), "", $jreq["Name"]);
+$Comments = str_replace(array('"','\''), "", $jreq["Comments"]);
+echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
 }
 }
 ?>
@@ -246,17 +249,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 </h4>
 </div>
-<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
 <div class="container"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
 <td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
 </tr>
 
@@ -276,17 +279,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Juniors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '3'){echo "active";} ?>"id="Tab3">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '3'){echo "";}else{ echo "active";} ?>" id="Tab3">
 <div class="row">
 <div class="col-md-12">
 <h3>Juniors</h3>
 <?php
-$badges = getBadgesByRank("junior");
+$journeys = getJourneysByRank("junior");
 $scoutsInRank = getScoutsByRank("junior");
-foreach($badges as $badge){
+foreach($journeys as $journey){
 ?>
 <!-- Modal content displaying Scout names-->
-<div id="ModalScout<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -313,24 +316,24 @@ echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $s
 </div>
 
 <!-- Modal content displaying badge requirements-->
-<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="Modal<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+<h4 class="modal-title"><?php echo $journey["Name"]?></h4>
 </div>
 <div class="modal-body">
 <div id="reqCheckboxes">
 <form method="post">
 <p>
 <?php
-foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-echo "<b>" . $quest["Name"] . ":</b><br>";
-foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-$Name = str_replace(array('"','\''), "", $req["Name"]);
-$Comments = str_replace(array('"','\''), "", $req["Comments"]);
-echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
+foreach(getQuestsForJourney($journey["JID"]) as $jquest){
+echo "<b>" . $jquest["Name"] . ":</b><br>";
+foreach(getRequirementsForJourneyQuest($jquest["QID"]) as $jreq){
+$Name = str_replace(array('"','\''), "", $jreq["Name"]);
+$Comments = str_replace(array('"','\''), "", $jreq["Comments"]);
+echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
 }
 }
 ?>
@@ -349,17 +352,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 </h4>
 </div>
-<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
 <div class="container"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
 <td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
 </tr>
 
@@ -379,17 +382,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Cadettes tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '4'){echo "active";} ?>"id="Tab4">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '4'){echo "";}else{ echo "active";} ?>" id="Tab4">
 <div class="row">
 <div class="col-md-12">
 <h3>Cadettes</h3>
 <?php
-$badges = getBadgesByRank("cadette");
+$journeys = getJourneysByRank("cadette");
 $scoutsInRank = getScoutsByRank("cadette");
-foreach($badges as $badge){
+foreach($journeys as $journey){
 ?>
 <!-- Modal content displaying Scout names-->
-<div id="ModalScout<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -416,24 +419,24 @@ echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $s
 </div>
 
 <!-- Modal content displaying badge requirements-->
-<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="Modal<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+<h4 class="modal-title"><?php echo $journey["Name"]?></h4>
 </div>
 <div class="modal-body">
 <div id="reqCheckboxes">
 <form method="post">
 <p>
 <?php
-foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-echo "<b>" . $quest["Name"] . ":</b><br>";
-foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-$Name = str_replace(array('"','\''), "", $req["Name"]);
-$Comments = str_replace(array('"','\''), "", $req["Comments"]);
-echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
+foreach(getQuestsForJourney($journey["JID"]) as $jquest){
+echo "<b>" . $jquest["Name"] . ":</b><br>";
+foreach(getRequirementsForJourneyQuest($jquest["QID"]) as $jreq){
+$Name = str_replace(array('"','\''), "", $jreq["Name"]);
+$Comments = str_replace(array('"','\''), "", $jreq["Comments"]);
+echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
 }
 }
 ?>
@@ -452,17 +455,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 </h4>
 </div>
-<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
 <div class="container"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
 <td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
 </tr>
 
@@ -482,17 +485,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Seniors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '5'){echo "active";} ?>" id="Tab5">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '5'){echo "";}else{ echo "active";} ?>" id="Tab5">
 <div class="row">
 <div class="col-md-12">
 <h3>Seniors</h3>
 <?php
-$badges = getBadgesByRank("senior");
+$journeys = getJourneysByRank("senior");
 $scoutsInRank = getScoutsByRank("senior");
-foreach($badges as $badge){
+foreach($journeys as $journey){
 ?>
 <!-- Modal content displaying Scout names-->
-<div id="ModalScout<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -519,24 +522,24 @@ echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $s
 </div>
 
 <!-- Modal content displaying badge requirements-->
-<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="Modal<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+<h4 class="modal-title"><?php echo $journey["Name"]?></h4>
 </div>
 <div class="modal-body">
 <div id="reqCheckboxes">
 <form method="post">
 <p>
 <?php
-foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-echo "<b>" . $quest["Name"] . ":</b><br>";
-foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-$Name = str_replace(array('"','\''), "", $req["Name"]);
-$Comments = str_replace(array('"','\''), "", $req["Comments"]);
-echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
+foreach(getQuestsForJourney($journey["JID"]) as $jquest){
+echo "<b>" . $jquest["Name"] . ":</b><br>";
+foreach(getRequirementsForJourneyQuest($jquest["QID"]) as $jreq){
+$Name = str_replace(array('"','\''), "", $jreq["Name"]);
+$Comments = str_replace(array('"','\''), "", $jreq["Comments"]);
+echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
 }
 }
 ?>
@@ -555,17 +558,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 </h4>
 </div>
-<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
 <div class="container"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
 <td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
 </tr>
 
@@ -585,17 +588,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Ambassadors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '6'){echo "active";} ?>" id="Tab6">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '6'){echo "";}else{ echo "active";} ?>" id="Tab6">
 <div class="row">
 <div class="col-md-12">
 <h3>Ambassadors</h3>
 <?php
-$badges = getBadgesByRank("ambassador");
+$journeys = getJourneysByRank("ambassador");
 $scoutsInRank = getScoutsByRank("ambassador");
-foreach($badges as $badge){
+foreach($journeys as $journey){
 ?>
 <!-- Modal content displaying Scout names-->
-<div id="ModalScout<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -622,24 +625,24 @@ echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $s
 </div>
 
 <!-- Modal content displaying badge requirements-->
-<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
+<div id="Modal<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal">&times;</button>
-<h4 class="modal-title"><?php echo $badge["Name"]?></h4>
+<h4 class="modal-title"><?php echo $journey["Name"]?></h4>
 </div>
 <div class="modal-body">
 <div id="reqCheckboxes">
 <form method="post">
 <p>
 <?php
-foreach(getQuestsForBadge($badge["BAID"]) as $quest){
-echo "<b>" . $quest["Name"] . ":</b><br>";
-foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
-$Name = str_replace(array('"','\''), "", $req["Name"]);
-$Comments = str_replace(array('"','\''), "", $req["Comments"]);
-echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
+foreach(getQuestsForJourney($journey["JID"]) as $jquest){
+echo "<b>" . $jquest["Name"] . ":</b><br>";
+foreach(getRequirementsForJourneyQuest($jquest["QID"]) as $jreq){
+$Name = str_replace(array('"','\''), "", $jreq["Name"]);
+$Comments = str_replace(array('"','\''), "", $jreq["Comments"]);
+echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
 }
 }
 ?>
@@ -658,17 +661,17 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 </h4>
 </div>
-<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
 <div class="container"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
 <td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
 </tr>
 
@@ -695,4 +698,3 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </body>
 </html>
-
