@@ -487,6 +487,9 @@ function getBadgeDate($sid,$baid){
 	
 }
 
+
+
+
 function getJourneyDate($sid,$baid){
 	global $conn;
 	
