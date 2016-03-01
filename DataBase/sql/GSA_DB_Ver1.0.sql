@@ -5206,7 +5206,9 @@ CREATE TABLE `emergencyinfo` (
   `PrimaryCont` text,
   `SecondaryCont` text,
   `Allergies` text,
-  `Other` text
+  `illness` text,
+  `Other` text,
+  `Notes` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -5230,7 +5232,8 @@ CREATE TABLE `events` (
 CREATE TABLE `finances` (
   `FID` int(11) NOT NULL DEFAULT '0',
   `Purpose` text,
-  `Amount` int(11) DEFAULT NULL
+  `Amount` int(11) DEFAULT NULL,
+  `TheDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -5662,7 +5665,13 @@ INSERT INTO `questshasquestrequirements` (`QID`, `RID`) VALUES
 
 CREATE TABLE `scouts` (
   `SID` int(11) NOT NULL DEFAULT '0',
+  `Name` text,
   `DoB` date DEFAULT NULL,
+  `address` text,
+  `PhoneNumber` text,
+  `BackupPhone` text,
+  `email` text,
+  `Parents` text,
   `Grade` int(11) DEFAULT NULL,
   `Ranks` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
