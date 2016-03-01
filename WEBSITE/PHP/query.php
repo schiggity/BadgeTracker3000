@@ -616,9 +616,51 @@ function getAwardRequirements($aid){
 	return $reqs;	
 }
 
+
 #returns array of the Number of scouts: started, completed, and awarded for an Award
 function getAwardScoutCount($aid){
-	### sigh ###	
+	global $conn;
+	$NumComp = 0;
+	$QuestsCompleted = array();
+	
+	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdoaward WHERE aid = " . $aid . ";";
+	$Compsql  = "SELECT COUNT(DISTINCT scoutsdoaward.aid) as completed FROM scoutsdoaward JOIN awardhasrequirements ON scoutsdoaward.aid = awardhasrequirements.aid WHERE scoutsdoaward.aid =". $aid ." GROUP BY sid;";	
+	$QNsql	  = "SELECT COUNT(arid) as questsNeeded FROM awardhasrequirements WHERE aid = " . $aid . ";";
+	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedawards WHERE aid = ". $aid .";";
+	
+	#scouts who started/completed/awarded
+	$result = $conn->query($Startsql);
+	$started = $result->fetch_assoc()["started"];
+	
+	#number of quests completed by each scout for journey x
+	$result = $conn->query($Compsql);
+	for($i = 0; $row = $result->fetch_assoc(); $i++){
+		$QuestsCompleted[$i] = $row;
+	}
+	
+	#number of quests needed to complete journey x
+	$result = $conn->query($QNsql);
+	$QuestsNeeded = $result->fetch_assoc()["questsNeeded"];
+	
+	#number of scouts awarded journey x
+	$result = $conn->query($Awardsql);
+	$NumAward = $result->fetch_assoc()["awarded"];
+		
+	#comparing number of quests complete by each scout to quests needed for journey x
+	foreach ($QuestsCompleted as $quests){
+		if($quests == $QuestsNeeded){
+			$NumComp++;
+		}		
+	}
+	
+	#subtract scouts that have finished it
+	$started -= ($NumComp + $NumAward);
+	
+	#subtract scouts awarded from completed
+	$NumComp -= $NumAward;
+	
+	return array($started,$NumComp,$NumAward);	
+	
 }
 
 #endregion

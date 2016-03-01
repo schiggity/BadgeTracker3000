@@ -71,9 +71,11 @@ $(document).ready(function(){
 																<tr>
 																<td align="right">Number of Scouts Started: <?php echo $c[0]; ?></td>	
 																<td rowspan="2" align ="right">
-																	<a href="/UpdateJourneyRecords.php#<?php echo $q["QID"] ?>" >
-																		<button class="btn btn-secondary btn-lg">&nbsp&nbsp&nbsp Update Records &nbsp&nbsp&nbsp</button>
-																	</a>
+																<form action="/UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="1">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
 																</td>
 																</tr>
 																
@@ -163,9 +165,11 @@ $(document).ready(function(){
 																<tr>
 																<td align="right">Number of Scouts Started: <?php echo $c[0]; ?></td>	
 																<td rowspan="2" align ="right">
-																	<a href="/UpdateJourneyRecords.php#<?php echo $q["QID"] ?>" >
-																		<button class="btn btn-secondary btn-lg">&nbsp&nbsp&nbsp Update Records &nbsp&nbsp&nbsp</button>
-																	</a>
+																<form action="/UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="2">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
 																</td>
 																</tr>
 																
@@ -254,9 +258,11 @@ $(document).ready(function(){
 																<tr>
 																<td align="right">Number of Scouts Started: <?php echo $c[0]; ?></td>	
 																<td rowspan="2" align ="right">
-																	<a href="/UpdateJourneyRecords.php#<?php echo $q["QID"] ?>" >
-																		<button class="btn btn-secondary btn-lg">&nbsp&nbsp&nbsp Update Records &nbsp&nbsp&nbsp</button>
-																	</a>
+																<form action="/UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="3">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
 																</td>
 																</tr>
 																
@@ -345,9 +351,11 @@ $(document).ready(function(){
 																<tr>
 																<td align="right">Number of Scouts Started: <?php echo $c[0]; ?></td>	
 																<td rowspan="2" align ="right">
-																	<a href="/UpdateJourneyRecords.php#<?php echo $q["QID"] ?>" >
-																		<button class="btn btn-secondary btn-lg">&nbsp&nbsp&nbsp Update Records &nbsp&nbsp&nbsp</button>
-																	</a>
+																<form action="/UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="4">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form>
 																</td>
 																</tr>
 																
@@ -436,9 +444,11 @@ $(document).ready(function(){
 																<tr>
 																<td align="right">Number of Scouts Started: <?php echo $c[0]; ?></td>	
 																<td rowspan="2" align ="right">
-																	<a href="/UpdateJourneyRecords.php#<?php echo $q["QID"] ?>" >
-																		<button class="btn btn-secondary btn-lg">&nbsp&nbsp&nbsp Update Records &nbsp&nbsp&nbsp</button>
-																	</a>
+																<form action="/UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="5">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
 																</td>
 																</tr>
 																
@@ -527,9 +537,11 @@ $(document).ready(function(){
 																<tr>
 																<td align="right">Number of Scouts Started: <?php echo $c[0]; ?></td>	
 																<td rowspan="2" align ="right">
-																	<a href="/UpdateJourneyRecords.php#<?php echo $q["QID"] ?>" >
-																		<button class="btn btn-secondary btn-lg">&nbsp&nbsp&nbsp Update Records &nbsp&nbsp&nbsp</button>
-																	</a>
+																<form action="/UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="6">	
+																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
+																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																</form> 
 																</td>
 																</tr>
 																
