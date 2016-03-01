@@ -724,5 +724,19 @@ function getBridgeScoutCount($bid){
 
 #endregion
 
+#region--------------------------FINANCES--------------------------------------- 
 
+function addScout($sid, $name, $dob, $address, $phoneNum, $backupPhoneNum, $email, $parents, $grade, $rank){
+	global $conn;
+	$sql = "INSERT INTO scouts VALUES(". $sid . "," . $name . "," . $dob . "," . $address . "," . $phoneNum . "," . $backupPhoneNum . "," . $email . "," . $parents . "," . $grade . "," . $rank . ");";
+	
+	if($result = $conn->query($sql)){
+		echo 'inserted';		
+	}
+	else{
+		echo $conn->error;
+	}
+}
+
+#endregion
 ?>
