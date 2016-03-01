@@ -471,12 +471,46 @@ function awardStatus($sid,$aid){
 	}
 }
 
+function getBadgeDate($sid,$baid){
+	global $conn;
+	
+	$r = determineRank($rank);
+	
+	$arr = array();
+	$sql = "SELECT thedate from scoutsdobadge where sid = " . $sid . " and baid =" . $baid . "order by thedate limit 1;";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	
+	return $result->fetch_assoc()["thedate"];
+	
+	
+}
+
+function getJourneyDate($sid,$baid){
+	global $conn;
+	
+	$r = determineRank($rank);
+	
+	$arr = array();
+	$sql = "SELECT thedate from scoutsdojourney where sid = " . $sid . " and qid =" . $baid . "order by thedate limit 1;";
+	
+	#fill array to be returned
+	$result = $conn->query($sql);
+	
+	return $result->fetch_assoc()["thedate"];
+	
+	
+}
 
 #returns all the badges a scout has completed given the scoutID
-function getBadgesByScout($sid){
+function getBadgesByScoutByRank($sid,$rank){
 	global $conn;
+	
+	$r = determineRank($rank);
+	
 	$arr = array();
-	$sql = "SELECT * FROM badges where BAID IN(select BAID from ScoutsDoBadge JOIN scouts ON scoutsdobadge.sid = scouts.sid where scoutsdobadge.sid = ". $sid .");";
+	$sql = "SELECT * FROM badges where BAID IN(select BAID from ScoutsDoBadge JOIN scouts ON scoutsdobadge.sid = scouts.sid where scoutsdobadge.sid = ". $sid .") AND BAID LIKE ". $r .";";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
@@ -488,10 +522,13 @@ function getBadgesByScout($sid){
 }
 
 #returns all the journeyQuests a scout has completed given the scoutID
-function getJourneyQuestsByScout($sid){
+function getJourneyQuestsByScoutByRank($sid,$Rank){
 	global $conn;
 	$arr = array();
-	$sql = "select * from quests where QID in (select QID from scoutsdojourney JOIN scouts ON scouts.sid = scoutsdojourney.sid WHERE scoutsdojourney.sid = ". $sid .");";
+	
+	$r = determineRank($rank);
+	
+	$sql = "select * from quests where QID in (select QID from scoutsdojourney JOIN scouts ON scouts.sid = scoutsdojourney.sid WHERE scoutsdojourney.sid = ". $sid .") AND QID LIKE ". $r . ";";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
@@ -520,7 +557,7 @@ function getAwardsByScout($sid){
 
 #returns all the bridges a scout has completed given the scoutID
 function getBridgesByScout($sid){
-######not the updated db on my system will do soon##########
+
 }
 
 #returns all the financial records a scout is tied to given scoutID
