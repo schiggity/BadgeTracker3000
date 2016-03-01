@@ -696,9 +696,3 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </body>
 </html>
 
-
-<script>
-$(document).ready(function(){	
-	
-}
-</script>
