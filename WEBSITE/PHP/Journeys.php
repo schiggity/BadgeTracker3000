@@ -165,8 +165,8 @@ $(document).ready(function(){
 																<tr>
 																<td align="right">Number of Scouts Started: <?php echo $c[0]; ?></td>	
 																<td rowspan="2" align ="right">
-																<form action="/UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
-																	<input type="hidden" name="BTab" value="2">	
+																<form action="/UpdateJourney.php#<?php echo $j["JID"] ?>" method="post">
+																	<input type="hidden" name="BTab" value="<?php echo $j['JID'][0];?>">	
 																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
 																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
 																</form> 

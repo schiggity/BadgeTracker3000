@@ -339,6 +339,9 @@ function getJourneysByRank($rank){
 	
 }
 
+
+function largeJourneyUpdate()
+
 #endregion
 
 #region-------------------------SCOUT RECORD---------------------------------
@@ -517,8 +520,11 @@ function getBadgesByScoutByRank($sid,$rank){
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
-	for($i = 0; $row = $result->fetch_assoc(); $i++){
+	$i = 0;
+	while($row = $result->fetch_assoc()){
+	
 		$arr[$i] = $row;
+		$i++;
 	}
 	return $arr;
 	
