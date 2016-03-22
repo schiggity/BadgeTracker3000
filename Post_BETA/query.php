@@ -171,9 +171,10 @@ function largeBadgeUpdate($sidArr, $baid,$barid,$date){
 	
 	$sql = $conn->prepare("INSERT INTO scoutsdobadge VALUES(?,?,?,?);");
 	
-	$sql->bind_param("ssss",$sid,$baid,$barid,date("Y-m-d",$date));
+	
 	
 	foreach($sidArr as $sid){
+		$sql->bind_param('iiis',$sid,$baid,$barid,date('Y-m-d',$date));
 		$sql->execute();
 	}
 
@@ -339,8 +340,26 @@ function getJourneysByRank($rank){
 	
 }
 
+#takes an array of scouts to be updated, prepares the statement and executes the insert for each scout
+#--this is more efficient than the above function on the DB side.
+function largeJourneyUpdate($sidArr, $qid,$rid,$date){
+	global $conn;
+	
+	if($date == 0){
+		$date = time();
+	}
+	
+	$sql = $conn->prepare("INSERT INTO scoutsdojourney VALUES(?,?,?,?);");
+	
+	$sql->bind_param("ssss",$sid,$qid,$rid,date("Y-m-d",$date));
+	
+	foreach($sidArr as $sid){
+		$sql->execute();
+	}
 
-function largeJourneyUpdate()
+}
+
+
 
 #endregion
 
@@ -477,11 +496,12 @@ function awardStatus($sid,$aid){
 function getBadgeDate($sid,$baid){
 	global $conn;
 	
-	$r = determineRank($rank);
+	//$r = determineRank($rank);
 	
 	$arr = array();
-	$sql = "SELECT thedate from scoutsdobadge where sid = " . $sid . " and baid =" . $baid . "order by thedate limit 1;";
+	$sql = "SELECT thedate from scoutsdobadge where sid = " . $sid . " and baid = " . $baid . " order by thedate limit 1;";
 	
+
 	#fill array to be returned
 	$result = $conn->query($sql);
 	
@@ -496,10 +516,10 @@ function getBadgeDate($sid,$baid){
 function getJourneyDate($sid,$baid){
 	global $conn;
 	
-	$r = determineRank($rank);
+	//$r = determineRank($rank);
 	
 	$arr = array();
-	$sql = "SELECT thedate from scoutsdojourney where sid = " . $sid . " and qid =" . $baid . "order by thedate limit 1;";
+	$sql = "SELECT thedate from scoutsdojourney where sid = " . $sid . " and qid = " . $baid . " order by thedate limit 1;";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
@@ -515,29 +535,40 @@ function getBadgesByScoutByRank($sid,$rank){
 	
 	$r = determineRank($rank);
 	
+	//echo $r;
 	$arr = array();
-	$sql = "SELECT * FROM badges where BAID IN(select BAID from ScoutsDoBadge JOIN scouts ON scoutsdobadge.sid = scouts.sid where scoutsdobadge.sid = ". $sid .") AND BAID LIKE ". $r .";";
+	$sql = "SELECT * FROM badges where BAID IN(select BAID from ScoutsDoBadge JOIN scouts ON scoutsdobadge.sid = scouts.sid where scoutsdobadge.sid = ". $sid .") AND BAID LIKE '". $r ."';";
 	
+	//echo $sql;
+	//$i = 0;
 	#fill array to be returned
 	$result = $conn->query($sql);
-	$i = 0;
-	while($row = $result->fetch_assoc()){
-	
-		$arr[$i] = $row;
-		$i++;
+	if ($result)
+	{
+		//echo "in first";
+		if ($result->num_rows > 0)
+		{
+			{
+				//echo "in if";
+				for($i = 0; $row = $result->fetch_assoc(); $i++){
+					//echo row["baid"];
+				$arr[$i] = $row;
+			}
+			return $arr;
+			}
+		}
 	}
-	return $arr;
-	
+	//return $arr;
 }
 
 #returns all the journeyQuests a scout has completed given the scoutID
-function getJourneyQuestsByScoutByRank($sid,$Rank){
+function getJourneyQuestsByScoutByRank($sid,$rank){
 	global $conn;
 	$arr = array();
 	
 	$r = determineRank($rank);
 	
-	$sql = "select * from quests where QID in (select QID from scoutsdojourney JOIN scouts ON scouts.sid = scoutsdojourney.sid WHERE scoutsdojourney.sid = ". $sid .") AND QID LIKE ". $r . ";";
+	$sql = "select * from quests where QID in (select QID from scoutsdojourney JOIN scouts ON scouts.sid = scoutsdojourney.sid WHERE scoutsdojourney.sid = ". $sid .") AND QID LIKE '". $r . "';";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);

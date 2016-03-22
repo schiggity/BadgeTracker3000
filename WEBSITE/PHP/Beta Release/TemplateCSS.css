@@ -1,0 +1,43 @@
+html, body {
+    height: 100%;
+	width: 100%;
+	position: absolute;
+	background: #00ae58;
+}
+
+h2 {
+	color: black;
+}
+
+h3 {
+	color: black;
+}
+
+.my-tab .tab-pane{ 
+	border:solid 1px black; 
+	border-top: 0; 
+	background-color:white;
+	/*border-radius: 10px;*/
+}
+
+#myTab li a { 
+	border-color: black;
+	background-color:black; 
+	color: white;
+	}
+
+#myTab li.active a {
+	border-bottom-color: transparent;
+	color: black;
+	background-color:white; 
+	}
+	
+.tab-content{
+	height: 600px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+	
+.table-hover {
+	width: 90%;
+}
