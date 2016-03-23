@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2016 at 01:45 AM
+-- Generation Time: Mar 23, 2016 at 05:47 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -5236,6 +5236,19 @@ CREATE TABLE `finances` (
   `Amount` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `finances`
+--
+
+INSERT INTO `finances` (`FID`, `Amount`) VALUES
+(11, 10),
+(12, 100),
+(13, 4),
+(14, 7),
+(15, 60000),
+(16, 80),
+(17, 14);
+
 -- --------------------------------------------------------
 
 --
@@ -5676,6 +5689,15 @@ CREATE TABLE `scouts` (
   `Ranks` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `scouts`
+--
+
+INSERT INTO `scouts` (`SID`, `Name`, `DoB`, `address`, `PhoneNumber`, `BackupPhone`, `email`, `Parents`, `Grade`, `Ranks`) VALUES
+(3801, 'asdf adsf', '2009-12-12', 'asdf', '1111111111', '1111111111', 'asdf', 'asdf & asef', 1, 'daisy'),
+(6666, 'Sally Joe', '2000-12-12', 'dfg', '1233334444', '3334445555', 'dsfg', 'sdfg   &   ', 1, 'daisy'),
+(7624, 'Qwereta qwer', '0000-00-00', 'qwer', '111111-1111', '2227686789', 'qwer', 'qwer qwer  &  ', 6, 'junior');
+
 -- --------------------------------------------------------
 
 --
@@ -5750,6 +5772,33 @@ CREATE TABLE `scoutsdobadge` (
   `TheDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `scoutsdobadge`
+--
+
+INSERT INTO `scoutsdobadge` (`SID`, `BAID`, `BARID`, `TheDate`) VALUES
+(6666, 5009, 500931, '2016-03-23'),
+(6666, 5009, 500911, '2016-03-23'),
+(6666, 5009, 500912, '2016-03-23'),
+(6666, 5009, 500913, '2016-03-23'),
+(6666, 5009, 500921, '2016-03-23'),
+(6666, 5009, 500923, '2016-03-23'),
+(6666, 5009, 500931, '2016-03-23'),
+(6666, 5009, 500932, '2016-03-23'),
+(6666, 5009, 500941, '2016-03-23'),
+(6666, 5009, 500942, '2016-03-23'),
+(6666, 5009, 500943, '2016-03-23'),
+(6666, 5009, 500952, '2016-03-23'),
+(6666, 5009, 500953, '2016-03-23'),
+(6666, 5014, 501421, '2016-03-23'),
+(7624, 4007, 400713, '2016-03-23'),
+(7624, 4007, 400721, '2016-03-23'),
+(7624, 4007, 400731, '2016-03-23'),
+(7624, 4007, 400741, '2016-03-23'),
+(7624, 4007, 400751, '2016-03-23'),
+(3801, 1003, 100321, '2016-03-23'),
+(3801, 1003, 100322, '2016-03-23');
+
 -- --------------------------------------------------------
 
 --
@@ -5775,6 +5824,26 @@ CREATE TABLE `scoutsdojourney` (
   `RID` int(11) DEFAULT NULL,
   `TheDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `scoutsdojourney`
+--
+
+INSERT INTO `scoutsdojourney` (`SID`, `QID`, `RID`, `TheDate`) VALUES
+(6666, 50021, 500211, '2016-03-23'),
+(6666, 50021, 500212, '2016-03-23'),
+(6666, 50021, 500213, '2016-03-23'),
+(6666, 50021, 500214, '2016-03-23'),
+(6666, 50021, 500215, '2016-03-23'),
+(6666, 50011, 500112, '2016-03-23'),
+(6666, 50011, 500113, '2016-03-23'),
+(7624, 40013, 400131, '2016-03-23'),
+(7624, 40013, 400132, '2016-03-23'),
+(7624, 40001, 400011, '2016-03-23'),
+(7624, 40001, 400021, '2016-03-23'),
+(7624, 40001, 400022, '2016-03-23'),
+(7624, 40001, 400031, '2016-03-23'),
+(7624, 40001, 400032, '2016-03-23');
 
 -- --------------------------------------------------------
 
@@ -5808,6 +5877,15 @@ CREATE TABLE `scoutsintroop` (
   `SID` int(11) DEFAULT NULL,
   `TID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `scoutsintroop`
+--
+
+INSERT INTO `scoutsintroop` (`SID`, `TID`) VALUES
+(6666, 2),
+(7624, 2),
+(3801, 1);
 
 -- --------------------------------------------------------
 

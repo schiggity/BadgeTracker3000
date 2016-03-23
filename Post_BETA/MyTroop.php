@@ -1,6 +1,7 @@
 <?php 
-include 'query.php'; 
 session_start();
+include 'query.php'; 
+//echo $_SESSION['tid'];
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +12,18 @@ session_start();
 	<?php include 'bootstrap.html';?>
 </head>
 <body>
+
+<?php
+if(isset($_SESSION['EditScout']))
+{ ?>
+	<script>
+	
+	alert("Scout Succesfully Edited!");
+
+	</script>
+<?php
+	unset($_SESSION['EditScout']);
+} ?>
 
 <!---------------------------------------------------------------- NAV BAR -------------------------------------------------------->
 <?php include 'navBar.php'; ?>
@@ -78,6 +91,10 @@ session_start();
 																	<form action="ScoutRecord.php" method="post">																		
 																		<input type="hidden" name="sid" value="<?php echo $scout["SID"]; ?>">	
 																		<button type="submit" class="btn btn-secondary btn-lg">Scout Records </button>
+																	</form> 
+																	<form action="EditScout.php" method="post">																		
+																		<input type="hidden" name="sid" value="<?php echo $scout["SID"]; ?>">	
+																		<button type="submit" class="btn btn-secondary btn-lg">Edit </button>
 																	</form> 
 																</td>
 															</tr>
@@ -320,10 +337,11 @@ session_start();
 								<?php
 									$journeys = getAllJourneys();
 									foreach($journeys as $journey){
+										//echo "journey shit";
 								foreach(getQuestsForJourney($journey["JID"]) as $quest)
 								{
-										$array = getScoutCountForJourneyQuest($quest["QID"]);
-										
+										$array = getScoutCountForJourneyQuest($quest["QID"]);						
+																				
 										if($array[0] != 0 || $array[1] != 0 || $array[2] != 0 ){
 								
 								?>
