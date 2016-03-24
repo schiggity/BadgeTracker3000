@@ -764,6 +764,65 @@ function getBridgeScoutCount($bid){
 	
 }
 
+
+function getHealthRecords($sid){
+	global $conn;
+	$arr = array();
+	
+	$sql = "select * from emergencyinfo where SID = ". $sid .";";
+	
+	if($result = $conn->query($sql)){
+		$row = $result->fetch_assoc();
+		
+		$P = explode("*", row["PrimaryCont"]);
+		$arr["Pname"] = $P[0];
+		$arr["Pphone"] = $P[1];
+		$arr["Prel"] = $P[2];
+		
+		$S = explode("*", row["SecondaryCont"]);
+		$arr["Sname"] = $S[0];
+		$arr["Sphone"] = $S[1];
+		$arr["Srel"] = $S[2];
+		
+		$arr["Allergies"] = explode("*", row["Allergies"]);
+		
+		$arr["Illness"] = explode("*", row["illness"]);
+		
+		$arr["Other"] = explode("*",row["Other"]);
+		
+		$arr["Notes"] = $row["notes"];
+		
+		return $arr;
+		
+	}
+	else{
+		return 'err';
+	}	
+}
+
+function updateHealthRecords($sid,$P,$S,$A,$I,$O,$N){
+	global $conn;
+	
+	$sql = "update emergencyinfo SET PrimaryCont=". $P .", SecondaryCont=". $S .", Allergies=". $A .", illness=". $I .", Other=". $O .", Notes=". $N . " WHERE SID =". $sid .";";
+	
+	if($result = $conn->query($sql)){
+		return;
+	}
+}
+
+function insertHealthRecords($sid){
+	global $conn;
+	$sql = "INSERT INTO emergencyinfo VALUES(". $sid .",' * * ',' * * ',' * * * * * * * * * * * ',' * * * * * * * * * * * ',' * * * * * * * * * * * ',' ');";
+	
+	if($result = $conn->query($sql)){
+		return;
+	}
+	
+}
+
+
+
+
 #endregion
 
 #region--------------------------FINANCES--------------------------------------- 
