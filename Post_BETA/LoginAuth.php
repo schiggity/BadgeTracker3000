@@ -21,7 +21,8 @@ include 'connect.php';
 		
 		if($HashSalt === $row["password"]){
 			$_SESSION['user'] = $Username;
-			$_SESSION['TID'] = $row["TID"];
+			$_SESSION['tid'] = $row["TID"];
+			//echo $_SESSION['tid'];
 			header('Location: MyTroop.php');
 		}
 		else{

@@ -1,5 +1,7 @@
-<?php include 'query.php';
-session_start(); 
+<?php 
+session_start();
+include 'query.php';
+ 
 include 'bootstrap.html';
 
 
@@ -12,7 +14,7 @@ if(isset($_POST['sid']))
 {
 ?>
 <head>
-  <title>Troop Records</title> <!-- Change Page Tiltle Here -->
+  <title>Scout Records</title> <!-- Change Page Tiltle Here -->
   </head>
 <body>
 
@@ -23,7 +25,7 @@ if(isset($_POST['sid']))
 <?php $scout = getscout($_POST['sid']);?>
         <div class="row-fluid">
             <div class="col-md-6">
-                <h1>Troop Records - <?php echo $scout["Name"]; ?></h1>
+                <h1>Scout Records - <?php echo $scout["Name"]; ?></h1>
 			</div>
 			
 			<div class="col-md-6">
@@ -79,7 +81,37 @@ if(isset($_POST['sid']))
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getBadgeDate($_POST['sid'], $badge["BAID"]); ?></li>
+												<li class="list-group-item">
+													<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteBR($req["BARID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+														
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -105,7 +137,37 @@ if(isset($_POST['sid']))
 										</div>
 										<div id="collapse<?php echo $badge["BAID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getBadgeDate($_POST['sid'], $badge["BAID"]); ?></li>
+												<li class="list-group-item">
+													<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteBR($req["BARID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+														
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -128,7 +190,37 @@ if(isset($_POST['sid']))
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getBadgeDate($_POST['sid'], $badge["BAID"]); ?></li>
+												<li class="list-group-item">
+													<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteBR($req["BARID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+														
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -151,7 +243,37 @@ if(isset($_POST['sid']))
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getBadgeDate($_POST['sid'], $badge["BAID"]); ?></li>
+												<li class="list-group-item">
+													<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteBR($req["BARID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+														
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -174,7 +296,37 @@ if(isset($_POST['sid']))
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getBadgeDate($_POST['sid'], $badge["BAID"]); ?></li>
+												<li class="list-group-item">
+													<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteBR($req["BARID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+														
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
@@ -197,13 +349,43 @@ if(isset($_POST['sid']))
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getBadgeDate($_POST['sid'], $badge["BAID"]); ?></li>
+												<li class="list-group-item">
+													<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForBadge($badge["BAID"]) as $quest){
+														
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForBadgeQuest($quest["BAQID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteBR($req["BARID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+														
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
 								<?php } } ?>
-								
+								 
 							
                             </div>
                         </div>
@@ -222,7 +404,8 @@ if(isset($_POST['sid']))
 								<h4>Daisey</h4>
 								
 								<?php
-								$journeys = getJourneyQuestsByScoutByRank($_POST['sid'], 'd');
+								$journeys = getJourneyByScoutByRank($_POST['sid'], 'd');
+								if($journeys != 'null'){
 								
 								foreach($journeys as $journey){
 								?>
@@ -230,122 +413,296 @@ if(isset($_POST['sid']))
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["QID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["QID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getJourneyDate($_POST['sid'], $journey["QID"]); ?></li>
+												<li class="list-group-item">
+												<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForJourney($journey["JID"]) as $quest){
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteJR($req["RID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<?php } ?>
+								<?php }} ?>
 								<a id="brownie"></a>
 								<h4>Brownie</h4>
 								<?php
-								$journeys = getJourneyQuestsByScoutByRank($_POST['sid'], 'b');
+								$journeys = getJourneyByScoutByRank($_POST['sid'], 'b');
+								if($journeys != 'null'){
+								echo "shit";
 								foreach($journeys as $journey){
 								?>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["QID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["QID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getJourneyDate($_POST['sid'], $journey["QID"]); ?></li>
+												<li class="list-group-item">
+												<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForJourney($journey["JID"]) as $quest){
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteJR($req["RID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<?php } ?>
+								<?php }} ?>
 								<a id="junior"></a>
 								<h4>Junior</h4>
 								<?php
-								$journeys = getJourneyQuestsByScoutByRank($_POST['sid'], 'j');
+								$journeys = getJourneyByScoutByRank($_POST['sid'], 'j');
+								if($journeys != 'null'){
 								foreach($journeys as $journey){
 								?>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["QID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["QID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getJourneyDate($_POST['sid'], $journey["QID"]); ?></li>
+												<li class="list-group-item">
+												<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForJourney($journey["JID"]) as $quest){
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteJR($req["RID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<?php } ?>
+								<?php } }?>
 								<a id="cadette"></a>
 								<h4>Cadette</h4>
 								<?php
-								$journeys = getJourneyQuestsByScoutByRank($_POST['sid'], 'c');
+								$journeys = getJourneyByScoutByRank($_POST['sid'], 'c');
+								if($journeys != 'null'){
 								foreach($journeys as $journey){
 								?>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["QID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["QID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getJourneyDate($_POST['sid'], $journey["QID"]); ?></li>
+												<li class="list-group-item">
+												<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForJourney($journey["JID"]) as $quest){
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteJR($req["RID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<?php } ?>
+								<?php } }?>
 								<a id="senior"></a>
 								<h4>Senior</h4>
 								<?php
-								$journeys = getJourneyQuestsByScoutByRank($_POST['sid'], 's');
+								$journeys = getJourneyByScoutByRank($_POST['sid'], 's');
+								if($journeys != 'null'){
 								foreach($journeys as $journey){
 								?>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["QID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["QID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getJourneyDate($_POST['sid'], $journey["QID"]); ?></li>
+												<li class="list-group-item">
+												<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForJourney($journey["JID"]) as $quest){
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteJR($req["RID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<?php } ?>
+								<?php }} ?>
 								<a id="ambassador"></a>
 								<h4>Ambassador</h4>
 								<?php
-								$journeys = getJourneyQuestsByScoutByRank($_POST['sid'], 'a');
+								$journeys = getJourneyByScoutByRank($_POST['sid'], 'a');
+								if($journeys != 'null'){
 								foreach($journeys as $journey){
 								?>
 								<div class="panel-group">
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["QID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["QID"]?>" class="panel-collapse collapse">
+										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<li class="list-group-item">DATE COMPLETED : <?php echo getJourneyDate($_POST['sid'], $journey["QID"]); ?></li>
+												<li class="list-group-item">
+												<?php
+													echo "<table>";
+													echo "<tr>";
+													echo "<td> <h3>Requirements</h3> </td>";
+													echo "<td>  </td>";
+													echo "<td> <h3>Date Completed</h3> </td>";
+													foreach(getQuestsForJourney($journey["JID"]) as $quest){
+														echo "<tr>";
+														echo "<td>";
+														echo "<b>" . $quest["Name"] . ":</b><br>";
+														echo "</td>";
+														echo "</tr>";
+														foreach(getRequirementsForJourneyQuest($quest["QID"]) as $req){
+															$Name = str_replace(array('"','\''), "", $req["Name"]);
+															echo "<tr>";
+															echo "<td>";
+															echo  "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" . $Name;
+															echo "</td>";
+															echo "<td> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </td>";
+															echo "<td>";
+															echo ifCompleteJR($req["RID"],$_POST['sid']) ."<br>" ;
+															echo "</td>";
+															echo "</tr>";
+														}
+													}
+													echo "</table>";
+													?>
+												</li>
 											</ul>
 										</div>
 									</div>
 								</div>
-								<?php } ?>
+								<?php } }?>
 								
 							
                             </div>

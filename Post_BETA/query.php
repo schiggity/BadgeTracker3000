@@ -103,29 +103,39 @@ function getQuestsForBadge($baid){
 function getScoutCountForBadge($baid){
 	global $conn;
 	$NumComp = 0;
+	$started = 0;
+	$NumAward = 0;
 	$QuestsCompleted = array();
-	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdobadge WHERE baid = " . $baid . ";";
-	$Compsql  = "SELECT COUNT(DISTINCT baqid) as completed FROM scoutsdobadge JOIN badgequesthasrequirements ON scoutsdobadge.barid = badgequesthasrequirements.barid WHERE baid = " . $baid . " GROUP BY sid;";	
+	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdobadge WHERE baid = " . $baid . " AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
+	$Compsql  = "SELECT COUNT(DISTINCT baqid) as completed FROM scoutsdobadge JOIN badgequesthasrequirements ON scoutsdobadge.barid = badgequesthasrequirements.barid WHERE baid = " . $baid . "  AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") GROUP BY sid;";	
 	$QNsql	  = "SELECT COUNT(baqid) as questsNeeded FROM badgehasquest WHERE baid = " . $baid . ";";
-	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedbadge WHERE baid = " . $baid . ";";
+	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedbadge WHERE baid = " . $baid . " AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
 	
 	#scouts who started/completed/awarded
-	$result = $conn->query($Startsql);
-	$started = $result->fetch_assoc()["started"];
+	if($result = $conn->query($Startsql))
+	{
+		$started = $result->fetch_assoc()["started"];
+	}
 	
 	#number of quests completed by each scout for badge x
-	$result = $conn->query($Compsql);
-	for($i = 0; $row = $result->fetch_assoc(); $i++){
-		$QuestsCompleted[$i] = $row;
+	if($result = $conn->query($Compsql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$QuestsCompleted[$i] = $row;
+		}
 	}
 	
 	#number of quests needed to complete badge x
-	$result = $conn->query($QNsql);
-	$QuestsNeeded = $result->fetch_assoc()["questsNeeded"];
+	if($result = $conn->query($QNsql))
+	{
+		$QuestsNeeded = $result->fetch_assoc()["questsNeeded"];
+	}
 	
 	#number of scouts awarded badge x
-	$result = $conn->query($Awardsql);
-	$NumAward = $result->fetch_assoc()["awarded"];
+	if($result = $conn->query($Awardsql))
+	{
+		$NumAward = $result->fetch_assoc()["awarded"];
+	}
 		
 	#comparing number of quests complete by each scout to quests needed for badge x
 	foreach ($QuestsCompleted as $quests){
@@ -196,10 +206,41 @@ function getBadgesByRank($rank){
 	return $badgeArr;	
 }
 
+function ifCompleteBR($barid,$sid){
+	global $conn;
+	$sql = "SELECT TheDate from scoutsdobadge where sid = ". $sid ." and barid =". $barid .";";	
+	
+	if($result = $conn->query($sql)){
+		$row = $result->fetch_assoc();		
+		return $row["TheDate"];
+	}
+	else{
+		return " ";
+	}
+		
+}
+
 
 #endregion
 
 #region---------------------------JOURNEYS-----------------------------------
+
+function ifCompleteJR($rid,$sid){
+	global $conn;
+	$sql = "SELECT TheDate from scoutsdojourney where sid = ". $sid ." and rid =". $rid .";";	
+	
+	if($result = $conn->query($sql)){
+		$row = $result->fetch_assoc();		
+		return $row["TheDate"];
+	}
+	else{
+		return " ";
+	}
+	
+	
+}
+
+
 
 #returns the JID and name of every journey
 function getAllJourneys(){
@@ -262,33 +303,37 @@ function getQuestsForJourney($jid){
 #returns array of the Number of scouts: started, completed, and awarded for a Journey
 function getScoutCountForJourneyQuest($qid){
 	global $conn;
-	$NumComp = 0;
 	$QuestsCompleted = array();
+	$started = 0;
+	$NumComp = 0;
+	$NumAward = 0;
 	
-	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdojourney WHERE qid = " . $qid . ";";
-	$Compsql  = "SELECT COUNT(DISTINCT scoutsdojourney.rid) as completed FROM scoutsdojourney JOIN questshasquestrequirements ON scoutsdojourney.rid = questshasquestrequirements.rid WHERE scoutsdojourney.qid =". $qid ." GROUP BY sid;";	
-	$QNsql	  = "SELECT COUNT(qid) as questsNeeded FROM questshasquestrequirements WHERE qid = " . $qid . ";";
-	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedquests WHERE qid = ". $qid .";";
+	
+	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdojourney WHERE qid = " . $qid . " AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
+	$Compsql  = "SELECT COUNT(DISTINCT scoutsdojourney.rid) as completed FROM scoutsdojourney JOIN questshasquestrequirements ON scoutsdojourney.rid = questshasquestrequirements.rid WHERE scoutsdojourney.qid =". $qid ." AND scoutsdojourney.sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") GROUP BY sid;";	
+	$QNsql	  = "SELECT COUNT(rid) as reqsNeeded FROM questshasquestrequirements WHERE qid = " . $qid . ";";
+	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedquests WHERE qid = ". $qid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
 	
 	#scouts who started/completed/awarded
-	$result = $conn->query($Startsql);
-	$started = $result->fetch_assoc()["started"];
-	
+	if($result = $conn->query($Startsql)){
+		$started = $result->fetch_assoc()["started"];
+	}
 	#number of quests completed by each scout for journey x
-	$result = $conn->query($Compsql);
+	if($result = $conn->query($Compsql)){
 	for($i = 0; $row = $result->fetch_assoc(); $i++){
 		$QuestsCompleted[$i] = $row;
 	}
+	}
 	
-	#number of quests needed to complete journey x
-	$result = $conn->query($QNsql);
-	$QuestsNeeded = $result->fetch_assoc()["questsNeeded"];
-	
-	#number of scouts awarded journey x
-	$result = $conn->query($Awardsql);
-	$NumAward = $result->fetch_assoc()["awarded"];
-		
-	#comparing number of quests complete by each scout to quests needed for journey x
+	#number of reqs needed to complete quest x
+	if($result = $conn->query($QNsql)){
+		$QuestsNeeded = $result->fetch_assoc()["reqsNeeded"];
+	}
+	#number of scouts awarded quest x
+	if($result = $conn->query($Awardsql)){
+		$NumAward = $result->fetch_assoc()["awarded"];
+	}
+	#comparing number of reqs complete by each scout to reqs needed for quest x
 	foreach ($QuestsCompleted as $quests){
 		if($quests == $QuestsNeeded){
 			$NumComp++;
@@ -358,6 +403,40 @@ function largeJourneyUpdate($sidArr, $qid,$rid,$date){
 	}
 
 }
+function getJourneyByScoutByRank($sid,$rank){
+	
+	global $conn;
+	
+	$r = determineRank($rank);
+	
+	//echo $r;
+	$arr = array();
+	$sql = "SELECT * FROM journey where JID IN(select JID from journeyhasquests where QID IN(select QID from ScoutsDoJourney JOIN scouts ON scoutsdojourney.sid = scouts.sid where scoutsdojourney.sid = ". $sid ." AND scouts.sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . "))) AND JID LIKE '". $r ."';";
+	
+	//echo $sql;
+	$result = $conn->query($sql);
+	if ($result)
+	{
+		//echo "in first";
+		if ($result->num_rows > 0)
+		{
+			{
+				//echo "in if";
+				for($i = 0; $row = $result->fetch_assoc(); $i++){
+					//echo $row["JID"];
+					$arr[$i] = $row;
+				}
+			return $arr;
+			}
+		}
+		else{
+			return 'null';
+		}
+	}else{
+		return 'null';		
+	}	
+	
+}
 
 
 
@@ -372,12 +451,14 @@ function largeJourneyUpdate($sidArr, $qid,$rid,$date){
 function getAllScouts(){
 	global $conn;
 	$arr = array();
-	$sql = "SELECT * FROM scouts ORDER BY DoB;";
+	$sql = "SELECT * FROM scouts WHERE sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") ORDER BY DoB;";
 	
 	#fill array to be returned
-	$result = $conn->query($sql);
-	for($i = 0; $row = $result->fetch_assoc(); $i++){
-		$arr[$i] = $row;
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
 	}
 	return $arr;	
 }
@@ -385,7 +466,7 @@ function getAllScouts(){
 #returns all information about the specified scout
 function getScout($sid){
 	global $conn;
-	$sql = "SELECT * FROM scouts WHERE sid = ". $sid .";";
+	$sql = "SELECT * FROM scouts WHERE sid = ". $sid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
 		
 	$result = $conn->query($sql);
 	$row = $result->fetch_assoc();
@@ -396,7 +477,7 @@ function getScout($sid){
 function getScoutsByRank($rank){
 	global $conn;
 	$arr = array();
-	$sql = "SELECT * FROM scouts WHERE Ranks='" . $rank . "' ORDER BY Name";
+	$sql = "SELECT * FROM scouts WHERE Ranks='" . $rank . "' AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") ORDER BY Name";
 	$result = $conn->query($sql);
 	for($i = 0; $row = $result->fetch_assoc(); $i++){
 		$arr[$i] = $row;
@@ -412,7 +493,7 @@ function getScoutsByRank($rank){
 function badgeStatus($sid,$baid){
 	global $conn;
 	$Needed = "SELECT COUNT(baqid) as questsNeeded FROM badgehasquest WHERE baid = " . $baid . ";";
-	$Done	= "SELECT COUNT(DISTINCT baqid) as completed FROM scoutsdobadge JOIN badgequesthasrequirements ON scoutsdobadge.barid = badgequesthasrequirements.barid WHERE baid = ". $baid ." AND sid = ". $sid .";";
+	$Done	= "SELECT COUNT(DISTINCT baqid) as completed FROM scoutsdobadge JOIN badgequesthasrequirements ON scoutsdobadge.barid = badgequesthasrequirements.barid WHERE baid = ". $baid ." AND sid = ". $sid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
 	
 	$result = $conn->query($Needed);
 	$N = $result->fetch_assoc()["questsNeeded"];
@@ -441,7 +522,7 @@ function badgeStatus($sid,$baid){
 function journeyQuestStatus($sid,$qid){
 	global $conn;
 	$Needed = "SELECT COUNT(qid) as questsNeeded FROM questshasquestrequirements WHERE qid = " . $qid . ";";
-	$Done	= "SELECT COUNT(DISTINCT scoutsdojourney.rid) as completed FROM scoutsdojourney JOIN questshasquestrequirements ON scoutsdojourney.rid = questshasquestrequirements.rid WHERE scoutsdojourney.qid =". $qid ." AND sid = ". $sid .";";
+	$Done	= "SELECT COUNT(DISTINCT scoutsdojourney.rid) as completed FROM scoutsdojourney JOIN questshasquestrequirements ON scoutsdojourney.rid = questshasquestrequirements.rid WHERE scoutsdojourney.qid =". $qid ." AND sid = ". $sid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
 	
 	$result = $conn->query($Needed);
 	$N = $result->fetch_assoc()["questsNeeded"];
@@ -471,7 +552,7 @@ function journeyQuestStatus($sid,$qid){
 function awardStatus($sid,$aid){
 	global $conn;
 	$Needed = "SELECT COUNT(arid) as requirementsNeeded FROM awardhasrequirements WHERE aid = " . $aid . ";";
-	$Done	= "SELECT COUNT(DISTINCT scoutsdoaward.aid) as completed FROM scoutsdoaward JOIN awardhasrequirements ON scoutsdoaward.aid = awardhasrequirements.aid WHERE scoutsdoaward.aid = ". $aid ." AND sid = ". $sid .";";
+	$Done	= "SELECT COUNT(DISTINCT scoutsdoaward.aid) as completed FROM scoutsdoaward JOIN awardhasrequirements ON scoutsdoaward.aid = awardhasrequirements.aid WHERE scoutsdoaward.aid = ". $aid ." AND sid = ". $sid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
 	
 	$result = $conn->query($Needed);
 	$N = $result->fetch_assoc()["questsNeeded"];
@@ -499,7 +580,7 @@ function getBadgeDate($sid,$baid){
 	//$r = determineRank($rank);
 	
 	$arr = array();
-	$sql = "SELECT thedate from scoutsdobadge where sid = " . $sid . " and baid = " . $baid . " order by thedate limit 1;";
+	$sql = "SELECT thedate from scoutsdobadge where sid = " . $sid . " and baid = " . $baid . " AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") order by thedate limit 1;";
 	
 
 	#fill array to be returned
@@ -519,7 +600,7 @@ function getJourneyDate($sid,$baid){
 	//$r = determineRank($rank);
 	
 	$arr = array();
-	$sql = "SELECT thedate from scoutsdojourney where sid = " . $sid . " and qid = " . $baid . " order by thedate limit 1;";
+	$sql = "SELECT thedate from scoutsdojourney where sid = " . $sid . " and qid = " . $baid . " AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") order by thedate limit 1;";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
@@ -537,7 +618,7 @@ function getBadgesByScoutByRank($sid,$rank){
 	
 	//echo $r;
 	$arr = array();
-	$sql = "SELECT * FROM badges where BAID IN(select BAID from ScoutsDoBadge JOIN scouts ON scoutsdobadge.sid = scouts.sid where scoutsdobadge.sid = ". $sid .") AND BAID LIKE '". $r ."';";
+	$sql = "SELECT * FROM badges where BAID IN(select BAID from ScoutsDoBadge JOIN scouts ON scoutsdobadge.sid = scouts.sid where scoutsdobadge.sid = ". $sid ." AND scouts.sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ")) AND BAID LIKE '". $r ."';";
 	
 	//echo $sql;
 	//$i = 0;
@@ -568,7 +649,7 @@ function getJourneyQuestsByScoutByRank($sid,$rank){
 	
 	$r = determineRank($rank);
 	
-	$sql = "select * from quests where QID in (select QID from scoutsdojourney JOIN scouts ON scouts.sid = scoutsdojourney.sid WHERE scoutsdojourney.sid = ". $sid .") AND QID LIKE '". $r . "';";
+	$sql = "select * from quests where QID in (select QID from scoutsdojourney JOIN scouts ON scouts.sid = scoutsdojourney.sid WHERE scoutsdojourney.sid = ". $sid ." AND scouts.sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ")) AND QID LIKE '". $r . "';";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
@@ -584,7 +665,7 @@ function getJourneyQuestsByScoutByRank($sid,$rank){
 function getAwardsByScout($sid){
 	global $conn;
 	$arr = array();
-	$sql = "select * from awards where AID in (select AID from scoutsdoaward JOIN scouts ON scouts.sid = scoutsdoaward.sid where scoutsdoaward.sid = ". $sid .");";
+	$sql = "select * from awards where AID in (select AID from scoutsdoaward JOIN scouts ON scouts.sid = scoutsdoaward.sid where scoutsdoaward.sid = ". $sid ." AND scouts.sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . "));";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
@@ -604,7 +685,7 @@ function getBridgesByScout($sid){
 function getFinancesByScout($sid){
 	global $conn;
 	$arr = array();
-	$sql = "select * from finances where FID in (select FID from scoutspayduesfinances JOIN scouts ON scouts.sid = scoutspayduesfinances.sid where scoutspayduesfinances.sid = ". $sid .");";
+	$sql = "select * from finances where FID in (select FID from scoutspayduesfinances JOIN scouts ON scouts.sid = scoutspayduesfinances.sid where scoutspayduesfinances.sid = ". $sid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . "));";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
@@ -619,7 +700,7 @@ function getFinancesByScout($sid){
 function getEventsByScout($sid){
 	global $conn;
 	$arr = array();
-	$sql = "select * from events where EID in (select EID from ScoutsGoToEvents JOIN scouts ON scouts.sid = scoutsGoToEvents.sid where scoutsGoToEvents.sid = ". $sid .");";
+	$sql = "select * from events where EID in (select EID from ScoutsGoToEvents JOIN scouts ON scouts.sid = scoutsGoToEvents.sid where scoutsGoToEvents.sid = ". $sid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . "));";
 	
 	#fill array to be returned
 	$result = $conn->query($sql);
@@ -696,12 +777,14 @@ function insertHealthRecords($sid){
 function getAllFinance(){
 	global $conn;
 	$arr = array();
-	$sql = "SELECT * FROM finances ORDER BY thedate;";
+	$sql = "SELECT * FROM finances WHERE fid IN (SELECT fid FROM troopshavefinances WHERE tid = " . $_SESSION['tid'] . ") ORDER BY thedate;";
 	
 	#fill array to be returned
-	$result = $conn->query($sql);
-	for($i = 0; $row = $result->fetch_assoc(); $i++){
-		$arr[$i] = $row;
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
 	}
 	return $arr;	
 }
@@ -709,12 +792,14 @@ function getAllFinance(){
 function getAllEvents(){
 	global $conn;
 	$arr = array();
-	$sql = "SELECT * FROM events ORDER BY thedate;";
+	$sql = "SELECT * FROM events WHERE eid IN (SELECT eid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") ORDER BY thedate;";
 	
 	#fill array to be returned
-	$result = $conn->query($sql);
-	for($i = 0; $row = $result->fetch_assoc(); $i++){
-		$arr[$i] = $row;
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
 	}
 	return $arr;
 }
@@ -758,31 +843,39 @@ function getAwardRequirements($aid){
 function getAwardScoutCount($aid){
 	global $conn;
 	$NumComp = 0;
+	$started = 0;
+	$NumAward = 0;
 	$QuestsCompleted = array();
 	
-	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdoaward WHERE aid = " . $aid . ";";
-	$Compsql  = "SELECT COUNT(DISTINCT scoutsdoaward.aid) as completed FROM scoutsdoaward JOIN awardhasrequirements ON scoutsdoaward.aid = awardhasrequirements.aid WHERE scoutsdoaward.aid =". $aid ." GROUP BY sid;";	
+	$Startsql = "SELECT COUNT(DISTINCT sid) as started FROM scoutsdoaward WHERE aid = " . $aid . " AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
+	$Compsql  = "SELECT COUNT(DISTINCT scoutsdoaward.aid) as completed FROM scoutsdoaward JOIN awardhasrequirements ON scoutsdoaward.aid = awardhasrequirements.aid WHERE scoutsdoaward.aid =". $aid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") GROUP BY sid;";	
 	$QNsql	  = "SELECT COUNT(arid) as questsNeeded FROM awardhasrequirements WHERE aid = " . $aid . ";";
-	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedawards WHERE aid = ". $aid .";";
+	$Awardsql = "SELECT COUNT(sid) as awarded FROM scoutsawardedawards WHERE aid = ". $aid ." AND sid IN (SELECT sid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
 	
 	#scouts who started/completed/awarded
-	$result = $conn->query($Startsql);
-	$started = $result->fetch_assoc()["started"];
-	
+	if($result = $conn->query($Startsql))
+	{
+		$started = $result->fetch_assoc()["started"];
+	}
 	#number of quests completed by each scout for journey x
-	$result = $conn->query($Compsql);
-	for($i = 0; $row = $result->fetch_assoc(); $i++){
-		$QuestsCompleted[$i] = $row;
+	if($result = $conn->query($Compsql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$QuestsCompleted[$i] = $row;
+		}
 	}
 	
 	#number of quests needed to complete journey x
-	$result = $conn->query($QNsql);
-	$QuestsNeeded = $result->fetch_assoc()["questsNeeded"];
+	if($result = $conn->query($QNsql))
+	{
+		$QuestsNeeded = $result->fetch_assoc()["questsNeeded"];
+	}
 	
 	#number of scouts awarded journey x
-	$result = $conn->query($Awardsql);
-	$NumAward = $result->fetch_assoc()["awarded"];
-		
+	if($result = $conn->query($Awardsql))
+	{
+		$NumAward = $result->fetch_assoc()["awarded"];
+	}	
 	#comparing number of quests complete by each scout to quests needed for journey x
 	foreach ($QuestsCompleted as $quests){
 		if($quests == $QuestsNeeded){
@@ -859,9 +952,55 @@ function getBridgeScoutCount($bid){
 
 #region--------------------------FINANCES--------------------------------------- 
 
+function getLastFID($type)
+{
+	global $conn;
+	
+	$sql = "SELECT fid from finances where fid LIKE '" . $type . "' ORDER BY fid DESC LIMIT 1;";
+	
+	if($result = $conn->query($sql))
+	{
+		$row = $result->fetch_assoc();
+		return $row["fid"];
+	}
+	else{
+		return $type[0] . "0000";
+	}
+	
+	
+}
+
+function insertEventFinance($eid, $fid)
+{
+	global $conn;
+}
+
+function insertFinance($fid, $amount)
+{
+	global $conn;
+	
+	$sql = "INSERT into finances VALUES(" . $fid. "," . $amount . ");"; 
+	
+	if($result = $conn->query($sql)){
+		echo 'inserted';		
+	}
+	else{
+		echo $conn->error;
+	}
+	
+	$sql = "INSERT into troophavefinances VALUES(" . $fid. "," . $_SESSION['tid'] . ");";
+ 
+	if($result = $conn->query($sql)){
+		echo 'inserted';		
+	}
+	else{
+		echo $conn->error;
+	}
+}
+
 #endregion
 
-#region--------------------------FINANCES--------------------------------------- 
+#region--------------------------Add / Edit--------------------------------------- 
 
 function addScout($sid, $name, $dob, $address, $phoneNum, $backupPhoneNum, $email, $parents, $grade, $rank){
 	global $conn;
@@ -873,7 +1012,146 @@ function addScout($sid, $name, $dob, $address, $phoneNum, $backupPhoneNum, $emai
 	else{
 		echo $conn->error;
 	}
+	
+	$sql = "INSERT INTO scoutsintroop VALUES(". $sid . ",'" . $_SESSION['tid'] . "');";
+	
+	if($result = $conn->query($sql)){
+		echo 'inserted';		
+	}
+	else{
+		echo $conn->error;
+	}
+	
+}
+
+function editScout($sid, $name, $dob, $address, $phoneNum, $backupPhoneNum, $email, $parents, $grade, $rank, $oldsid){
+	global $conn;
+	
+	$conn->query('SET foreign_key_checks = 0');
+	
+	$sql = "UPDATE scouts SET SID =" . $sid . ", Name ='" . $name . "', DoB ='" . $dob . "', address ='" . $address . "',PhoneNumber ='" . $phoneNum . "', BackupPhone ='" . $backupPhoneNum . "', email ='" . $email . "', Parents ='" . $parents . "',Grade ='" . $grade . "',Ranks ='" . $rank ."' WHERE sid =" . $oldsid . ";";
+	if($result = $conn->query($sql)){
+		echo 'inserted';		
+	}
+	else{
+		echo $conn->error;
+	}
+	
+	if($sid != $oldsid)
+	{
+		$sql = "UPDATE scoutsawardedawards SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsawardedbadge SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsawardedbridging SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsawardedquests SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsdoaward SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsdobadge SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsdobridge SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsdojourney SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsgotoevents SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutshasemergencyinfo SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutsintroop SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+		
+		$sql = "UPDATE scoutspayduesfinances SET SID =" . $sid . " WHERE SID = " . $oldsid . ";";
+		
+		if($result = $conn->query($sql)){
+			echo 'inserted';		
+		}
+		else{
+			echo $conn->error;
+		}
+	}
+	
+	$conn->query('SET foreign_key_checks = 1');
 }
 
 #endregion
 ?>
+
+
