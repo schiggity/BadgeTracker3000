@@ -31,12 +31,20 @@
 			
 			<li><a href="Journeys.php">Journeys</a></li>
 			<li><a href="UpdateJourney.php">Update Journeys</a></li>
+			
+			<li role="separator" class="divider"></li>
+			
+			<li><a href="awardBridge.php">Awards & Bridges</a></li>
+			<li><a href="UpdateAwardRecords.php">Update Awards</a></li>
+			<li><a href="UpdateBridgeRecords.php">Update Bridges</a></li>
+			
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 	  <?php if(isset($_SESSION['user'])){ 
          echo '<li><a href="#">Welcome ' . $_SESSION['user'] . '</a></li>';
+		 echo '<li><a href="LogoutOP.php">Logout</a></li>';
         }
 		else{
 		echo '<li><a href="CreateUser.php">Log-In or Create User</a></li>';

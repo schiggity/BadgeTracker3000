@@ -18,6 +18,13 @@ if(isset($_POST['submitform'])){
 	
 	//echo "Submitted";
 }
+
+
+if(!isset($_SESSION['user']))
+{
+	$_SESSION['noLog'] = 1;
+	header('location: CreateUser.php');
+}
 ?>
 
 <!DOCTYPE html>

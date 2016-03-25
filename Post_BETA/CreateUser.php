@@ -24,8 +24,26 @@ if(isset($_SESSION['Error']))
 	alert("<?php echo $_SESSION['Error']; ?>");
 
 	</script>
+	
+	
+	
 <?php
 	unset($_SESSION['Error']);
+} ?>
+
+<?php
+if(isset($_SESSION['noLog']))
+{ ?>
+	<script>
+	
+	alert("Please log in or create an account before viewing this page");
+
+	</script>
+	
+	
+	
+<?php
+	unset($_SESSION['noLog']);
 } ?>
 
 <!---------------------------------------------------------------- NAV BAR STUFF -------------------------------------------------------->

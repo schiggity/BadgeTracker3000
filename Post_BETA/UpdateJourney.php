@@ -8,10 +8,17 @@ if(isset($_POST['submitform'])){
 
 	
 	foreach($_POST['requirements'] as $reqs){
-		largeJourneyUpdate($_POST['names'],substr($_POST['requirements'][0], 0, 5), $reqs, 0);
+		largeJourneyUpdate($_POST['names'],substr($reqs, 0, 5), $reqs, 0);
 	}
 	
 
+}
+
+
+if(!isset($_SESSION['user']))
+{
+	$_SESSION['noLog'] = 1;
+	header('location: CreateUser.php');
 }
 ?>
 

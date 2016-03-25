@@ -1,6 +1,12 @@
 <?php 
 include 'query.php'; 
 session_start();
+
+if(!isset($_SESSION['user']))
+{
+	$_SESSION['noLog'] = 1;
+	header('location: CreateUser.php');
+}
  ?>
 <!DOCTYPE html>
 <html lang="en">

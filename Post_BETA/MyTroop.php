@@ -2,6 +2,13 @@
 session_start();
 include 'query.php'; 
 //echo $_SESSION['tid'];
+
+if(!isset($_SESSION['user']))
+{
+	$_SESSION['noLog'] = 1;
+	header('location: CreateUser.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +48,7 @@ if(isset($_SESSION['EditScout']))
                     <li><a href="#Tab4" data-toggle="tab">Badges</a></li>
 					<li><a href="#Tab5" data-toggle="tab">Awards</a></li>
 					<li><a href="#Tab6" data-toggle="tab">Journeys</a></li>
+					<li><a href="#Tab7" data-toggle="tab">Earned</a></li>
 					<li style="float: right;"><a href="AddScout.php">+Add a Scout</a></li>
 										
                 </ul>
@@ -389,6 +397,77 @@ if(isset($_SESSION['EditScout']))
                     </div>
 					
 					<!--                -->
+					
+					
+					
+					<div class="tab-pane" id="Tab7">  
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Badges</h3>
+								
+								<?php
+									$badges = getAllBadges();
+									foreach($badges as $badge){
+										
+										$array = getScoutCountForBadge($badge["BAID"]);
+										
+										if($array[1] != 0){
+											
+								?>
+								
+								
+								
+								
+								<div class="panel-group">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" id="B<?php echo $badge["BAID"]; ?>" href="#collapseBE<?php echo $badge["BAID"];?>"><?php echo $badge["Name"];  ?></a>
+												<!-- id tag has capital B before baid and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
+											</h4>
+										</div>
+										<div id="collapseBE<?php echo $badge["BAID"];?>" class="panel-collapse collapse">
+											<ul class="list-group">
+												<div class="container"> 													            
+														<table  style="width: 90%;">														
+															<tbody>
+															<?php
+																if($scouts = getEarnedByBadge($badge["BAID"]))
+																{
+																foreach($scouts as $scout){
+																$s = getScout($scout);
+																?>
+																<tr>
+																	<td>Number of Scouts Earned: <?php echo $s["Name"]; ?></td>																	
+																</tr>
+																<tr>
+																	<td>Number of Scouts Awarded: <?php echo $array[2]; ?></td>																	
+																</tr>
+																<tr>
+																	<td>Number of Scouts Started: <?php echo $array[0]; ?></td>					
+												
+																</tr>
+																<tr>															
+																	<td align="right"> 
+																		<form action="UpdateBadgeRecords.php#<?php echo $badge["BAID"]; ?>" method="post">
+																			<input type="hidden" name="BTab" value="<?php echo $badge["BAID"][0]; ?>">	
+																			<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"];?>">
+																			<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																		</form>  
+																	</td>
+																</tr>
+																<?php }} ?>
+															</tbody>
+														</table>
+												</div>
+											</ul>											
+										</div>
+									</div>
+								</div>
+									<?php } } ?>
+                            </div>
+                        </div>
+                    </div> 
 					
 				</div>	
 			</div>

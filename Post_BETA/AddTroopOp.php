@@ -68,6 +68,9 @@ if(isset($_POST["submit"])=="Add Scout")
 	
 	addScout($ScoutID, $Name, $DOB, $Address, $PhoneNumber, $BackupPhoneNumber, $Email, $Parents, $Grade, $Rank);
 	$_SESSION['AddedScout'] = 1;
+	
+	insertHealthRecords($ScoutID);
+	
 	header('Location: AddScout.php');
 }
 

@@ -1,6 +1,13 @@
 <?php 
 include 'query.php'; 
 session_start();
+
+if(!isset($_SESSION['user']))
+{
+	$_SESSION['noLog'] = 1;
+	header('location: CreateUser.php');
+}
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,11 +149,18 @@ if(isset($_SESSION['AddedScout']))
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Email -->
-						<div class="form-group">
-							<label for="TroopNum">Rank</label>
-							<input class="form-control" id="Rank" name="Rank" type="text" placeholder="ex: Senior">
-						</div>
-					</div>
+                        <div class="form-group">
+                            <label for="TroopNum">Rank</label>
+                            <select class="form-control" id="Rank" name="Rank">
+                                <option>Daisy</option>
+                                <option>Brownie</option>
+                                <option>Junior</option>
+                                <option>Cadette</option>
+                                <option>Senior</option>
+                                <option>Ambassador</option>                                
+                              </select>
+                        </div>
+                    </div>
 					<button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout">Submit</button>
 				</form>
 			</div>
