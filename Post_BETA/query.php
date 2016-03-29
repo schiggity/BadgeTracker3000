@@ -1199,8 +1199,13 @@ function getLastFID($type)
 	
 	if($result = $conn->query($sql))
 	{
-		$row = $result->fetch_assoc();
-		return $row["fid"];
+		if($result->num_rows > 0){
+			$row = $result->fetch_assoc();
+			return $row["fid"];
+		}
+		else{
+			return $type[0] . "0000";
+		}
 	}
 	else{
 		return $type[0] . "0000";
@@ -1214,11 +1219,13 @@ function insertEventFinance($eid, $fid)
 	global $conn;
 }
 
-function insertFinance($fid, $amount)
+function insertFinance($fid, $amount, $sidArr, $purp)
 {
 	global $conn;
 	
-	$sql = "INSERT into finances VALUES(" . $fid. "," . $amount . ");"; 
+	$date = time();	
+	$sql = "INSERT into finances VALUES(" . $fid. "," . $amount . ",". (date("Y-m-d", $date)) .",". $purp .");"; 
+	
 	
 	if($result = $conn->query($sql)){
 		echo 'inserted';		
@@ -1227,7 +1234,7 @@ function insertFinance($fid, $amount)
 		echo $conn->error;
 	}
 	
-	$sql = "INSERT into troophavefinances VALUES(" . $fid. "," . $_SESSION['tid'] . ");";
+	$sql = "INSERT into troophavefinances VALUES(". $_SESSION['tid'] . ","  . $fid. ");";
  
 	if($result = $conn->query($sql)){
 		echo 'inserted';		
@@ -1235,6 +1242,73 @@ function insertFinance($fid, $amount)
 	else{
 		echo $conn->error;
 	}
+	
+	
+	
+	$sql = $conn->prepare("INSERT into scoutspayduesfinances VALUES(?,?,?,?);");
+	echo $conn->error;
+	
+	$date = time();
+	$zero = 0;
+	foreach($sidArr as $sid){
+		$sql->bind_param('iisi',$sid,$fid,(date("Y-m-d", $date)),$zero);
+		$sql->execute();
+	}
+	
+}
+
+function getFinanceByType($type){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM finances WHERE fid IN (SELECT fid FROM troophavefinances WHERE tid = " . $_SESSION['tid'] . ") AND fid LIKE '".$type."' ORDER BY FID;";
+	
+	#fill array to be returned
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
+	}
+	return $arr;
+}
+
+function updateFin($fid,$amount,$purp){
+	global $conn;
+	$arr = array();
+	$sql = "UPDATE finances SET Amount=". $amount .",Purpose=". $purp ." where fid = ". $fid .";";
+	
+	if($result = $conn->query($sql)){
+		return;		
+	}	
+}
+
+function pay($fid,$sidArr){
+	global $conn;
+	$arr = array();
+	$sql = $conn->prepare("UPDATE scoutspayduesfinances SET FullPayment=1, DatePayed=NOW() where fid = ? AND sid = ?;");
+	
+	foreach($sidArr as $sid){
+		$sql->bind_param('ii',$fid,$sid);
+		$sql->execute();
+	}	
+}
+
+
+
+
+function getScoutsByFID($fid){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM scouts WHERE sid IN (select SID from scoutspayduesfinances where SID in (SELECT sid FROM troophavefinances WHERE tid = " . $_SESSION['tid'] . " AND fid = ". $fid ."))";
+	
+	#fill array to be returned
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
+	}
+	return $arr;
 }
 
 #endregion
