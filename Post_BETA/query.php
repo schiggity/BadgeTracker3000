@@ -1214,7 +1214,7 @@ function insertEventFinance($eid, $fid)
 	global $conn;
 }
 
-function insertFinance($fid, $amount)
+function insertFinance($fid, $amount, $sidArr)
 {
 	global $conn;
 	
@@ -1235,6 +1235,14 @@ function insertFinance($fid, $amount)
 	else{
 		echo $conn->error;
 	}
+	
+	$sql = "INSERT into scoutsCreateDuesFinances VALUES(?,?,?,?);"
+	
+	foreach($sidArr as $sid){
+		$sql->bind_param('iisi',$sid,$fid,'NOW()',0);
+		$sql->execute();
+	}
+	
 }
 
 #endregion
