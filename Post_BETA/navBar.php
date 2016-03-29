@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-	  <img class="navbar-brand" src="girlscout2.png"></img>
+	  <img class="navbar-brand" src="GSA_Logo_Tilt.png"></img>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

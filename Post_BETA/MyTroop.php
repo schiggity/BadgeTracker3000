@@ -345,7 +345,7 @@ if(isset($_SESSION['EditScout']))
 								<?php
 									$journeys = getAllJourneys();
 									foreach($journeys as $journey){
-										//echo "journey shit";
+										
 								foreach(getQuestsForJourney($journey["JID"]) as $quest)
 								{
 										$array = getScoutCountForJourneyQuest($quest["QID"]);						

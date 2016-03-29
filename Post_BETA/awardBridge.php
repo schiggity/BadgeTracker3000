@@ -48,7 +48,7 @@ $(document).ready(function(){
 									$awards = getAllAwards();
 									foreach($awards as $award){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal -->
 								<div id="Modal<?php echo $award["AID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 
@@ -133,7 +133,7 @@ $(document).ready(function(){
 									$bridges = getAllBridges();
 									foreach($bridges as $bridge){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal-->
 								<div id="Modal<?php echo $bridge["BID"]?>B" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 

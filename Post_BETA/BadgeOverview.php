@@ -52,7 +52,7 @@ $(document).ready(function(){
 									$badges = getBadgesByRank("daisy");
 									foreach($badges as $badge){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal -->
 								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 
@@ -141,7 +141,7 @@ $(document).ready(function(){
 									$badges = getBadgesByRank("brownie");
 									foreach($badges as $badge){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal -->
 								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 
@@ -231,7 +231,7 @@ $(document).ready(function(){
 									$badges = getBadgesByRank("junior");
 									foreach($badges as $badge){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal  -->
 								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 
@@ -321,7 +321,7 @@ $(document).ready(function(){
 									$badges = getBadgesByRank("cadette");
 									foreach($badges as $badge){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal -->
 								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 
@@ -411,7 +411,7 @@ $(document).ready(function(){
 									$badges = getBadgesByRank("senior");
 									foreach($badges as $badge){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal-->
 								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 
@@ -501,7 +501,7 @@ $(document).ready(function(){
 									$badges = getBadgesByRank("ambassador");
 									foreach($badges as $badge){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal  -->
 								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 

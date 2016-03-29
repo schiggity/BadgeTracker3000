@@ -557,7 +557,7 @@ if($valid){
 								<?php
 								$journeys = getJourneyByScoutByRank($sid, 'b');
 								if($journeys != 'null'){
-								echo "shit";
+								
 								foreach($journeys as $journey){
 								?>
 								<div class="panel-group">

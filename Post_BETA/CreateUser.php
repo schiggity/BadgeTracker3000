@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Template</title> <!-- Change Page Tiltle Here -->
+  <title>Create User/Login</title> <!-- Change Page Tiltle Here -->
   <!---------------------------------------------------- Stuff that is necessary for Bootstrap --------------------------------------------->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

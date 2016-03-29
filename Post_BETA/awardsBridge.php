@@ -48,7 +48,7 @@ $(document).ready(function(){
 									$awards = getAllAwards();
 									foreach($awards as $award){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal -->
 								<div id="Modal<?php echo $award["AID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 
@@ -134,7 +134,7 @@ $(document).ready(function(){
 									$badges = getBadgesByRank("brownie");
 									foreach($badges as $badge){
 								?>
-								<!-- Modal shit -->
+								<!-- Modal -->
 								<div id="Modal<?php echo $badge["BAID"]?>" class="modal fade" role="dialog">
 									<div class="modal-dialog">
 

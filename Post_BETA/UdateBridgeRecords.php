@@ -32,7 +32,7 @@ if(!isset($_SESSION['user']))
 <html lang="en">
 <head>
 <!-- Change Page Title Here -->
-<title>Badge Update</title> 
+<title>Bridge Update</title> 
 </head>
 
 <script>
@@ -50,7 +50,7 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 <div class="container">
 <div class="row-fluid">
 <div class="col-md-12">
-<h1>Update Badge</h1>
+<h1>Update Bridge</h1>
 
 <?php if(isset($_POST['BTab'])){ ?>
 

@@ -94,21 +94,20 @@ include 'connect.php';
 				if($DBTroopNum === $TroopNum)
 				{
 					$TroopExists = true;
-					echo "Troop Exists";
+					
 				}
 			}
 			#new troop already exists
 			if($TroopCheck === 'isset' && $TroopExists)
 			{
-				$_SESSION['Error'] = "The Troop Num '" . $TroopNum . "' is already in use";
+				$_SESSION['Error'] = "The Troop Num '" . $TroopNum . "' is already in use, make sure you aren't choosing to create a new troop, and enter in the troop password to access these troop records.";
 				header('Location: CreateUser.php');
 			}
 			#new troop available
 			else if ($TroopCheck === 'isset')
 			{
 				$sql = "INSERT INTO troops (TID, Council, Leader, password) VALUES('". $TroopNum . "','". $Council ."','". $Leader ."','". $TroopPassword . "');";
-				if($result = $conn->query($sql)){
-				echo 'inserted new troop';		
+				if($result = $conn->query($sql)){	
 				}
 				else{
 					echo $conn->error;
@@ -117,7 +116,8 @@ include 'connect.php';
 				VALUES('". $Username ."','" . $HashSalt ."','" . $Salt . "','" . $Email . "','" . $TroopNum . "');";
 				
 				if($result = $conn->query($order)){
-					echo 'inserted';		
+					$_SESSION['Error'] = "Username Created Successfully! Please log in to continue.";
+					header('Location: CreateUser.php');		
 				}
 				else{
 					echo $conn->error;
@@ -139,7 +139,8 @@ include 'connect.php';
 						VALUES('". $Username ."','" . $HashSalt ."','" . $Salt . "','" . $Email . "','" . $TroopNum . "');";
 						
 						if($result = $conn->query($order)){
-							echo 'inserted';		
+							$_SESSION['Error'] = "Username Created Successfully! Please log in to continue.";
+							header('Location: CreateUser.php');			
 						}
 						else{
 							echo $conn->error;
@@ -147,7 +148,7 @@ include 'connect.php';
 					}
 				}
 				else{
-					echo "shitty shit shit";
+					echo "Something went wrong please go back and try again";
 				}
 				
 			}

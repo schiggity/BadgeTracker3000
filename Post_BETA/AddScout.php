@@ -12,7 +12,7 @@ if(!isset($_SESSION['user']))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Template</title> <!-- Change Page Tiltle Here -->
+  <title>Add Scout</title> <!-- Change Page Tiltle Here -->
   <!---------------------------------------------------- Stuff that is necessary for Bootstrap --------------------------------------------->
   <?php include 'bootstrap.html';?>
   <link rel="stylesheet" type="text/css" href="CreateUserCSS.css">

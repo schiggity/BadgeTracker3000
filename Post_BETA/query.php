@@ -875,7 +875,7 @@ function updateHealthRecords($sid,$P,$S,$A,$I,$O,$N){
 
 function insertHealthRecords($sid){
 	global $conn;
-	$sql = "INSERT INTO emergencyinfo VALUES(". $sid .",' * * ',' * * ',' * * * * * * * * * * * ',' * * * * * * * * * * * ',' * * * * * * * * * * * ',' ');";
+	$sql = "INSERT INTO emergencyinfo VALUES(". $sid .",'**','**','***********','***********','***********','');";
 	
 	if($result = $conn->query($sql)){
 		return;
@@ -1214,7 +1214,7 @@ function insertEventFinance($eid, $fid)
 	global $conn;
 }
 
-function insertFinance($fid, $amount, $sidArr)
+function insertFinance($fid, $amount)
 {
 	global $conn;
 	
@@ -1235,14 +1235,6 @@ function insertFinance($fid, $amount, $sidArr)
 	else{
 		echo $conn->error;
 	}
-	
-	$sql = "INSERT into scoutsCreateDuesFinances VALUES(?,?,?,?);"
-	
-	foreach($sidArr as $sid){
-		$sql->bind_param('iisi',$sid,$fid,'NOW()',0);
-		$sql->execute();
-	}
-	
 }
 
 #endregion
