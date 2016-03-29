@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2016 at 12:33 AM
+-- Generation Time: Mar 30, 2016 at 01:01 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -5216,8 +5216,11 @@ CREATE TABLE `emergencyinfo` (
 --
 
 INSERT INTO `emergencyinfo` (`SID`, `PrimaryCont`, `SecondaryCont`, `Allergies`, `illness`, `Other`, `Notes`) VALUES
+(4623, '**', '**', '***********', '***********', '***********', ''),
 (6225, '**', '**', '***********', '***********', '***********', ''),
-(7872, ' sdfc* zxcv* zxcv', ' xzcv* zxcv* xcv ', ' gser* sdfg* sdfb* * * * * * * * * ', '*** dfsb* * * * * * * * ', ' er* sdfg* * * * * * * * * * ', ' dafgsdfb');
+(6475, '**', '**', '***********', '***********', '***********', ''),
+(7872, ' sdfc* zxcv* zxcv', ' xzcv* zxcv* xcv ', ' gser* sdfg* sdfb* * * * * * * * * ', '*** dfsb* * * * * * * * ', ' er* sdfg* * * * * * * * * * ', ' dafgsdfb'),
+(8032, '**', '**', '***********', '***********', '***********', '');
 
 -- --------------------------------------------------------
 
@@ -5241,21 +5244,23 @@ CREATE TABLE `events` (
 
 CREATE TABLE `finances` (
   `FID` int(11) NOT NULL DEFAULT '0',
-  `Amount` int(11) DEFAULT NULL
+  `Amount` int(11) DEFAULT NULL,
+  `TheDate` date NOT NULL,
+  `Purpose` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `finances`
 --
 
-INSERT INTO `finances` (`FID`, `Amount`) VALUES
-(11, 10),
-(12, 100),
-(13, 4),
-(14, 7),
-(15, 60000),
-(16, 80),
-(17, 14);
+INSERT INTO `finances` (`FID`, `Amount`, `TheDate`, `Purpose`) VALUES
+(11, 10, '0000-00-00', ''),
+(12, 100, '0000-00-00', ''),
+(13, 4, '0000-00-00', ''),
+(14, 7, '0000-00-00', ''),
+(15, 60000, '0000-00-00', ''),
+(16, 80, '0000-00-00', ''),
+(17, 14, '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -5705,8 +5710,9 @@ INSERT INTO `scouts` (`SID`, `Name`, `DoB`, `address`, `PhoneNumber`, `BackupPho
 (3801, 'asdf adsf', '2009-12-12', 'asdf', '1111111111', '1111111111', 'asdf', 'asdf & asef', 1, 'daisy'),
 (6225, 'asf asdf', '1111-11-11', 'futyd', '12312345235', '23465347657', 'fghfd', 'dfgnyj & ytjdh tsgh', 3, 'Brownie'),
 (6666, 'Sally Joe', '2000-12-12', 'dfg', '1233334444', '3334445555', 'dsfg', 'sdfg   &   ', 1, 'daisy'),
-(7624, 'Qwereta qwer', '0000-00-00', 'qwer', '111111-1111', '2227686789', 'qwer', 'qwer qwer  &  ', 6, 'junior'),
-(7872, 'wert dsfg', '1212-12-12', 'sdag', '21312341324', '34252345243', 'edfgfgh', 'dfghd & dfgh', 12, 'Junior');
+(7624, 'Qwereta qwer', '2001-06-02', 'qwer', '111111-1111', '2227686789', 'qwer', 'qwer qwer   &   ', 6, 'junior'),
+(7872, 'wert dsfg', '1212-12-12', 'sdag', '21312341324', '34252345243', 'edfgfgh', 'dfghd & dfgh', 12, 'Junior'),
+(8032, 'rep rep', '1999-07-02', 'sdfgh', '23423452345', '23423452345', 'cfbgdf', 'dfghg & tdhye', 8, 'Junior');
 
 -- --------------------------------------------------------
 
@@ -5897,7 +5903,8 @@ INSERT INTO `scoutsintroop` (`SID`, `TID`) VALUES
 (7624, 2),
 (3801, 1),
 (7872, 2),
-(6225, 2);
+(6225, 2),
+(8032, 2);
 
 -- --------------------------------------------------------
 

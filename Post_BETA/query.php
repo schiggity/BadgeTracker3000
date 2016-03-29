@@ -1243,7 +1243,7 @@ function insertFinance($fid, $amount)
 
 function addScout($sid, $name, $dob, $address, $phoneNum, $backupPhoneNum, $email, $parents, $grade, $rank){
 	global $conn;
-	$sql = "INSERT INTO scouts VALUES(". $sid . ",'" . $name . "','" . $dob . "','" . $address . "','" . $phoneNum . "','" . $backupPhoneNum . "','" . $email . "','" . $parents . "','" . $grade . "','" . $rank . "');";
+	$sql = "INSERT INTO scouts VALUES(". $sid . ",'" . $name . "', CAST('" . $dob . "' AS DATE),'" . $address . "','" . $phoneNum . "','" . $backupPhoneNum . "','" . $email . "','" . $parents . "','" . $grade . "','" . $rank . "');";
 	
 	if($result = $conn->query($sql)){
 		echo 'inserted';		
@@ -1268,7 +1268,7 @@ function editScout($sid, $name, $dob, $address, $phoneNum, $backupPhoneNum, $ema
 	
 	$conn->query('SET foreign_key_checks = 0');
 	
-	$sql = "UPDATE scouts SET SID =" . $sid . ", Name ='" . $name . "', DoB ='" . $dob . "', address ='" . $address . "',PhoneNumber ='" . $phoneNum . "', BackupPhone ='" . $backupPhoneNum . "', email ='" . $email . "', Parents ='" . $parents . "',Grade ='" . $grade . "',Ranks ='" . $rank ."' WHERE sid =" . $oldsid . ";";
+	$sql = "UPDATE scouts SET SID =" . $sid . ", Name ='" . $name . "', DoB = CAST('" . $dob . "' AS DATE), address ='" . $address . "',PhoneNumber ='" . $phoneNum . "', BackupPhone ='" . $backupPhoneNum . "', email ='" . $email . "', Parents ='" . $parents . "',Grade ='" . $grade . "',Ranks ='" . $rank ."' WHERE sid =" . $oldsid . ";";
 	if($result = $conn->query($sql)){
 		echo 'inserted';		
 	}
