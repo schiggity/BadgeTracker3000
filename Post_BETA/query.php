@@ -546,6 +546,19 @@ function getJourneyByScoutByRank($sid,$rank){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endregion
 
 #region-------------------------SCOUT RECORD---------------------------------
@@ -1463,6 +1476,29 @@ function editScout($sid, $name, $dob, $address, $phoneNum, $backupPhoneNum, $ema
 	
 	$conn->query('SET foreign_key_checks = 1');
 }
+
+
+function markAwarded($type,$sidArr,$ID){
+	if($type == "badge"){
+		$sql = $conn->prepare("INSERT into scoutsawardedbadges VALUES(?,?)");
+	}
+	else if($type == "quest"){
+		$sql = $conn->prepare("INSERT into scoutsawardedquests VALUES(?,?)");
+	}
+	else if($type == "award"){
+		$sql = $conn->prepare("INSERT into scoutsawardedawards VALUES(?,?)");
+	}
+	else if($type == "quest"){
+		$sql = $conn->prepare("INSERT into scoutsawardedbridging VALUES(?,?)");
+	}
+	
+	foreach($sidArr as $sid){
+		$sql->bind_param('ii',$sid,$ID);
+		$sql->execute();
+	}	
+}
+
+
 
 #endregion
 ?>
