@@ -3,7 +3,7 @@
 include('query.php');
 
 session_start();
-$_SESSION['tid'] = '2';
+
 
 
 if(isset($_POST["submit"])=="Add Scout")
@@ -20,6 +20,7 @@ if(isset($_POST["submit"])=="Add Scout")
 	
 	
 	echo '$FinanceType: ' . $FinanceType;
+	echo '$FinanceType: ' . $FID;
 	echo '<p> </p>';
 	echo '$Amount ' . $Amount;
 	echo '<p> </p>';

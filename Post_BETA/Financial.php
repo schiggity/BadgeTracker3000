@@ -1,4 +1,6 @@
-<?php include 'query.php';?>
+<?php include 'query.php';
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +12,7 @@
 <body>
 
 <!---------------------------------------------------------------- NAV BAR -------------------------------------------------------->
-<?php include 'navBar.html'; ?>
+<?php include 'navBar.php'; ?>
 
 
 <!-------------------------------------------------------------- TABS ------------------------------------------------------------->
@@ -24,7 +26,7 @@
                     <li><a href="#Tab3" data-toggle="tab">Cookies</a></li>
                     <li><a href="#Tab4" data-toggle="tab">Nuts and Candy</a></li>
 					<li><a href="#Tab5" data-toggle="tab">Special Purpose</a></li>
-					<li style="float: right;"><a href="/PHP/addFinance.php">+Add Finances</a></li>
+					<li style="float: right;"><a href="/addFinance.php">+Add Finances</a></li>
 					
 					
 										
