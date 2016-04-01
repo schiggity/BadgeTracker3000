@@ -3,17 +3,27 @@ include 'query.php';
 include 'bootstrap.html';
 
 session_start();
-
+$shown = false;
 if(isset($_POST['submitform'])){
 
-	
-	foreach($_POST['requirements'] as $reqs){
-		largeJourneyUpdate($_POST['names'],substr($reqs, 0, 5), $reqs, 0);
+	if(isset($_POST['names'])){
+		if(isset($_POST['requirements'])){
+			foreach($_POST['requirements'] as $reqs){
+				largeJourneyUpdate($_POST['names'],substr($reqs, 0, 5), $reqs, 0);
+				$shown = true;
+			}
+		}
+		else{
+			echo "<script>alert('No Requirements Selected for Update!');</script>";
+		}
 	}
-	
-
+	else{
+		echo "<script>alert('No Scouts Selected for Update!');</script>";
+	}
 }
-
+if($shown){
+	echo "<script>alert('Journeys Updated Successfully!');</script>";
+}
 
 if(!isset($_SESSION['user']))
 {
@@ -80,6 +90,7 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 $journeys = getJourneysByRank("daisy");
 $scoutsInRank = getScoutsByRank("daisy");
 foreach($journeys as $journey){
+	$quests = getQuestsForJourney($journey["JID"])
 ?>
 <!-- Modal content displaying Scout names-->
 <div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
@@ -94,15 +105,24 @@ foreach($journeys as $journey){
 <form method="post">
 <p>
 <?php
+
 foreach($scoutsInRank as $scout){
-echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	$shown = false;
+	foreach($quests as $q){
+		if(journeyQuestStatus($scout['SID'],$q['QID']) != 1){
+			$shown = true;
+		}
+	}
+	if($shown){
+		echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	}
 }
 ?>
 </p>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="#Modal<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>"><button type="button" name="Next" id="Next" class="btn btn-default">Next</button></a>
 </div>
 </div>
 </div>	
@@ -121,7 +141,7 @@ echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $s
 <form method="post">
 <p>
 <?php
-foreach(getQuestsForJourney($journey["JID"]) as $jquest){
+foreach($quests as $jquest){
 echo "<b>" . $jquest["Name"] . ":</b><br>";
 foreach(getRequirementsForJourneyQuest($jquest["QID"]) as $jreq){
 $Name = str_replace(array('"','\''), "", $jreq["Name"]);
@@ -134,7 +154,8 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="#ModalScout<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="##ModalScout<?php echo $journey["JID"]?>"><button type="button" class="btn btn-default pull-left">Back</button></a>
+<form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default"></form>
 </div>
 </div>
 </div>	
@@ -154,9 +175,9 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
+<!--td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -183,6 +204,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 $journeys = getJourneysByRank("brownie");
 $scoutsInRank = getScoutsByRank("brownie");
 foreach($journeys as $journey){
+	$quests = getQuestsForJourney($journey["JID"])
 ?>
 <!-- Modal content displaying Scout names-->
 <div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
@@ -198,14 +220,22 @@ foreach($journeys as $journey){
 <p>
 <?php
 foreach($scoutsInRank as $scout){
-echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	$shown = false;
+	foreach($quests as $q){
+		if(journeyQuestStatus($scout['SID'],$q['QID']) != 1){
+			$shown = true;
+		}
+	}
+	if($shown){
+		echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	}
 }
 ?>
 </p>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="Modal<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>"><button type="button" name="Next" id="Next" class="btn btn-default">Next</button></a>
 </div>
 </div>
 </div>	
@@ -237,7 +267,8 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="#ModalScout<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="##ModalScout<?php echo $journey["JID"]?>"><button type="button" class="btn btn-default pull-left">Back</button></a>
+<form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default"></form>
 </div>
 </div>
 </div>	
@@ -257,9 +288,9 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -286,6 +317,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 $journeys = getJourneysByRank("junior");
 $scoutsInRank = getScoutsByRank("junior");
 foreach($journeys as $journey){
+	$quests = getQuestsForJourney($journey["JID"])
 ?>
 <!-- Modal content displaying Scout names-->
 <div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
@@ -301,14 +333,22 @@ foreach($journeys as $journey){
 <p>
 <?php
 foreach($scoutsInRank as $scout){
-echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	$shown = false;
+	foreach($quests as $q){
+		if(journeyQuestStatus($scout['SID'],$q['QID']) != 1){
+			$shown = true;
+		}
+	}
+	if($shown){
+		echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	}
 }
 ?>
 </p>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="Modal<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>"><button type="button" name="Next" id="Next" class="btn btn-default">Next</button></a>
 </div>
 </div>
 </div>	
@@ -340,7 +380,8 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="#ModalScout<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="##ModalScout<?php echo $journey["JID"]?>"><button type="button" class="btn btn-default pull-left">Back</button></a>
+<form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default"></form>
 </div>
 </div>
 </div>	
@@ -360,9 +401,9 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -389,6 +430,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 $journeys = getJourneysByRank("cadette");
 $scoutsInRank = getScoutsByRank("cadette");
 foreach($journeys as $journey){
+	$quests = getQuestsForJourney($journey["JID"])
 ?>
 <!-- Modal content displaying Scout names-->
 <div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
@@ -404,14 +446,22 @@ foreach($journeys as $journey){
 <p>
 <?php
 foreach($scoutsInRank as $scout){
-echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	$shown = false;
+	foreach($quests as $q){
+		if(journeyQuestStatus($scout['SID'],$q['QID']) != 1){
+			$shown = true;
+		}
+	}
+	if($shown){
+		echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	}
 }
 ?>
 </p>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="Modal<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>"><button type="button" name="Next" id="Next" class="btn btn-default">Next</button></a>
 </div>
 </div>
 </div>	
@@ -443,7 +493,8 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="#ModalScout<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="##ModalScout<?php echo $journey["JID"]?>"><button type="button" class="btn btn-default pull-left">Back</button></a>
+<form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default"></form>
 </div>
 </div>
 </div>	
@@ -463,9 +514,9 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -492,6 +543,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 $journeys = getJourneysByRank("senior");
 $scoutsInRank = getScoutsByRank("senior");
 foreach($journeys as $journey){
+	$quests = getQuestsForJourney($journey["JID"])
 ?>
 <!-- Modal content displaying Scout names-->
 <div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
@@ -507,14 +559,22 @@ foreach($journeys as $journey){
 <p>
 <?php
 foreach($scoutsInRank as $scout){
-echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	$shown = false;
+	foreach($quests as $q){
+		if(journeyQuestStatus($scout['SID'],$q['QID']) != 1){
+			$shown = true;
+		}
+	}
+	if($shown){
+		echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	}
 }
 ?>
 </p>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="Modal<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>"><button type="button" name="Next" id="Next" class="btn btn-default">Next</button></a>
 </div>
 </div>
 </div>	
@@ -546,7 +606,8 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="#ModalScout<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="##ModalScout<?php echo $journey["JID"]?>"><button type="button" class="btn btn-default pull-left">Back</button></a>
+<form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default"></form>
 </div>
 </div>
 </div>	
@@ -566,9 +627,9 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -595,6 +656,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 $journeys = getJourneysByRank("ambassador");
 $scoutsInRank = getScoutsByRank("ambassador");
 foreach($journeys as $journey){
+	$quests = getQuestsForJourney($journey["JID"])
 ?>
 <!-- Modal content displaying Scout names-->
 <div id="ModalScout<?php echo $journey["JID"]?>" class="modal fade" role="dialog">
@@ -610,14 +672,22 @@ foreach($journeys as $journey){
 <p>
 <?php
 foreach($scoutsInRank as $scout){
-echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	$shown = false;
+	foreach($quests as $q){
+		if(journeyQuestStatus($scout['SID'],$q['QID']) != 1){
+			$shown = true;
+		}
+	}
+	if($shown){
+		echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+	}
 }
 ?>
 </p>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="Modal<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>"><button type="button" name="Next" id="Next" class="btn btn-default">Next</button></a>
 </div>
 </div>
 </div>	
@@ -649,7 +719,8 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+<a href="#ModalScout<?php echo $journey["JID"]?>" data-dismiss="modal" data-toggle="modal" data-target="##ModalScout<?php echo $journey["JID"]?>"><button type="button" class="btn btn-default pull-left">Back</button></a>
+<form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default"></form>
 </div>
 </div>
 </div>	
@@ -669,9 +740,9 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Scouts</button></td>									
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
+<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
 </tr>
 
 <tr>

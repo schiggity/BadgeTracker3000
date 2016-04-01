@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-	  <img class="navbar-brand" src="GSA_Logo_Tilt.png"></img>
+	  <a href="MyTroop.php"><div class="navbar-brand"><span class="glyphicon glyphicon-home"></span></span></div></img></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,29 +17,46 @@
       <ul class="nav navbar-nav">
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Navigation <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Troop<span class="caret"></span></a>
           <ul class="dropdown-menu">
+		  
+			<li><a href="MyTroop.php">My Troop</a></li>	
 			<li><a href="AddScout.php">Add Scout</a></li>
-			<li><a href="MyTroop.php">My Troop</a></li>
-			
-			<li role="separator" class="divider"></li>
-			
-            <li><a href="BadgeOverview.php">Badge Overview</a></li>
-			<li><a href="UpdateBadgeRecords.php">Badge Update</a></li>
-			
-			<li role="separator" class="divider"></li>
-			
-			<li><a href="Journeys.php">Journeys</a></li>
-			<li><a href="UpdateJourney.php">Update Journeys</a></li>
-			
-			<li role="separator" class="divider"></li>
-			
-			<li><a href="awardBridge.php">Awards & Bridges</a></li>
-			<li><a href="UpdateAwardRecords.php">Update Awards</a></li>
-			<li><a href="UpdateBridgeRecords.php">Update Bridges</a></li>
 			
           </ul>
         </li>
+		
+		<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Badges<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+		  
+			<li><a href="BadgeOverview.php">Badge Overview</a></li>
+			<li><a href="UpdateBadgeRecords.php">Badge Update</a></li>
+		  
+		  </ul>
+        </li>
+		
+		<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Journeys<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+		  
+			<li><a href="Journeys.php">Journeys</a></li>
+			<li><a href="UpdateJourney.php">Update Journeys</a></li>
+		  
+		  </ul>
+        </li>
+		
+		<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Awards & Bridging<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+		  
+			<li><a href="awardBridge.php">Awards & Bridges</a></li>
+			<li><a href="UpdateAwardRecords.php">Update Awards</a></li>
+			<li><a href="UpdateBridgeRecords.php">Update Bridges</a></li>
+		  
+		  </ul>
+        </li>
+		
       </ul>
       <ul class="nav navbar-nav navbar-right">
 	  <?php if(isset($_SESSION['user'])){ 

@@ -31,22 +31,23 @@ if(isset($_SESSION['EditScout']))
 } 
 
 if(isset($_POST['BAwarded'])){
-	markedAwarded("badge",$_POST['names'],$_POST['BAwarded']);
+	markAwarded("badge",$_POST['names'],$_POST['BAwarded']);
 	echo '<script> alert("Badges marked as Awarded!");</script>';
 }
 
 if(isset($_POST['JAwarded'])){
-	markedAwarded("quest",$_POST['names'],$_POST['JAwarded']);
+	markAwarded("quest",$_POST['names'],$_POST['JAwarded']);
 	echo '<script> alert("Journeys marked as Awarded!");</script>';	
 }
 
 if(isset($_POST['AAwarded'])){
-	markedAwarded("award",$_POST['names'],$_POST['AAwarded']);	
+	markAwarded("award",$_POST['names'],$_POST['AAwarded']);	
 	echo '<script> alert("Awards marked as Awarded!");</script>';
 }
 
 if(isset($_POST['BRAwarded'])){
-	markedAwarded("bridge",$_POST['names'],$_POST['BRAwarded']);
+	rankUp($_POST['names']);
+	markAwarded("bridge",$_POST['names'],$_POST['BRAwarded']);
 	echo '<script> alert("Bridges marked as Awarded!");</script>';	
 }
 ?>
@@ -67,6 +68,7 @@ if(isset($_POST['BRAwarded'])){
 					<li><a href="#Tab5" data-toggle="tab">Awards</a></li>
 					<li><a href="#Tab6" data-toggle="tab">Journeys</a></li>
 					<li><a href="#Tab7" data-toggle="tab">Earned</a></li>
+					<li><a href="#Tab8" data-toggle="tab">Shopping List</a></li>
 					<li style="float: right;"><a href="AddScout.php">+Add a Scout</a></li>
 										
                 </ul>
@@ -376,11 +378,11 @@ if(isset($_POST['BRAwarded'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="J<?php echo $journey["JID"]; ?>" href="#collapseJ<?php echo $journey["JID"];?>"><?php echo $journey["Name"];  ?></a>
+												<a data-toggle="collapse" id="J<?php echo $quest["QID"]; ?>" href="#collapseJ<?php echo $quest["QID"];?>"><?php echo $quest["Name"];  ?></a>
 												<!-- id tag has capital J before jid and collapse has capital J to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
-										<div id="collapseJ<?php echo $journey["JID"]; ?>" class="panel-collapse collapse">
+										<div id="collapseJ<?php echo $quest["QID"]; ?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 													            
 														<table  style="width: 90%;">														
@@ -414,7 +416,7 @@ if(isset($_POST['BRAwarded'])){
                         </div>
                     </div>
 					
-					<!--                -->
+					<!--       Earned Tab         -->
 					
 					
 					
@@ -429,7 +431,7 @@ if(isset($_POST['BRAwarded'])){
 										
 										$array = getScoutCountForBadge($badge["BAID"]);
 										
-										if($array[1] != 0){
+										if($array[1] > 0){
 											
 								?>
 								
@@ -439,43 +441,48 @@ if(isset($_POST['BRAwarded'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $badge["BAID"]; ?>" href="#collapseBE<?php echo $badge["BAID"];?>"><?php echo $badge["Name"];  ?></a>
+												<a data-toggle="collapse" id="B<?php echo $badge["BAID"]; ?>" href="#collapseBE<?php echo $badge["BAID"];?>"><div class="row"><?php echo $badge["Name"];  ?></div></a>
 												<!-- id tag has capital B before baid and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
 										<div id="collapseBE<?php echo $badge["BAID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 													            
-														<table  style="width: 90%;">														
-															<tbody>
 															<form action="MyTroop.php" method="POST">
-															<tr>
-															<td><b>Scouts Earned</b></td>
-															<td></td>
-															<td></td>
-															</td>
+															
+															<div class="col-md-3">
+																<b>Scouts Earned</b>
+															</div>
+															
+															<div class="col-md-3">
+																<b>Select to Award</b>
+															</div>
+															<div class="col-md-6">
+																<input type="hidden" name="BAwarded" value="<?php echo $badge["BAID"];?>">
+																<button type="submit" class="btn btn-default">Award Selected</button>
+															</div>
+															
 															<?php
 																if($scouts = getEarnedByBadge($badge["BAID"]))
 																{
 																foreach($scouts as $scout){
 																$s = getScout($scout);
 																?>
-																<tr>
+																<div class="col-md-3">
 																	<td><?php echo $s["Name"]; ?></td>	
-																	<td></td>
-																	<td> <input type="checkbox" name="names[]" value="<?php echo $s["SID"]; ?>"></td>
-																</tr>
+																</div>
+																
+																<div class="col-md-3">
+																<input type="checkbox" name="names[]" value="<?php echo $s["SID"]; ?>"></td>
+																</div>
+																
+																<div class="col-md-6">
+																	<p> &nbsp </p>
+																</div>
 																<?php }} ?>
-																<tr>
-																<td></td>
-																<td>	
-																	<input type="hidden" name="BAwarded" value="<?php echo $badge["BAID"];?>">
-																	<button type="submit">Mark selected as earned</button>
-																</td>
-																</tr>
 																</form>
-															</tbody>
-														</table>
+																
+														
 												</div>
 											</ul>											
 										</div>
@@ -499,7 +506,7 @@ if(isset($_POST['BRAwarded'])){
 										
 										$array = getScoutCountForJourneyQuest($q["QID"]);
 										
-										if($array[1] != 0){
+										if($array[1] > 0){
 											
 								?>
 								
@@ -510,43 +517,48 @@ if(isset($_POST['BRAwarded'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $q["QID"]; ?>" href="#collapseJE<?php echo $q["QID"];?>"><?php echo $q["Name"];  ?></a>
+												<a data-toggle="collapse" id="B<?php echo $q["QID"]; ?>" href="#collapseJE<?php echo $q["QID"];?>"><div class="row"><?php echo $q["Name"];  ?></div></a>
 												<!-- id tag has capital B before QID and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
 										<div id="collapseJE<?php echo $q["QID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 													            
-														<table  style="width: 90%;">														
-															<tbody>
 															<form action="MyTroop.php" method="POST">
-															<tr>
-															<td><b>Scouts Earned</b></td>
-															<td></td>
-															<td></td>
-															</td>
+															
+															<div class="col-md-3">
+																<b>Scouts Earned</b>
+															</div>
+															
+															<div class="col-md-3">
+																<b>Select to Award</b>
+															</div>
+															<div class="col-md-6">
+																<input type="hidden" name="BAwarded" value="<?php echo $q["QID"];?>">
+																<button type="submit" class="btn btn-default">Award Selected</button>
+															</div>
+															
 															<?php
 																if($scouts = getEarnedByJourneyQuest($q["QID"]))
 																{
 																foreach($scouts as $scout){
 																$s = getScout($scout);
 																?>
-																<tr>
+																<div class="col-md-3">
 																	<td><?php echo $s["Name"]; ?></td>	
-																	<td></td>
-																	<td> <input type="checkbox" name="names[]" value="<?php echo $s["SID"]; ?>"></td>
-																</tr>
+																</div>
+																
+																<div class="col-md-3">
+																<input type="checkbox" name="names[]" value="<?php echo $s["SID"]; ?>"></td>
+																</div>
+																
+																<div class="col-md-6">
+																	<p> &nbsp </p>
+																</div>
 																<?php }} ?>
-																<tr>
-																<td></td>
-																<td>	
-																	<input type="hidden" name="JAwarded" value="<?php echo $q["QID"];?>">
-																	<button type="submit">Mark selected as earned</button>
-																</td>
-																</tr>
 																</form>
-															</tbody>
-														</table>
+																
+														
 												</div>
 											</ul>											
 										</div>
@@ -565,9 +577,9 @@ if(isset($_POST['BRAwarded'])){
 									$awards = getAllAwards();
 									foreach($awards as $a){
 										
-										$array = getScoutCountAward($a["AID"]);
-										
-										if($array[1] != 0){
+										$array = getAwardScoutCount($a["AID"]);
+										//var_dump($array);
+										if($array[1] > 0){
 											
 								?>
 								
@@ -578,43 +590,48 @@ if(isset($_POST['BRAwarded'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $a["AID"]; ?>" href="#collapseAE<?php echo $a["AID"];?>"><?php echo $a["Name"];  ?></a>
+												<a data-toggle="collapse" id="B<?php echo $a["AID"]; ?>" href="#collapseAE<?php echo $a["AID"];?>"><div class="row"><?php echo $a["Name"];  ?></div></a>
 												<!-- id tag has capital B before baid and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
 										<div id="collapseAE<?php echo $a["AID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 													            
-														<table  style="width: 90%;">														
-															<tbody>
-																<form action="MyTroop.php" method="POST">
-																<tr>
-																<td><b>Scouts Earned</b></td>
-																<td></td>
-																<td></td>
-																</tr>
+															<form action="MyTroop.php" method="POST">
+															
+															<div class="col-md-3">
+																<b>Scouts Earned</b>
+															</div>
+															
+															<div class="col-md-3">
+																<b>Select to Award</b>
+															</div>
+															<div class="col-md-6">
+																<input type="hidden" name="BAwarded" value="<?php echo $a["AID"];?>">
+																<button type="submit" class="btn btn-default">Award Selected</button>
+															</div>
+															
 															<?php
 																if($scouts = getEarnedByAward($a["AID"]))
 																{
 																foreach($scouts as $scout){
 																$s = getScout($scout);
 																?>
-																<tr>
+																<div class="col-md-3">
 																	<td><?php echo $s["Name"]; ?></td>	
-																	<td></td>
-																	<td> <input type="checkbox" name="names[]" value="<?php echo $s["SID"]; ?>"></td>
-																</tr>
+																</div>
+																
+																<div class="col-md-3">
+																<input type="checkbox" name="names[]" value="<?php echo $s["SID"]; ?>"></td>
+																</div>
+																
+																<div class="col-md-6">
+																	<p> &nbsp </p>
+																</div>
 																<?php }} ?>
-																<tr>
-																<td></td>
-																<td>	
-																	<input type="hidden" name="AAwarded" value="<?php echo $a["AID"];?>">
-																	<button type="submit">Mark selected as earned</button>
-																</td>
-																</tr>
 																</form>
-															</tbody>
-														</table>
+																
+														
 												</div>
 											</ul>											
 										</div>
@@ -633,9 +650,9 @@ if(isset($_POST['BRAwarded'])){
 									$bridges = getAllBridges();
 									foreach($bridges as $b){
 										
-										$array = getScoutCountForBridge($b["BID"]);
-										
-										if($array[1] != 0){
+										$array = getBridgeScoutCount($b["BID"]);
+										//var_dump($array);
+										if($array[1] > 0){
 											
 								?>
 								
@@ -646,48 +663,288 @@ if(isset($_POST['BRAwarded'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $b["BID"]; ?>" href="#collapseBRE<?php echo $b["BID"];?>"><?php echo $b["Name"];  ?></a>
+												<a data-toggle="collapse" id="B<?php echo $b["BID"]; ?>" href="#collapseBRE<?php echo $b["BID"];?>"><div class="row"><?php echo $b["Name"];  ?></div></a>
 												<!-- id tag has capital B before baid and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
 										<div id="collapseBRE<?php echo $b["BID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 													            
-														<table  style="width: 90%;">														
-															<tbody>
-																<form action="MyTroop.php" method="POST">
-																<tr>
-																<td><b>Scouts Earned</b></td>
-																<td></td>
-																<td></td>
-																</tr>
+															<form action="MyTroop.php" method="POST">
+															
+															<div class="col-md-3">
+																<b>Scouts Earned</b>
+															</div>
+															
+															<div class="col-md-3">
+																<b>Select to Award</b>
+															</div>
+															<div class="col-md-6">
+																<input type="hidden" name="BAwarded" value="<?php echo $b["BID"];?>">
+																<button type="submit" class="btn btn-default">Award Selected</button>
+															</div>
+															
 															<?php
 																if($scouts = getEarnedByBridge($b["BID"]))
 																{
 																foreach($scouts as $scout){
 																$s = getScout($scout);
 																?>
-																<tr>
+																<div class="col-md-3">
 																	<td><?php echo $s["Name"]; ?></td>	
-																	<td></td>
-																	<td> <input type="checkbox" name="names[]" value="<?php echo $s["SID"]; ?>"></td>
-																</tr>
+																</div>
+																
+																<div class="col-md-3">
+																<input type="checkbox" name="names[]" value="<?php echo $s["SID"]; ?>"></td>
+																</div>
+																
+																<div class="col-md-6">
+																	<p> &nbsp </p>
+																</div>
 																<?php }} ?>
-																<tr>
-																<td></td>
-																<td>	
-																	<input type="hidden" name="BRAwarded" value="<?php echo $b["BID"];?>">
-																	<button type="submit">Mark selected as earned</button>
-																</td>
-																</tr>
 																</form>
-															</tbody>
-														</table>
+																
+														
 												</div>
 											</ul>											
 										</div>
 									</div>
 								</div>
+									<?php } } ?>
+                            </div>
+                        </div>
+						
+						
+						
+						
+						
+                    </div> 
+					
+					
+					<!-----------------------------------------------SHOPPING LIST TAB----------------------------------------->
+					
+					<div class="tab-pane" id="Tab8">  
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Badges</h3>
+								
+								<div class="col-md-3">
+									<p><b>Badges Needed</b></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p><b>Quantity Needed</b></p>
+								</div>
+								<div class="col-md-6">
+									<p> &nbsp </p>
+								</div>
+								
+								<?php
+									$badges = getAllBadges();
+									foreach($badges as $badge){
+										
+										$array = getScoutCountForBadge($badge["BAID"]);
+										
+										if($array[1] > 0){
+											
+								?>
+								
+								<?php
+									if($scouts = getEarnedByBadge($badge["BAID"]))
+									{
+										$s = 0;
+										foreach($scouts as $scout){
+										$s++;
+										}
+									}
+								?>
+								
+								<div class="col-md-3">
+									<p> <?php echo $badge["Name"]; ?></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p> <?php echo $s; ?></p>
+								</div>
+								
+								<div class="col-md-6">
+									<p> &nbsp </p>
+								</div>
+								
+								
+								
+								
+								
+									<?php } } ?>
+                            </div>
+                        </div>
+						
+						
+						
+						<div class="row">
+                            <div class="col-md-12">
+                                <h3>Journeys</h3>
+								
+								<div class="col-md-3">
+									<p><b>Journey Badges Needed</b></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p><b>Quantity Needed</b></p>
+								</div>
+								<div class="col-md-6">
+									<p> &nbsp </p>
+								</div>
+								
+								
+								<?php
+									$journeys = getAllJourneys();
+									foreach($journeys as $j){
+										$quests = getQuestsForJourney($j["JID"]);
+										foreach($quests as $q){
+										
+										$array = getScoutCountForJourneyQuest($q["QID"]);
+										
+										if($array[1] > 0){
+											
+								?>
+								
+								<?php
+									if($scouts = getEarnedByJourneyQuest($q["QID"]))
+									{
+										$s = 0;
+										foreach($scouts as $scout){
+											$s++;
+										}
+									}
+								?>
+								
+								
+								<div class="col-md-3">
+									<p> <?php echo $q["Name"]; ?></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p> <?php echo $s; ?></p>
+								</div>
+								
+								<div class="col-md-6">
+									<p> &nbsp </p>
+								</div>
+								
+								
+								
+								
+								
+								
+									<?php } } }?>
+                            </div>
+                        </div>
+						
+						
+						<div class="row">
+                            <div class="col-md-12">
+                                <h3>Awards</h3>
+								
+								<div class="col-md-3">
+									<p><b>Award Badges Needed</b></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p><b>Quantity Needed</b></p>
+								</div>
+								<div class="col-md-6">
+									<p> &nbsp </p>
+								</div>
+								
+								<?php
+									$awards = getAllAwards();
+									foreach($awards as $a){
+										
+										$array = getAwardScoutCount($a["AID"]);
+										//var_dump($array);
+										if($array[1] > 0){
+											
+								?>
+								
+								<?php
+									if($scouts = getEarnedByAward($a["AID"]))
+									{
+										$s = 0;
+										foreach($scouts as $scout){
+										$s++;
+										}
+									}
+								?>
+								
+								<div class="col-md-3">
+									<p> <?php echo $a["Name"]; ?></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p> <?php echo $s; ?></p>
+								</div>
+								
+								<div class="col-md-6">
+									<p> &nbsp </p>
+								</div>
+								
+								
+								
+									<?php } } ?>
+                            </div>
+                        </div>
+						
+						
+						<div class="row">
+                            <div class="col-md-12">
+                                <h3>Bridges</h3>
+								
+								<div class="col-md-3">
+									<p><b>Bridge Badges Needed</b></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p><b>Quantity Needed</b></p>
+								</div>
+								<div class="col-md-6">
+									<p> &nbsp </p>
+								</div>
+								
+								<?php
+									$bridges = getAllBridges();
+									foreach($bridges as $b){
+										
+										$array = getBridgeScoutCount($b["BID"]);
+										
+										if($array[1] > 0){
+											
+								?>
+								
+								
+								<?php
+									if($scouts = getEarnedByBridge($b["BID"]))
+									{
+										$s = 0;
+										foreach($scouts as $scout){
+										$s++;
+										}
+									}
+								?>
+								
+								<div class="col-md-3">
+									<p> <?php echo $b["Name"]; ?></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p> <?php echo $s; ?></p>
+								</div>
+								
+								<div class="col-md-6">
+									<p> &nbsp </p>
+								</div>
+								
+								
 									<?php } } ?>
                             </div>
                         </div>

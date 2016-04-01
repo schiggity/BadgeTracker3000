@@ -4,22 +4,28 @@ include 'bootstrap.html';
 
 session_start();
 
+$shown = false;
 if(isset($_POST['submitform'])){
 	//echo substr($_POST['requirements'][0], 0,5) . "<br>";
 	
-	foreach($_POST['names'] as $names){
-		//echo $names . "<br>";
+	if(isset($_POST['names'])){
+		if(isset($_POST['requirements'])){
+			foreach($_POST['requirements'] as $reqs){
+				largeBridgeUpdate($_POST['names'],substr($_POST['requirements'][0], 0,5),$reqs,0);
+				$shown = true;
+			}
+		}else{
+			echo "<script>alert('No Requirements Selected for Update!');</script>";
+		}
+	}else{
+		echo "<script>alert('No Scouts Selected for Update!');</script>";
 	}
-	
-	foreach($_POST['requirements'] as $reqs){
-		largeBridgeUpdate($_POST['names'],substr($_POST['requirements'][0], 0,5),$reqs,0);
-		
-	}
-	
 	
 	//echo "Submitted";
 }
-
+if($shown){
+	echo "<script>alert('Bridges Updated Successfully!');</script>";
+}
 
 if(!isset($_SESSION['user']))
 {
@@ -93,14 +99,15 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 	<p>
 	<?php
 	foreach($scoutsInRank as $scout){
-	echo "<input type='checkbox' name='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+		echo "<input type='checkbox' class='NameCheck' name='names[]' id='names[]' value='" . $scout['SID'] . "'>" . $scout['Name'] . "<br>";
+		
 	}
 	?>
 	</p>
 	</div>
 	</div>
 	<div class="modal-footer">
-	<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+	<a href="#Modal<?php echo $bridge["BID"]?>" data-dismiss="modal" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>"><button type="button" name="Next" id="Next" class="btn btn-default">Next</button></a>
 	</div>
 	</div>
 	</div>	
@@ -125,7 +132,7 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 			foreach(getBridgeRequirementsByQuest($quest["BQID"]) as $req){
 				$Name = str_replace(array('"','\''), "", $req["Name"]);
 				$Comments = str_replace(array('"','\''), "", $req["Comments"]);
-				echo "<input type='checkbox' name='requirements[]' value='" . $req['BRID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
+				echo "<input type='checkbox' class='ReqCheck' name='requirements[]' id='requirements[]' value='" . $req['BRID'] . "'>" . '&nbsp&nbsp&nbsp<a href="#" data-toggle="tooltip" data-placement="right" title="' . $Comments . '">' . $Name. '</a>' . "<br>" ;
 			}
 		}
 	
@@ -134,7 +141,8 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 	</div>
 	</div>
 	<div class="modal-footer">
-	<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+	<a href="#ModalScout<?php echo $bridge["BID"]?>" data-dismiss="modal" data-toggle="modal" data-target="#ModalScout<?php echo $bridge["BID"]?>"><button type="button" class="btn btn-default pull-left">Back</button></a>
+	<form method="post" action = "UpdatebridgeRecords.php"><input type="submit" name="submitform" id="submitform" value="Update" class="btn btn-default"> </form>
 	</div>
 	</div>
 	</div>	
@@ -154,9 +162,9 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 	<table style="width=33%">
 	<tbody>
 	<tr>
-	<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $bridge["BID"]?>">Scouts</button></td>									
-	<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>">Requirements</button></td>
-	<td align="left"> <form method="post" action = "UpdatebridgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
+	<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $bridge["BID"]?>">Update</button></td>									
+	<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>" onclick="enable()" >Requirements</button></td>
+	<td align="left"> <form method="post" action = "UpdatebridgeRecords.php"><input type="submit" name="submitform" id="submitform" value="Update" class="btn btn-secondary btn-lg" disabled></form></td>-->
 	</tr>
 
 	<tr>
