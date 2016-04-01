@@ -6,7 +6,7 @@ session_start();
 
 
 
-if(isset($_POST["submit"])=="Add Scout")
+if(isset($_POST["submit"])=="Add Finance")
 
 {
 	echo '<h1>Success scout has been input</h1>';
@@ -15,9 +15,10 @@ if(isset($_POST["submit"])=="Add Scout")
 	$FID = getlastFID($_POST['FinanceType']) + 1;
 	$sidArr = $_POST['names'];
 	$Amount = $_POST['Amount'];
+	$Purpose = $_POST['Purpose'];
 	
 	
-	
+	var_dump($sidArr);
 	
 	echo '$FinanceType: ' . $FinanceType;
 	echo '$FinanceType: ' . $FID;
@@ -27,5 +28,8 @@ if(isset($_POST["submit"])=="Add Scout")
 	
 	
 	
-InsertFinance($FID, $Amount, $sidArr);
+InsertFinance($FID, $Amount, $sidArr, $Purpose);
+
+header('location: Financial.php');
 }
+?>
