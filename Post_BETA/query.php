@@ -1260,7 +1260,7 @@ function insertFinance($fid, $amount, $sidArr, $purp)
 	global $conn;
 	
 	$date = time();	
-	$sql = "INSERT into finances VALUES(" . $fid. "," . $amount . ",". (date("Y-m-d", $date)) .",". $purp .");"; 
+	$sql = "INSERT into finances VALUES('" . $fid. "','" . $amount . "','". (date("Y-m-d", $date)) ."','". $purp ."');"; 
 	
 	
 	if($result = $conn->query($sql)){
@@ -1308,10 +1308,46 @@ function getFinanceByType($type){
 	return $arr;
 }
 
+function getFinanceByFID($FID){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM finances WHERE fid IN (SELECT fid FROM troophavefinances WHERE tid = " . $_SESSION['tid'] . ") AND fid LIKE '".$FID."' ORDER BY FID;";
+	
+	#fill array to be returned
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
+	}
+	return $arr;
+}
+
+function getPayment($FID, $SID){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT FullPayment FROM scoutspayduesfinances WHERE fid = ". $FID ." AND sid = ". $SID .";";
+	
+	#fill array to be returned
+	if($result = $conn->query($sql))
+	{
+		$row = $result->fetch_assoc()["FullPayment"];
+		if ($row == 0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
+}
+
 function updateFin($fid,$amount,$purp){
 	global $conn;
 	$arr = array();
-	$sql = "UPDATE finances SET Amount=". $amount .",Purpose=". $purp ." where fid = ". $fid .";";
+	$sql = "UPDATE finances SET Amount=". $amount .",Purpose='". $purp ."' where fid = ". $fid .";";
 	
 	if($result = $conn->query($sql)){
 		return;		
@@ -1335,7 +1371,7 @@ function pay($fid,$sidArr){
 function getScoutsByFID($fid){
 	global $conn;
 	$arr = array();
-	$sql = "SELECT * FROM scouts WHERE sid IN (select SID from scoutspayduesfinances where SID in (SELECT sid FROM troophavefinances WHERE tid = " . $_SESSION['tid'] . " AND fid = ". $fid ."))";
+	$sql = "SELECT * FROM scouts WHERE sid IN (select SID from scoutspayduesfinances where SID in (SELECT sid FROM troophavefinances WHERE tid = " . $_SESSION['tid'] . ") AND fid = ". $fid .")";
 	
 	#fill array to be returned
 	if($result = $conn->query($sql))
