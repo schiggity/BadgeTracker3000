@@ -88,7 +88,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -178,7 +178,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"];?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"];?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -268,7 +268,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -358,7 +358,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -448,7 +448,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -538,7 +538,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">

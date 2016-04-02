@@ -55,7 +55,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><?php echo $j["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><div class="row"><?php echo $j["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
@@ -147,7 +147,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><?php echo $j["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><div class="row"><?php echo $j["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
@@ -240,7 +240,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><?php echo $j["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><div class="row"><?php echo $j["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
@@ -333,7 +333,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><?php echo $j["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><div class="row"><?php echo $j["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
@@ -426,7 +426,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><?php echo $j["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><div class="row"><?php echo $j["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
@@ -519,7 +519,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><?php echo $j["Name"]; ?></a>
+												<a data-toggle="collapse" href="#collapse<?php echo $j["JID"]; ?>"><div class="row"><?php echo $j["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">

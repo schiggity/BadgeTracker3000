@@ -75,7 +75,7 @@ if(isset($_POST['deleteScout'])){
 					<li><a href="#Tab6" data-toggle="tab">Journeys</a></li>
 					<li><a href="#Tab7" data-toggle="tab">Earned</a></li>
 					<li><a href="#Tab8" data-toggle="tab">Shopping List</a></li>
-					<li style="float: right;"><a href="AddScout.php">+Add a Scout</a></li>
+					<li style="float: right;"><a href="AddScout.php"><span class="glyphicon glyphicon-plus"></span> Add a Scout</a></li>
 										
                 </ul>
 				
@@ -96,7 +96,7 @@ if(isset($_POST['deleteScout'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="S<?php echo $scout["SID"]; ?>" href="#collapseS<?php echo $scout["SID"];?>"><?php echo $scout["Name"]; ?></a>
+												<a data-toggle="collapse" id="S<?php echo $scout["SID"]; ?>" href="#collapseS<?php echo $scout["SID"];?>"><div class="row"><?php echo $scout["Name"]; ?></div></a>
 												<!-- id tag has capital S before sid and collapse has capital S to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
@@ -128,7 +128,7 @@ if(isset($_POST['deleteScout'])){
 																	</form> 
 																	<form action="EditScout.php" method="post">																		
 																		<input type="hidden" name="sid" value="<?php echo $scout["SID"]; ?>">	
-																		<button type="submit" class="btn btn-secondary btn-lg">Edit </button>
+																		<button type="submit" class="btn btn-secondary btn-lg"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
 																	</form> 
 																</td>
 															</tr>
@@ -170,7 +170,7 @@ if(isset($_POST['deleteScout'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $badge["BAID"]; ?>" href="#collapseB<?php echo $badge["BAID"];?>"><?php echo $badge["Name"];  ?></a>
+												<a data-toggle="collapse" id="B<?php echo $badge["BAID"]; ?>" href="#collapseB<?php echo $badge["BAID"];?>"><div class="row"><?php echo $badge["Name"];  ?></div></a>
 												<!-- id tag has capital B before baid and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
@@ -230,7 +230,7 @@ if(isset($_POST['deleteScout'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="A<?php echo $award["AID"]; ?>" href="#collapseA<?php echo $award["AID"];?>"><?php echo $award["Name"];  ?></a>
+												<a data-toggle="collapse" id="A<?php echo $award["AID"]; ?>" href="#collapseA<?php echo $award["AID"];?>"><div class="row"><?php echo $award["Name"];  ?></div></a>
 												<!-- id tag has capital A before aid and collapse has capital A to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
@@ -291,7 +291,7 @@ if(isset($_POST['deleteScout'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="J<?php echo $quest["QID"]; ?>" href="#collapseJ<?php echo $quest["QID"];?>"><?php echo $quest["Name"];  ?></a>
+												<a data-toggle="collapse" id="J<?php echo $quest["QID"]; ?>" href="#collapseJ<?php echo $quest["QID"];?>"><div class="row"><?php echo $quest["Name"];  ?></div></a>
 												<!-- id tag has capital J before jid and collapse has capital J to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
@@ -354,7 +354,7 @@ if(isset($_POST['deleteScout'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $badge["BAID"]; ?>" href="#collapseBE<?php echo $badge["BAID"];?>"><div class="row"><?php echo $badge["Name"];  ?></div></a>
+												<a data-toggle="collapse" id="B<?php echo $badge["BAID"]; ?>" href="#collapseBE<?php echo $badge["BAID"];?>"><div class="row"><?php echo $badge["Name"];  ?><div class="row"></div></div></a>
 												<!-- id tag has capital B before baid and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
@@ -393,7 +393,7 @@ if(isset($_POST['deleteScout'])){
 																	<p> &nbsp </p>
 																</div>
 																<?php }} ?>
-																</form>
+															</form>
 																
 														
 												</div>
@@ -430,7 +430,7 @@ if(isset($_POST['deleteScout'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $q["QID"]; ?>" href="#collapseJE<?php echo $q["QID"];?>"><div class="row"><?php echo $q["Name"];  ?></div></a>
+												<a data-toggle="collapse" id="B<?php echo $q["QID"]; ?>" href="#collapseJE<?php echo $q["QID"];?>"><div class="row"><?php echo $q["Name"];  ?><div class="row"></div></div></a>
 												<!-- id tag has capital B before QID and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
@@ -447,7 +447,7 @@ if(isset($_POST['deleteScout'])){
 																<b>Select to Award</b>
 															</div>
 															<div class="col-md-6">
-																<input type="hidden" name="BAwarded" value="<?php echo $q["QID"];?>">
+																<input type="hidden" name="JAwarded" value="<?php echo $q["QID"];?>">
 																<button type="submit" class="btn btn-default">Award Selected</button>
 															</div>
 															
@@ -503,7 +503,7 @@ if(isset($_POST['deleteScout'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $a["AID"]; ?>" href="#collapseAE<?php echo $a["AID"];?>"><div class="row"><?php echo $a["Name"];  ?></div></a>
+												<a data-toggle="collapse" id="B<?php echo $a["AID"]; ?>" href="#collapseAE<?php echo $a["AID"];?>"><div class="row"><?php echo $a["Name"];  ?><div class="row"></div></div></a>
 												<!-- id tag has capital B before baid and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
@@ -520,7 +520,7 @@ if(isset($_POST['deleteScout'])){
 																<b>Select to Award</b>
 															</div>
 															<div class="col-md-6">
-																<input type="hidden" name="BAwarded" value="<?php echo $a["AID"];?>">
+																<input type="hidden" name="AAwarded" value="<?php echo $a["AID"];?>">
 																<button type="submit" class="btn btn-default">Award Selected</button>
 															</div>
 															
@@ -576,7 +576,7 @@ if(isset($_POST['deleteScout'])){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="B<?php echo $b["BID"]; ?>" href="#collapseBRE<?php echo $b["BID"];?>"><div class="row"><?php echo $b["Name"];  ?></div></a>
+												<a data-toggle="collapse" id="B<?php echo $b["BID"]; ?>" href="#collapseBRE<?php echo $b["BID"];?>"><div class="row"><?php echo $b["Name"];  ?><div class="row"></div></div></a>
 												<!-- id tag has capital B before baid and collapse has capital B to distinguish each unique collapse as to not interfere with panels with similar id numbers -->
 											</h4>
 										</div>
@@ -593,7 +593,7 @@ if(isset($_POST['deleteScout'])){
 																<b>Select to Award</b>
 															</div>
 															<div class="col-md-6">
-																<input type="hidden" name="BAwarded" value="<?php echo $b["BID"];?>">
+																<input type="hidden" name="BRAwarded" value="<?php echo $b["BID"];?>">
 																<button type="submit" class="btn btn-default">Award Selected</button>
 															</div>
 															

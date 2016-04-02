@@ -167,7 +167,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" class="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -279,7 +279,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -389,7 +389,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -499,7 +499,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -609,7 +609,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -719,7 +719,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+<a data-toggle="collapse" id="<?php echo $badge["BAID"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">

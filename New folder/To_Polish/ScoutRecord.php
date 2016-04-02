@@ -133,7 +133,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -172,7 +172,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -196,9 +196,10 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div><div class="row"></div></div></a>
 											</h4>
 										</div>
+										
 										<div id="collapse<?php echo $badge["BAID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
@@ -234,7 +235,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -255,7 +256,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -293,7 +294,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -314,7 +315,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -352,7 +353,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -373,7 +374,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -411,7 +412,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -432,7 +433,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
@@ -470,7 +471,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -507,7 +508,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -543,7 +544,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -564,7 +565,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -600,7 +601,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -620,7 +621,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -656,7 +657,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -676,7 +677,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -712,7 +713,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -732,7 +733,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -768,7 +769,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -788,7 +789,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -824,7 +825,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -854,7 +855,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $award["Name"]; ?>" href="#collapse<?php echo $award["AID"]?>"><?php echo $award["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $award["Name"]; ?>" href="#collapse<?php echo $award["AID"]?>"><div class="row"><?php echo $award["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $award["AID"]?>" class="panel-collapse collapse">
@@ -884,7 +885,7 @@ if($valid){
 														echo "</tr>";	
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -909,7 +910,7 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $bridge["Name"]; ?>" href="#collapse<?php echo $bridge["BID"]?>"><?php echo $bridge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $bridge["Name"]; ?>" href="#collapse<?php echo $bridge["BID"]?>"><div class="row"><?php echo $bridge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $bridge["BID"]?>" class="panel-collapse collapse">
@@ -947,7 +948,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td><button type ='submit'> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -966,7 +967,7 @@ if($valid){
 				<div class="tab-pane" id="HealthRecords">
 					<div class="row">
 						<div class="col-md-12">
-							<h3>Health Records <button type="button" class="btn btn-default pull-right" onclick="enable()">Edit <span class="glyphicon glyphicon-pencil"></span> </button> </h3>
+							<h3>Health Records <button type="button" class="btn btn-default pull-right" onclick="enable()"><span class="glyphicon glyphicon-pencil"></span> Edit</button> </h3>
 							<form role="form" method="post" action="HealthRecOP.php">
 							<input type="hidden" name="sid" value="<?php echo $sid;?>">
 								<div class="col-md-6">
@@ -1120,8 +1121,8 @@ if($valid){
 									<div class="form-group">
 										<textarea class="form-control" rows="6" id="Notes" name="Notes" style="resize:none;" disabled><?php echo $healthArray["Notes"]; ?></textarea>
 									</div>
-									<a href="ScoutRecord.php#HealthRecords"><button type="button" class="btn btn-default pull-left" onclick="disable()">Cancel</button></a>
-									<button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout">Submit</button>
+									<a href="ScoutRecord.php#HealthRecords"><button type="button" class="btn btn-default pull-left" onclick="disable()"><span class="glyphicon glyphicon-remove"></span> Cancel</button></a>
+									<button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout"><span class="glyphicon glyphicon-floppy-disk"></span> Submit</button>
 									
 								</div>
 							</form>

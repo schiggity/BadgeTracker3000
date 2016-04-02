@@ -49,7 +49,7 @@ $sid = $scoutinfo["SID"];
 			<form action="MyTroop.php" method="POST">
 				<input type = "hidden" name="deleteScout" value="<?php echo $first . ", " . $last;?>">
 				<input type = "hidden" name="sid" value="<?php echo $sid; ?>">
-				<h1>Edit Scout <button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout">Delete Scout</button></h1>
+				<h1>Edit Scout <button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout"><span class="glyphicon glyphicon-remove"></span> Delete Scout</button></h1>
 			</form>
 				
 				<form role="form" method="post" action="EditTroopOp.php">
@@ -179,7 +179,15 @@ $sid = $scoutinfo["SID"];
 					</div>
 					
 					<input type="hidden" name="oldsid" value="<?php echo $_POST['sid']; ?>">
-					<button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout">Submit</button>
+					<div class="row">
+						<div class="col-md-6">
+							<a href="MyTroop.php"><button class="btn btn-default pull-Left"> Cancel</button></a>
+						</div>
+						
+						<div class="col-md-6">
+							<button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout"><span class="glyphicon glyphicon-floppy-disk"></span> Submit</button>
+						</div>
+					</div>
 				</form>
 			</div>
 			<div class="col-md-1">

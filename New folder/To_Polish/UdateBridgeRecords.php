@@ -150,7 +150,7 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 	<div class="panel panel-default">
 	<div class="panel-heading">
 	<h4 class="panel-title">
-	<a data-toggle="collapse" class="<?php echo $bridge["BID"]; ?>" href="#collapse<?php echo $bridge["BID"]?>"><?php echo $bridge["Name"]; ?></a>
+	<a data-toggle="collapse" class="<?php echo $bridge["BID"]; ?>" href="#collapse<?php echo $bridge["BID"]?>"><div class="row"><?php echo $bridge["Name"]; ?></div></a>
 	</h4>
 	</div>
 	<div id="collapse<?php echo $bridge["BID"]?>" class="panel-collapse collapse">

@@ -159,7 +159,7 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 	<div class="panel panel-default">
 	<div class="panel-heading">
 	<h4 class="panel-title">
-	<a data-toggle="collapse" class="<?php echo $award["AID"]; ?>" href="#collapse<?php echo $award["AID"]?>"><?php echo $award["Name"]; ?></a>
+	<a data-toggle="collapse" class="<?php echo $award["AID"]; ?>" href="#collapse<?php echo $award["AID"]?>"><div class="row"><?php echo $award["Name"]; ?></div></a>
 	</h4>
 	</div>
 	<div id="collapse<?php echo $award["AID"]?>" class="panel-collapse collapse">

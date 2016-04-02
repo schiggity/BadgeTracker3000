@@ -56,7 +56,7 @@ if(!isset($_SESSION['user']))
 					<div class="col-md-6">
 						<label>Select Scout</label>
 						<div>
-					 <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout">Scouts</button>
+					 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalScout">Scouts</button>
 					</div>
 					</div>
 					
@@ -97,14 +97,17 @@ if(!isset($_SESSION['user']))
 					<div class="col-md-12"> <!--Enter Amount -->
 						<div class="form-group">
 							<label for="Amount">Amount</label>
-							<input class="form-control" id="Amount" name="Amount" pattern="[0-9]+" type="text">
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<input class="form-control" id="Amount" name="Amount" pattern="[0-9]+" type="text" placeholder="ex. 12.50">
+							</div>
 						</div>
 					</div>
 					
 					<div class="col-md-12"> <!--Enter Purpose -->
 						<div class="form-group">
 							<label for="Purpose">Purpose</label>
-							<input class="form-control" id="Purpose" name="Purpose" type="text">
+							<input class="form-control" id="Purpose" name="Purpose" type="text" placeholder="Description">
 						</div>
 					</div>
 					

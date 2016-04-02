@@ -166,7 +166,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -279,7 +279,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -392,7 +392,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -505,7 +505,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -618,7 +618,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
@@ -731,7 +731,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 <div class="panel panel-default">
 <div class="panel-heading">
 <h4 class="panel-title">
-<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><?php echo $journey["Name"]; ?></a>
+<a data-toggle="collapse" class="<?php echo $journey["JID"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?></div></a>
 </h4>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">

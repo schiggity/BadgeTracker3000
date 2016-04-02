@@ -80,7 +80,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $award["AID"]; ?>" href="#collapse<?php echo $award["AID"]?>"><?php echo $award["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $award["AID"]; ?>" href="#collapse<?php echo $award["AID"]?>"><div class="row"><?php echo $award["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $award["AID"]?>" class="panel-collapse collapse" >
@@ -92,7 +92,7 @@ $(document).ready(function(){
 															<tr>
 															<td rowspan="4"><img src="img/awards/<?php echo $award["AID"] ?>.png"></td>
 															<td align="right">Number of Scouts Earned: <?php echo $c[1]; ?></td>
-															<td rowspan="2" align="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $award["AID"]?>">award Requirements</button></td>
+															<td rowspan="2" align="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $award["AID"]?>">Award Requirements</button></td>
 															</tr>
 															
 															<tr>
@@ -170,7 +170,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $bridge["Name"];?>B" href="#collapse<?php echo $bridge["BID"]?>B"><?php echo $bridge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $bridge["Name"];?>B" href="#collapse<?php echo $bridge["BID"]?>B"><div class="row"><?php echo $bridge["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $bridge["BID"]?>B" class="panel-collapse collapse" >
@@ -182,7 +182,7 @@ $(document).ready(function(){
 															<tr>
 															<td rowspan="4"><img src="img/bridges/<?php echo $bridge["BID"] ?>.png"></td>
 															<td align="right">Number of Scouts Earned: <?php echo $c[1]; ?></td>
-															<td rowspan="2" align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>">bridge Requirements</button></td>
+															<td rowspan="2" align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>">Bridge Requirements</button></td>
 															</tr>
 															
 															<tr>

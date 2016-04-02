@@ -32,7 +32,7 @@ if(isset($_POST['delete']))
 				<li><a href="#Tab3" data-toggle="tab">Cookies</a></li>
 				<li><a href="#Tab4" data-toggle="tab">Nuts and Candy</a></li>
 				<li><a href="#Tab5" data-toggle="tab">Special Purpose</a></li>
-				<li style="float: right;"><a href="addFinance.php">+Add Finances</a></li>
+				<li style="float: right;"><a href="addFinance.php"><span class="glyphicon glyphicon-plus"></span> Add Finances</a></li>
 				
 				
 									
@@ -126,11 +126,11 @@ if(isset($_POST['delete']))
 													<div class="col-md-6">
 														<form action="editFinance.php" method="post">																		
 															<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
-															<button type="submit" class="btn btn-secondary btn-lg">Edit Record</button>
+															<button type="submit" class="btn btn-secondary btn-lg"><span class="glyphicon glyphicon-pencil"></span> Edit Record</button>
 														</form> 
 														<form action="Financial.php" Method="POST">
 														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
-														<button type="submit" class="btn btn-secondary btn-lg">Delete Finance</button>
+														<button type="submit" class="btn btn-secondary btn-lg"><span class="glyphicon glyphicon-remove"></span> Delete Finance</button>
 														</form>
 													</div>	
 												</div>

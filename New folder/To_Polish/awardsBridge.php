@@ -80,7 +80,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $award["AID"]; ?>" href="#collapse<?php echo $award["AID"]?>"><?php echo $award["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $award["AID"]; ?>" href="#collapse<?php echo $award["AID"]?>"><div class="row"><?php echo $award["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $award["BAID"]?>" class="panel-collapse collapse" style="background: url(img/awards/Daisy/<?php echo $award["AID"] ?>.png) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">
@@ -171,7 +171,7 @@ $(document).ready(function(){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"];?>" href="#collapse<?php echo $badge["BAID"]?>"><?php echo $badge["Name"]; ?></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"];?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?></div></a>
 											</h4>
 										</div>
 										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse" style="background: url(img/badges/Brownie/<?php echo $badge["BAID"] ?>.png) no-repeat; background-position: right; background-size:22%; filter: grayscale(.8);">

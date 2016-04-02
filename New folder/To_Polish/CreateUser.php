@@ -138,7 +138,7 @@ if(isset($_SESSION['noLog']))
 						</div>
 					</div>
 					
-					<button type="submit" class="btn btn-default pull-right">Submit</button>
+					<button type="submit" class="btn btn-default pull-right">Create New User</button>
 				</form>
 			</div>
 			<div id="AlreadyUser" class="col-md-6">
@@ -172,6 +172,8 @@ if(isset($_SESSION['noLog']))
 </html>
 
 <script>
+
+
 function checkPass()
 {
     //Store the password field objects into variables ...
@@ -184,18 +186,25 @@ function checkPass()
     var badColor = "#ff6666";
     //Compare the values in the password field 
     //and the confirmation field
+	
+	
+	
     if(pass1.value == pass2.value){
         //The passwords match. 
         //Set the color to the good color and inform
         //the user that they have entered the correct password 
-        pass2.style.backgroundColor = goodColor;
+		
+		$('#confirmPassword').removeClass("form-group has-error has-feedback").addClass("form-group has-success has-feedback");
+        //pass2.style.backgroundColor = goodColor;
         message.style.color = goodColor;
         message.innerHTML = "Passwords Match!"
     }else{
         //The passwords do not match.
         //Set the color to the bad color and
         //notify the user.
-        pass2.style.backgroundColor = badColor;
+		$('#confirmPassword').removeClass("form-group").addClass("form-group has-error has-feedback");
+		$('#confirmPassword').removeClass("form-group has-success has-feedback").addClass("form-group has-error has-feedback");
+        //pass2.style.backgroundColor = badColor;
         message.style.color = badColor;
         message.innerHTML = "Passwords Do Not Match!"
     }
