@@ -22,7 +22,9 @@ if(isset($_POST['delete']))
 
 
 <!-------------------------------------------------------------- TABS ------------------------------------------------------------->
-<div class="container">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
 	<div class="row-fluid">
 		<div class="col-md-12">
 			<h1>Financial Tracking</h1>
@@ -446,7 +448,10 @@ if(isset($_POST['delete']))
 			</div>
 		</div>	
 	</div>
+</div><div class="col-md-1">
 </div>
+
+
 			
 	
 </body>

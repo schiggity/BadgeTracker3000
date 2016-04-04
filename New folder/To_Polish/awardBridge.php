@@ -29,7 +29,9 @@ $(document).ready(function(){
 <?php include 'navBar.php'; ?>
 
 <!-------------------------------------------------------------- TABS STUFF ------------------------------------------------------>
-<div class="container">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
         <div class="row-fluid">
             <div class="col-md-12">
                 <h1>Awards & Bridges</h1>
@@ -216,6 +218,8 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
+	<div class="col-md-1">
+</div>
 </body>
 </html>
 

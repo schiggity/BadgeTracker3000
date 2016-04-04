@@ -58,7 +58,9 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 <?php include 'navBar.php'; ?>
 
 <!-------------------------------------------------------------- TABS STUFF ------------------------------------------------------>
-<div class="container">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
 <div class="row-fluid">
 <div class="col-md-12">
 <h1>Update Award</h1>
@@ -193,6 +195,8 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 </div>
 </div>
 </div>
+</div>
+<div class="col-md-1">
 </div>
 </body>
 </html>

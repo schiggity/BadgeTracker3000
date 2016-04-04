@@ -64,7 +64,9 @@ if(isset($_POST['deleteScout'])){
 <?php include 'navBar.php'; ?>
 <!-------------------------------------------------------------- TABS ------------------------------------------------------------->
 
-<div class="container">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
         <div class="row-fluid">
             <div class="col-md-12">
                 <h1>My Troop</h1>
@@ -645,11 +647,15 @@ if(isset($_POST['deleteScout'])){
 									<p><b>Badges Needed</b></p>
 								</div>
 								
-								<div class="col-md-3">
+								<div class="col-md-3" style="border-right: 1px solid;">
 									<p><b>Quantity Needed</b></p>
 								</div>
-								<div class="col-md-6">
-									<p> &nbsp </p>
+								<div class="col-md-3">
+									<p><b>Badges Needed</b></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p><b>Quantity Needed</b></p>
 								</div>
 								
 								<?php
@@ -676,13 +682,11 @@ if(isset($_POST['deleteScout'])){
 									<p> <?php echo $badge["Name"]; ?></p>
 								</div>
 								
-								<div class="col-md-3">
+								<div class="col-md-3" style="border-right: 1px solid;">
 									<p> <?php echo $s; ?></p>
 								</div>
 								
-								<div class="col-md-6">
-									<p> &nbsp </p>
-								</div>
+								
 								
 								
 								
@@ -696,17 +700,22 @@ if(isset($_POST['deleteScout'])){
 						
 						<div class="row">
                             <div class="col-md-12">
+							
                                 <h3>Journeys</h3>
 								
 								<div class="col-md-3">
 									<p><b>Journey Badges Needed</b></p>
 								</div>
 								
-								<div class="col-md-3">
+								<div class="col-md-3" style="border-right: 1px solid;">
 									<p><b>Quantity Needed</b></p>
 								</div>
-								<div class="col-md-6">
-									<p> &nbsp </p>
+								<div class="col-md-3">
+									<p><b>Journey Badges Needed</b></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p><b>Quantity Needed</b></p>
 								</div>
 								
 								
@@ -737,13 +746,11 @@ if(isset($_POST['deleteScout'])){
 									<p> <?php echo $q["Name"]; ?></p>
 								</div>
 								
-								<div class="col-md-3">
+								<div class="col-md-3" style="border-right: 1px solid;">
 									<p> <?php echo $s; ?></p>
 								</div>
 								
-								<div class="col-md-6">
-									<p> &nbsp </p>
-								</div>
+								
 								
 								
 								
@@ -763,11 +770,15 @@ if(isset($_POST['deleteScout'])){
 									<p><b>Award Badges Needed</b></p>
 								</div>
 								
-								<div class="col-md-3">
+								<div class="col-md-3" style="border-right: 1px solid;">
 									<p><b>Quantity Needed</b></p>
 								</div>
-								<div class="col-md-6">
-									<p> &nbsp </p>
+								<div class="col-md-3">
+									<p><b>Award Badges Needed</b></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p><b>Quantity Needed</b></p>
 								</div>
 								
 								<?php
@@ -794,13 +805,11 @@ if(isset($_POST['deleteScout'])){
 									<p> <?php echo $a["Name"]; ?></p>
 								</div>
 								
-								<div class="col-md-3">
+								<div class="col-md-3" style="border-right: 1px solid;">
 									<p> <?php echo $s; ?></p>
 								</div>
 								
-								<div class="col-md-6">
-									<p> &nbsp </p>
-								</div>
+								
 								
 								
 								
@@ -817,11 +826,15 @@ if(isset($_POST['deleteScout'])){
 									<p><b>Bridge Badges Needed</b></p>
 								</div>
 								
-								<div class="col-md-3">
+								<div class="col-md-3" style="border-right: 1px solid;">
 									<p><b>Quantity Needed</b></p>
 								</div>
-								<div class="col-md-6">
-									<p> &nbsp </p>
+								<div class="col-md-3">
+									<p><b>Bridge Badges Needed</b></p>
+								</div>
+								
+								<div class="col-md-3">
+									<p><b>Quantity Needed</b></p>
 								</div>
 								
 								<?php
@@ -849,13 +862,11 @@ if(isset($_POST['deleteScout'])){
 									<p> <?php echo $b["Name"]; ?></p>
 								</div>
 								
-								<div class="col-md-3">
+								<div class="col-md-3" style="border-right: 1px solid;">
 									<p> <?php echo $s; ?></p>
 								</div>
 								
-								<div class="col-md-6">
-									<p> &nbsp </p>
-								</div>
+								
 								
 								
 									<?php } } ?>
@@ -871,7 +882,9 @@ if(isset($_POST['deleteScout'])){
 				</div>	
 			</div>
 		</div>
-</div>			
+	</div>
+<div class="col-md-1">
+</div>
 	
 </body>
 	

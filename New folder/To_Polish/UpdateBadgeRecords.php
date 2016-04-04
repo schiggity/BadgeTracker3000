@@ -56,7 +56,9 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 <?php include 'navBar.php'; ?>
 
 <!-------------------------------------------------------------- TABS STUFF ------------------------------------------------------>
-<div class="container">
+<div class="col-md-1">
+</div>
+<div class="col-md-10">
 <div class="row-fluid">
 <div class="col-md-12">
 <h1>Update Badge</h1>
@@ -753,6 +755,8 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 </div>
+</div>
+<div class="col-md-1">
 </div>
 
 </body>
