@@ -66,7 +66,7 @@ if(isset($_POST['deleteScout'])){
 
 <div class="col-md-1">
 </div>
-<div class="col-md-10">
+<div id="Middle" class="col-md-10">
         <div class="row-fluid">
             <div class="col-md-12">
                 <h1>My Troop</h1>

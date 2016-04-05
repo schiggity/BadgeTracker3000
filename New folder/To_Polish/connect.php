@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "missingno";
+$password = "";
 $dbname = "gsa";
 
 // Create connection
