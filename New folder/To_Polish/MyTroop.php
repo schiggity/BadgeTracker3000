@@ -30,32 +30,38 @@ if(isset($_SESSION['EditScout']))
 	unset($_SESSION['EditScout']);
 } 
 
-if(isset($_POST['BAwarded'])){
+if(isset($_POST['BAwarded']) && isset($_POST['names'])){
 	markAwarded("badge",$_POST['names'],$_POST['BAwarded']);
 	echo '<script> alert("Badges marked as Awarded!");</script>';
 }
 
-if(isset($_POST['JAwarded'])){
+
+else if(isset($_POST['JAwarded']) && isset($_POST['names'])){
 	markAwarded("quest",$_POST['names'],$_POST['JAwarded']);
 	echo '<script> alert("Journeys marked as Awarded!");</script>';	
 }
 
-if(isset($_POST['AAwarded'])){
+
+else if(isset($_POST['AAwarded']) && isset($_POST['names'])){
 	markAwarded("award",$_POST['names'],$_POST['AAwarded']);	
 	echo '<script> alert("Awards marked as Awarded!");</script>';
 }
 
-if(isset($_POST['BRAwarded'])){
+
+else if(isset($_POST['BRAwarded']) && isset($_POST['names'])){
 	rankUp($_POST['names']);
 	markAwarded("bridge",$_POST['names'],$_POST['BRAwarded']);
 	echo '<script> alert("Bridges marked as Awarded!");</script>';	
+}
+else if(isset($_POST['BRAwarded']) || isset($_POST['AAwarded']) || isset($_POST['JAwarded']) || isset($_POST['BAwarded'])){
+	echo "<script>alert('No Scouts Selected to be Awarded!');</script>";
 }
 
 if(isset($_POST['deleteScout'])){
 	deleteScout($_POST['sid']);
 	echo '<script> alert("'. $_POST['deleteScout']. ' Has Been Deleted!");</script>';
-	
 }
+
 
 
 ?>
@@ -63,6 +69,15 @@ if(isset($_POST['deleteScout'])){
 <!---------------------------------------------------------------- NAV BAR -------------------------------------------------------->
 <?php include 'navBar.php'; ?>
 <!-------------------------------------------------------------- TABS ------------------------------------------------------------->
+<script>
+$(document).ready(function(){
+
+  if(window.location.hash != "") {
+      $('a[href="' + window.location.hash + '"]').click()
+  }
+
+});
+</script>
 
 <div class="col-md-1">
 </div>
@@ -104,39 +119,39 @@ if(isset($_POST['deleteScout'])){
 										</div>
 										<div id="collapseS<?php echo $scout["SID"];?>" class="panel-collapse collapse" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 													            
-													<table  style="width: 90%;">														
-														<tbody>
-															<tr>
-																<td>Rank: <?php echo $scout["Ranks"];?> </td>																	
-															</tr>
-															<tr>
-																<td>Grade: <?php echo $scout["Grade"];?> </td>																	
-															</tr>
-															<tr>
-																<td>Date of Birth: <?php echo $scout["DoB"];?> </td>																	
-															</tr>
-															<tr>
-																<td> Contact info: <?php echo $scout["address"];?>, <?php echo $scout["PhoneNumber"];?>, <?php echo $scout["email"];?> </td>
-															</tr>
-															<tr>
-																<td>Parents: <?php echo $scout["Parents"];?> </td>																	
-															</tr>
-															<tr>				
-																<td align="right"> 
-																	<form action="ScoutRecord.php" method="post">																		
-																		<input type="hidden" name="sid" value="<?php echo $scout["SID"]; ?>">	
-																		<button type="submit" class="btn btn-secondary btn-lg">Scout Records </button>
-																	</form> 
-																	<form action="EditScout.php" method="post">																		
-																		<input type="hidden" name="sid" value="<?php echo $scout["SID"]; ?>">	
-																		<button type="submit" class="btn btn-secondary btn-lg"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
-																	</form> 
-																</td>
-															</tr>
-														</tbody>
-													</table>
+											<div class="container-fluid"> 
+												<div class="col-md-3">				
+													<p><b>Rank: </b><?php echo $scout["Ranks"];?></p>	
+													
+													<p><b>ID: </b><?php echo $scout["SID"];?></p>
+													
+													<p><b>Date of Birth: </b><?php echo $scout["DoB"];?></p>
+												
+													<p><b>Grade: </b><?php echo $scout["Grade"];?>	</p>															
+											
+												</div>	
+												
+												<div class="col-md-7">
+													<p><b>Parents or Gaurdians: </b><?php echo $scout["Parents"];?></p>
+												
+													<p><b><u>Contact info: </u></b></p>
+													<p><b>Address: </b><?php echo $scout["address"];?></p>
+													<p><b>Phone Number: </b><?php echo $scout["PhoneNumber"];?></p>
+													<p><b>Email: </b><?php echo $scout["email"];?></p>
 												</div>
+																													
+												<div class="col-md-2">
+													<form action="ScoutRecord.php" method="post">																		
+														<input type="hidden" name="sid" value="<?php echo $scout["SID"]; ?>">	
+														<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-book"></span> Scout Records </button>
+													</form> 
+													<p> &nbsp </p>
+													<form action="EditScout.php" method="post">																		
+														<input type="hidden" name="sid" value="<?php echo $scout["SID"]; ?>">	
+														<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+													</form> 
+												</div>	
+											</div>												
 											</ul>											
 										</div>
 									</div>
@@ -178,30 +193,53 @@ if(isset($_POST['deleteScout'])){
 										</div>
 										<div id="collapseB<?php echo $badge["BAID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 													            
-														<table  style="width: 90%;">														
-															<tbody>
-																<tr>
-																	<td>Number of Scouts Earned: <?php echo $array[1]; ?></td>																	
-																</tr>
-																<tr>
-																	<td>Number of Scouts Awarded: <?php echo $array[2]; ?></td>																	
-																</tr>
-																<tr>
-																	<td>Number of Scouts Started: <?php echo $array[0]; ?></td>					
-												
-																</tr>
-																<tr>															
-																	<td align="right"> 
-																		<form action="UpdateBadgeRecords.php#<?php echo $badge["BAID"]; ?>" method="post">
-																			<input type="hidden" name="BTab" value="<?php echo $badge["BAID"][0]; ?>">	
-																			<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"];?>">
-																			<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
-																		</form>  
-																	</td>
-																</tr>
-															</tbody>
-														</table>
+												<div class="container-fluid"> 													            
+														
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Earned: <?php echo $array[1]; ?></u></b></p>
+														<?php
+															$scouts = getEarnedByBadge($badge["BAID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>
+														
+													</div>
+													
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Awarded: <?php echo $array[2]; ?></u></b></p>		
+														<?php
+															$scouts = getAwardedByBadge($badge["BAID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>														
+													</div>
+													
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Started: <?php echo $array[0]; ?></u></b></p>	
+														<?php
+															$scouts = getStartedByBadge($badge["BAID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>														
+													</div>
+													
+													<div class="col-md-3">
+														<form action="UpdateBadgeRecords.php#<?php echo $badge["BAID"]; ?>" method="post">
+															<input type="hidden" name="BTab" value="<?php echo $badge["BAID"][0]; ?>">	
+															<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $badge["BAID"];?>">
+															<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update</button>
+														</form>  
+													</div>
+													
 												</div>
 											</ul>											
 										</div>
@@ -238,28 +276,53 @@ if(isset($_POST['deleteScout'])){
 										</div>
 										<div id="collapseA<?php echo $award["AID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container">													          
-														<table  style="width: 90%;">														
-															<tbody>
-																<tr>
-																	<td>Number of Scouts Earned: <?php echo $array[1]; ?></td>																	
-																</tr>
-																<tr>
-																	<td>Number of Scouts Awarded: <?php echo $array[2]; ?></td>																	
-																</tr>
-																<tr>
-																	<td>Number of Scouts Started: <?php echo $array[0]; ?></td>																	
-																</tr>
-																<tr>															
-																	<td align="right"> 
-																		<form action="UpdateAwardRecords.php" method="post">																		
-																			<input type="hidden" name="AID" value="<?php echo $award["AID"]; ?>">	
-																			<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
-																		</form> 
-																	</td>
-																</tr>
-															</tbody>
-														</table>
+												<div class="container-fluid"> 													            
+														
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Earned: <?php echo $array[1]; ?></u></b></p>
+														<?php
+															$scouts = getEarnedByAward($award["AID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>
+														
+													</div>
+													
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Awarded: <?php echo $array[2]; ?></u></b></p>		
+														<?php
+															$scouts = getAwardedByAward($award["AID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>														
+													</div>
+													
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Started: <?php echo $array[0]; ?></u></b></p>	
+														<?php
+															$scouts = getStartedByAward($award["AID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>														
+													</div>
+													
+													<div class="col-md-3">
+														<form action="UpdateAwardRecords.php#<?php echo $award["AID"]; ?>" method="post">
+															<input type="hidden" name="BTab" value="<?php echo $badge["BAID"][0]; ?>">	
+															<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $award["AID"];?>">
+															<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update</button>
+														</form>  
+													</div>
+													
 												</div>
 											</ul>											
 										</div>
@@ -299,28 +362,53 @@ if(isset($_POST['deleteScout'])){
 										</div>
 										<div id="collapseJ<?php echo $quest["QID"]; ?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 													            
-														<table  style="width: 90%;">														
-															<tbody>
-																<tr>
-																	<td>Number of Scouts Earned: <?php echo $array[1]; ?></td>																	
-																</tr>
-																<tr>
-																	<td>Number of Scouts Awarded: <?php echo $array[2]; ?></td>																	
-																</tr>
-																<tr>
-																	<td>Number of Scouts Started: <?php echo $array[0]; ?></td>																	
-																</tr>
-																<tr>																
-																	<td align="right"> 
-																		<form action="UpdateJourney.php" method="post">																		
-																			<input type="hidden" name="JID" value="<?php echo $journey["JID"]; ?>">	
-																			<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
-																		</form> 
-																	</td>
-																</tr>
-															</tbody>
-														</table>
+												<div class="container-fluid"> 													            
+														
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Earned: <?php echo $array[1]; ?></u></b></p>
+														<?php
+															$scouts = getEarnedByJourneyQuest($quest["QID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>
+														
+													</div>
+													
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Awarded: <?php echo $array[2]; ?></u></b></p>		
+														<?php
+															$scouts = getAwardedByJourneyQuest($quest["QID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>														
+													</div>
+													
+													<div class="col-md-3">
+														<p><b><u>Number of Scouts Started: <?php echo $array[0]; ?></u></b></p>	
+														<?php
+															$scouts = getStartedByJourneyQuest($quest["QID"]);
+															foreach($scouts as $s)
+															{
+																$name = getScout($s);
+																echo "<p>". $name['Name'] . "</p>";
+															}
+														?>														
+													</div>
+													
+													<div class="col-md-3">
+														<form action="UpdateJourney.php#<?php echo $quest["QID"]; ?>" method="post">
+															<input type="hidden" name="BTab" value="<?php echo $quest["QID"][0]; ?>">	
+															<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $journey["JID"];?>">
+															<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update</button>
+														</form>  
+													</div>
+													
 												</div>
 											</ul>											
 										</div>
@@ -362,8 +450,8 @@ if(isset($_POST['deleteScout'])){
 										</div>
 										<div id="collapseBE<?php echo $badge["BAID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 													            
-															<form action="MyTroop.php" method="POST">
+												<div class="container-fluid"> 													            
+															<form action="MyTroop.php#Tab7" method="POST">
 															
 															<div class="col-md-3">
 																<b>Scouts Earned</b>
@@ -374,7 +462,7 @@ if(isset($_POST['deleteScout'])){
 															</div>
 															<div class="col-md-6">
 																<input type="hidden" name="BAwarded" value="<?php echo $badge["BAID"];?>">
-																<button type="submit" class="btn btn-default">Award Selected</button>
+																<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-education"></span> Award Selected</button>
 															</div>
 															
 															<?php
@@ -439,7 +527,7 @@ if(isset($_POST['deleteScout'])){
 										<div id="collapseJE<?php echo $q["QID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 													            
-															<form action="MyTroop.php" method="POST">
+															<form action="MyTroop.php#Tab7" method="POST">
 															
 															<div class="col-md-3">
 																<b>Scouts Earned</b>
@@ -450,7 +538,7 @@ if(isset($_POST['deleteScout'])){
 															</div>
 															<div class="col-md-6">
 																<input type="hidden" name="JAwarded" value="<?php echo $q["QID"];?>">
-																<button type="submit" class="btn btn-default">Award Selected</button>
+																<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-education"></span> Award Selected</button>
 															</div>
 															
 															<?php
@@ -512,7 +600,7 @@ if(isset($_POST['deleteScout'])){
 										<div id="collapseAE<?php echo $a["AID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 													            
-															<form action="MyTroop.php" method="POST">
+															<form action="MyTroop.php#Tab7" method="POST">
 															
 															<div class="col-md-3">
 																<b>Scouts Earned</b>
@@ -523,7 +611,7 @@ if(isset($_POST['deleteScout'])){
 															</div>
 															<div class="col-md-6">
 																<input type="hidden" name="AAwarded" value="<?php echo $a["AID"];?>">
-																<button type="submit" class="btn btn-default">Award Selected</button>
+																<button type="submit" class="btn btn-default btn-lg"> <span class="glyphicon glyphicon-education"></span>Award Selected</button>
 															</div>
 															
 															<?php
@@ -585,7 +673,7 @@ if(isset($_POST['deleteScout'])){
 										<div id="collapseBRE<?php echo $b["BID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<div class="container"> 													            
-															<form action="MyTroop.php" method="POST">
+															<form action="MyTroop.php#Tab7" method="POST">
 															
 															<div class="col-md-3">
 																<b>Scouts Earned</b>
@@ -596,7 +684,7 @@ if(isset($_POST['deleteScout'])){
 															</div>
 															<div class="col-md-6">
 																<input type="hidden" name="BRAwarded" value="<?php echo $b["BID"];?>">
-																<button type="submit" class="btn btn-default">Award Selected</button>
+																<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-education"></span> Award Selected</button>
 															</div>
 															
 															<?php
@@ -641,8 +729,14 @@ if(isset($_POST['deleteScout'])){
 					<div class="tab-pane" id="Tab8">  
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>Badges</h3>
-								
+							<div class="row">
+								<div class="col-md-10">
+									<h3>Badges</h3>
+								</div>
+								<div class="col-md-2">
+									<button type="button" onclick="window.location.href='printShop.php';" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-print"></span> Print</button>
+								</div>
+							</div>
 								<div class="col-md-3">
 									<p><b>Badges Needed</b></p>
 								</div>

@@ -140,6 +140,9 @@ if(isset($_SESSION['noLog']))
 					
 					<button type="submit" class="btn btn-default pull-right">Create New User</button>
 				</form>
+				<div class="col-md-12">
+					&nbsp
+				</div>
 			</div>
 			<div id="AlreadyUser" class="col-md-6">
 				<h1>Log-In</h1>
@@ -157,11 +160,11 @@ if(isset($_SESSION['noLog']))
 						</div>
 					</div>
 					
-					
-					
-					<button type="submit" class="btn btn-default pull-right">Log-In</button>
+					<button type="submit" class="btn btn-default pull-right"><span class="glyphicon glyphicon-log-in"></span> Log-In</button>
 				</form>
 			</div>
+			
+			
         </div>
 		<div class="col-md-2">
             <!-- Intentionally left blank -->

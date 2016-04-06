@@ -71,7 +71,7 @@
       <ul class="nav navbar-nav navbar-right">
 	  <?php if(isset($_SESSION['user'])){ 
          echo '<li><a href="#">Welcome <b>' . $_SESSION['user'] . '</b></a></li>';
-		 echo '<li><a href="LogoutOP.php">Logout</a></li>';
+		 echo '<li><a href="LogoutOP.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
         }
 		else{
 		echo '<li><a href="CreateUser.php">Log-In or Create User</a></li>';

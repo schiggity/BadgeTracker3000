@@ -173,13 +173,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
-<!--td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -286,13 +286,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -399,13 +399,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -512,13 +512,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -625,13 +625,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -738,13 +738,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $jreq['RID'] . "'>
 </div>
 <div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
-<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $journey["JID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $journey["JID"]?>">Requirements</button></td>
+<td align="left"> <form method="post"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>

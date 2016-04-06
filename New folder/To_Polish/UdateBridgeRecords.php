@@ -7,17 +7,21 @@ session_start();
 if(isset($_POST['submitform'])){
 	//echo substr($_POST['requirements'][0], 0,4) . "<br>";
 	
-	foreach($_POST['names'] as $names){
-		echo $names . "<br>";
+	if(isset($_POST['Names']))
+	{
+		if(isset($_POST['Requirements']))
+		{
+			foreach($_POST['requirements'] as $reqs){
+				largeBridgeUpdate($_POST['names'],substr($_POST['requirements'][0], 0,4),$reqs,0);
+			}
+		}
+		else{
+			echo "<script>alert('No Requirements Selected for Update!');</script>";
+		}
 	}
-	
-	foreach($_POST['requirements'] as $reqs){
-		largeBridgeUpdate($_POST['names'],substr($_POST['requirements'][0], 0,4),$reqs,0);
-		
+	else{
+		echo "<script>alert('No Scouts Selected for Update!');</script>";
 	}
-	
-	
-	echo "Submitted";
 }
 
 
@@ -157,13 +161,13 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 	</div>
 	<div id="collapse<?php echo $bridge["BID"]?>" class="panel-collapse collapse">
 	<ul class="list-group">
-	<div class="container"> 
+	<div class="container-fluid"> 
 	<table style="width=33%">
 	<tbody>
 	<tr>
-	<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $bridge["BID"]?>">Scouts</button></td>									
-	<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>">Requirements</button></td>
-	<td align="left"> <form method="post" action = "UpdatebridgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>
+	<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $bridge["BID"]?>">Scouts</button></td>									
+	<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>">Requirements</button></td>
+	<td align="left"> <form method="post" action = "UpdatebridgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>
 	</tr>
 
 	<tr>

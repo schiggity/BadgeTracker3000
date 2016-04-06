@@ -8,6 +8,7 @@ if(!isset($_SESSION['user']))
 	header('location: CreateUser.php');
 }
 
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@ if(!isset($_SESSION['user']))
 </head>
 <body>
 <?php
-if(isset($_SESSION['AddedScout']))
+if(isset($_SESSION['AddedScout']) && ! isset($_SESSION['IDUN']))
 { ?>
 	<script>
 	
@@ -28,7 +29,12 @@ if(isset($_SESSION['AddedScout']))
 	</script>
 <?php
 	unset($_SESSION['AddedScout']);
-} ?>
+}
+if(isset($_SESSION['IDUN'])){
+	echo "<script>alert('Scout ID Unavailable!');</script>";
+	unset($_SESSION['IDUN']);
+}
+?>
 <!---------------------------------------------------------------- NAV BAR STUFF -------------------------------------------------------->
 <?php include 'navBar.php'; ?>
 
@@ -128,7 +134,7 @@ if(isset($_SESSION['AddedScout']))
 					<div class="col-md-12"> <!--Enter Email -->
 						<div class="form-group">
 							<label for="TroopNum">Email</label>
-							<input class="form-control" id="Email" name="Email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Invalid Email">
+							<input class="form-control" id="Email" name="Email" type="text" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,3}$" title="Invalid Email">
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Parent 1 -->
@@ -175,8 +181,11 @@ if(isset($_SESSION['AddedScout']))
                               </select>
                         </div>
                     </div>
-					<button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout">Submit</button>
+					<button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout"><span class="glyphicon glyphicon-floppy-disk"></span> Submit</button>
 				</form>
+				<div class="col-md-12">
+					&nbsp
+				</div>
 			</div>
 			<div class="col-md-1">
             <!-- Intentionally left blank -->

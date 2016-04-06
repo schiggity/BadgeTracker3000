@@ -7,6 +7,14 @@ if(!isset($_SESSION['user']))
 	$_SESSION['noLog'] = 1;
 	header('location: CreateUser.php');
 }
+if(isset($_SESSION['IDUN'])){
+	echo "<script>alert('Scout ID Unavailable!');</script>";
+	$scout = $_SESSION['IDUN'];
+	unset($_SESSION['IDUN']);
+}
+else{
+	$scout = $_POST['sid'];
+}
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,16 +27,16 @@ if(!isset($_SESSION['user']))
 <body>
 <!---------------------------------------------------------------- NAV BAR STUFF -------------------------------------------------------->
 <?php include 'navBar.php'; 
-$scoutinfo = getScout($_POST['sid']);
+$scoutinfo = getScout($scout);
 list($first,$last) = split(" ",$scoutinfo["Name"]);
 list($year,$month,$day) = split("-",$scoutinfo["DoB"]);
 $address = $scoutinfo["address"];
-$area1 = substr($scoutinfo["PhoneNumber"],0, 3);
-$rest1 = substr($scoutinfo["PhoneNumber"],3);
-$area2 = substr($scoutinfo["BackupPhone"],0, 3);
-$rest2 = substr($scoutinfo["BackupPhone"],3);
+$area1 = substr($scoutinfo["PhoneNumber"],1, 3);
+$rest1 = substr($scoutinfo["PhoneNumber"],5);
+$area2 = substr($scoutinfo["BackupPhone"],1, 3);
+$rest2 = substr($scoutinfo["BackupPhone"],5);
 $email = $scoutinfo["email"];
-list($parent1,$parent2) = split("&",$scoutinfo["Parents"]);
+list($parent1,$parent2) = split(" & ",$scoutinfo["Parents"]);
 $grade = $scoutinfo["Grade"];
 $rank = $scoutinfo["Ranks"];
 $sid = $scoutinfo["SID"];
@@ -49,7 +57,7 @@ $sid = $scoutinfo["SID"];
 			<form action="MyTroop.php" method="POST">
 				<input type = "hidden" name="deleteScout" value="<?php echo $first . ", " . $last;?>">
 				<input type = "hidden" name="sid" value="<?php echo $sid; ?>">
-				<h1>Edit Scout <button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout"><span class="glyphicon glyphicon-remove"></span> Delete Scout</button></h1>
+				<h1>Edit Scout <button type="submit" name="submit" id="submit" class="btn btn-default pull-right" value="Add Scout"><span class="glyphicon glyphicon-trash"></span> Delete Scout</button></h1>
 			</form>
 				
 				<form role="form" method="post" action="EditTroopOp.php">
@@ -128,7 +136,7 @@ $sid = $scoutinfo["SID"];
 					<div class="col-md-12"> <!--Enter Email -->
 						<div class="form-group">
 							<label for="TroopNum">Email</label>
-							<input class="form-control" id="Email" name="Email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value ="<?php echo $email;?>">
+							<input class="form-control" id="Email" name="Email" type="text" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,3}$" value ="<?php echo $email;?>">
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Parent 1 -->
@@ -181,7 +189,7 @@ $sid = $scoutinfo["SID"];
 					<input type="hidden" name="oldsid" value="<?php echo $_POST['sid']; ?>">
 					<div class="row">
 						<div class="col-md-6">
-							<a href="MyTroop.php"><button class="btn btn-default pull-Left"> Cancel</button></a>
+							<a href="MyTroop.php"><button type="button" class="btn btn-default pull-Left"><span class="glyphicon glyphicon-remove"></span> Cancel</button></a>
 						</div>
 						
 						<div class="col-md-6">
@@ -189,6 +197,9 @@ $sid = $scoutinfo["SID"];
 						</div>
 					</div>
 				</form>
+				<div class="col-md-6">
+					<p> &nbsp </p>
+				</div>
 			</div>
 			<div class="col-md-1">
             <!-- Intentionally left blank -->

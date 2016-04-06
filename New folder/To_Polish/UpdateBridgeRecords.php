@@ -160,13 +160,13 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 	</div>
 	<div id="collapse<?php echo $bridge["BID"]?>" class="panel-collapse collapse">
 	<ul class="list-group">
-	<div class="container"> 
+	<div class="container-fluid"> 
 	<table style="width=33%">
 	<tbody>
 	<tr>
-	<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $bridge["BID"]?>">Update</button></td>									
-	<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>" onclick="enable()" >Requirements</button></td>
-	<td align="left"> <form method="post" action = "UpdatebridgeRecords.php"><input type="submit" name="submitform" id="submitform" value="Update" class="btn btn-secondary btn-lg" disabled></form></td>-->
+	<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $bridge["BID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+	<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>" onclick="enable()" >Requirements</button></td>
+	<td align="left"> <form method="post" action = "UpdatebridgeRecords.php"><input type="submit" name="submitform" id="submitform" value="Update" class="btn btn-default btn-lg" disabled></form></td>-->
 	</tr>
 
 	<tr>

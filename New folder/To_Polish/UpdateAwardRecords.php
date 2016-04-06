@@ -166,12 +166,12 @@ $(<?php echo $_POST['Bcollapse']; ?>).collapse('show');
 	</div>
 	<div id="collapse<?php echo $award["AID"]?>" class="panel-collapse collapse">
 	<ul class="list-group">
-	<div class="container"> 
+	<div class="container-fluid"> 
 	<table style="width=33%">
 	<tbody>
 	<tr>
-	<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $award["AID"]?>">Update</button></td>									
-	<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $award["AID"]?>">Requirements</button></td>
+	<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $award["AID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+	<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $award["AID"]?>">Requirements</button></td>
 	<td align="left"> <form method="post" action = "UpdateAwardRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-default"></form></td>-->
 	</tr>
 

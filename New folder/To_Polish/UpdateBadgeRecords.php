@@ -174,12 +174,12 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
 <td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-default"></form></td>-->
 </tr>
 
@@ -199,7 +199,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Brownies tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '2'){echo "active";} ?>"id="Tab2">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '2'){echo "";}else{ echo "active";} ?>"id="Tab2">  
 <div class="row">
 <div class="col-md-12">
 <h3>Brownies</h3>
@@ -286,13 +286,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
-<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -311,7 +311,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Juniors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '3'){echo "active";} ?>"id="Tab3">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '3'){echo "";}else{ echo "active";} ?>"id="Tab3">  
 <div class="row">
 <div class="col-md-12">
 <h3>Juniors</h3>
@@ -396,13 +396,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
-<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -421,7 +421,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Cadettes tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '4'){echo "active";} ?>"id="Tab4">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '4'){echo "";}else{ echo "active";} ?>"id="Tab4">  
 <div class="row">
 <div class="col-md-12">
 <h3>Cadettes</h3>
@@ -506,13 +506,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
-<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -531,7 +531,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Seniors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '5'){echo "active";} ?>" id="Tab5">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '5'){echo "";}else{ echo "active";} ?>" id="Tab5">  
 <div class="row">
 <div class="col-md-12">
 <h3>Seniors</h3>
@@ -616,13 +616,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
-<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>
@@ -641,7 +641,7 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 </div>
 <!----------------------------------------- Ambassadors tab collapsing panel start ------------------------------------------->					
-<div class="tab-pane <?php if($_POST['BTab'] == '6'){echo "active";} ?>" id="Tab6">  
+<div class="tab-pane <?php if(isset($_POST['BTab']) && $_POST['BTab'] != '6'){echo "";}else{ echo "active";} ?>" id="Tab6">  
 <div class="row">
 <div class="col-md-12">
 <h3>Ambassadors</h3>
@@ -726,13 +726,13 @@ echo "<input type='checkbox' name='requirements[]' value='" . $req['BARID'] . "'
 </div>
 <div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 <ul class="list-group">
-<div class="container"> 
+<div class="container-fluid"> 
 <table style="width=33%">
 <tbody>
 <tr>
-<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>">Update</button></td>									
-<!--<td align="left"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
-<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-secondary btn-lg"></form></td>-->
+<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#ModalScout<?php echo $badge["BAID"]?>"><span class="glyphicon glyphicon-refresh"></span> Update</button></td>									
+<!--<td align="left"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $badge["BAID"]?>">Requirements</button></td>
+<td align="left"> <form method="post" action = "UpdateBadgeRecords.php"><input type="submit" name="submitform" value="Update" class="btn btn-default btn-lg"></form></td>-->
 </tr>
 
 <tr>

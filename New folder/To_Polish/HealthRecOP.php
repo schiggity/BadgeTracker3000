@@ -22,7 +22,7 @@ updateHealthRecords($sid,$P,$S,$A,$I,$O,$N);
 $_SESSION['editHealth'] = 1;
 $_SESSION['sid'] = $sid;
 
-header('location: ScoutRecord.php#HealthRecord');
+header('location: ScoutRecord.php#HealthRecords');
 
 
 ?>

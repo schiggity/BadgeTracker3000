@@ -26,14 +26,24 @@ if(isset($_POST["submit"])=="Add Scout")
 	
 	$Name = $FirstName . " " . $LastName;
 	$DOB = $year . "-" . $month . "-" . $day;
-	$PhoneNumber = $PhoneNumAC . $PhoneNum;
-	$BackupPhoneNumber = $BackupPhoneNumAC . $BackupPhoneNum;
+	$PhoneNumber = "(" . $PhoneNumAC . ")" . $PhoneNum;
+	$BackupPhoneNumber = "(" .  $BackupPhoneNumAC . ")" . $BackupPhoneNum;
 	
-	if (isset($_POST["NoID"]))
+	
+	if(isset($_POST["NoID"]))
 	{
 		$ScoutID = rand(1, 9999);
+		while(!sidAvailable($ScoutID)){
+			$ScoutID = rand(1, 9999);
+		}
+	}else{
+		$_SESSION['IDUN'] = 1;
+		header("Location: AddScout.php");
 	}
+
 	
+	
+
 	if (isset($_POST["Parent1"]) && isset($_POST["Parent2"]))
 	{
 		$Parents = $Parent1 . " & " . $Parent2;

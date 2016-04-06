@@ -84,27 +84,29 @@ if(isset($_POST['delete']))
 									</div>
 									<div id="collapse<?php echo $finance["FID"];?>" class="panel-collapse collapse" class="panel-collapse collapse">
 										<ul class="list-group">
-											<div class="container"> 													          	
-													
+											<div class="container-fluid"> 													          	
+												
+											<div class="col-md-8">											
 												<div class="col-md-6">
-													<label>Scouts</label>
+												<label>Scouts</label>
 												</div>
 												<div class="col-md-6">
 													<label>Paid in Full?</label>
 												</div>
 												
 												
-													<?php
-													$scouts = getScoutsByFID($finance['FID']);
-													foreach($scouts as $scout){
-													?>
+												
+												<?php
+												$scouts = getScoutsByFID($finance['FID']);
+												foreach($scouts as $scout){
+												?>
+												
+												<div class="col-md-6"> <!--Full payment boolean -->
+												<?php echo $scout['Name']; ?>
+												</div>
+												
+												<div class="col-md-6"> <!--Full payment boolean -->
 													
-													<div class="col-md-6"> <!--Full payment boolean -->
-													<?php echo $scout['Name']; ?>
-													</div>
-													
-													<div class="col-md-6"> <!--Full payment boolean -->
-														<div class="form-group">
 													
 													<?php if(getPayment($finance['FID'] , $scout["SID"])){ 
 														echo "yes";
@@ -114,28 +116,31 @@ if(isset($_POST['delete']))
 															echo "no";
 														}
 													?>
-														</div>
-													</div>
-		
-		
-													<?php } ?>
-																								
+													
+												</div>
+												
+	
+												<?php } ?>
+											</div>		
+											<div class="col-md-4">	
 												<div class="row">
-													<div class="col-md-6">
+													<div class="col-md-12">
 													<h4>Cost: $<?php echo $finance["Amount"];?></h4>
 													</div>
-															
-													<div class="col-md-6">
-														<form action="editFinance.php" method="post">																		
-															<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
-															<button type="submit" class="btn btn-secondary btn-lg"><span class="glyphicon glyphicon-pencil"></span> Edit Record</button>
-														</form> 
-														<form action="Financial.php" Method="POST">
-														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
-														<button type="submit" class="btn btn-secondary btn-lg"><span class="glyphicon glyphicon-remove"></span> Delete Finance</button>
-														</form>
-													</div>	
+												<div class="col-md-12"> <!--Full payment boolean -->
+													<form action="editFinance.php" method="post">																		
+														<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
+														<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+													</form> 
 												</div>
+												<div class="col-md-12">
+													<form action="Financial.php" Method="POST">
+														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
+														<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+													</form>
+												</div>
+												</div>
+											</div>
 											</div>
 										</ul>											
 									</div>
@@ -182,14 +187,16 @@ if(isset($_POST['delete']))
 									</div>
 									<div id="collapse<?php echo $finance["FID"];?>" class="panel-collapse collapse" class="panel-collapse collapse">
 										<ul class="list-group">
-											<div class="container"> 													          	
-													
+											<div class="container-fluid"> 													          	
+												
+											<div class="col-md-8">											
 												<div class="col-md-6">
-													<label>Scouts</label>
+												<label>Scouts</label>
 												</div>
 												<div class="col-md-6">
 													<label>Paid in Full?</label>
 												</div>
+												
 												
 												
 												<?php
@@ -202,38 +209,41 @@ if(isset($_POST['delete']))
 												</div>
 												
 												<div class="col-md-6"> <!--Full payment boolean -->
-													<div class="form-group">
-												
-												<?php if(getPayment($finance['FID'] , $scout["SID"])){ 
-													echo "yes";
 													
-												}
-													else{
-														echo "no";
+													
+													<?php if(getPayment($finance['FID'] , $scout["SID"])){ 
+														echo "yes";
+														
 													}
-												?>
-													</div>
+														else{
+															echo "no";
+														}
+													?>
+													
 												</div>
-	
+												
 	
 												<?php } ?>
-																								
+											</div>		
+											<div class="col-md-4">	
 												<div class="row">
-													<div class="col-md-6">
+													<div class="col-md-12">
 													<h4>Cost: $<?php echo $finance["Amount"];?></h4>
 													</div>
-															
-													<div class="col-md-6">
-														<form action="editFinance.php" method="post">																		
-															<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
-															<button type="submit" class="btn btn-secondary btn-lg">Edit Record</button>
-														</form> 
-														<form action="Financial.php" Method="POST">
-														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
-														<button type="submit" class="btn btn-secondary btn-lg">Delete Finance</button>
-														</form>
-													</div>	
+												<div class="col-md-12"> <!--Full payment boolean -->
+													<form action="editFinance.php" method="post">																		
+														<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
+														<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+													</form> 
 												</div>
+												<div class="col-md-12">
+													<form action="Financial.php" Method="POST">
+														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
+														<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+													</form>
+												</div>
+												</div>
+											</div>
 											</div>
 										</ul>											
 									</div>
@@ -281,14 +291,16 @@ if(isset($_POST['delete']))
 									</div>
 									<div id="collapse<?php echo $finance["FID"];?>" class="panel-collapse collapse" class="panel-collapse collapse">
 										<ul class="list-group">
-											<div class="container"> 													          	
-													
+											<div class="container-fluid"> 													          	
+												
+											<div class="col-md-8">											
 												<div class="col-md-6">
 												<label>Scouts</label>
 												</div>
 												<div class="col-md-6">
 													<label>Paid in Full?</label>
 												</div>
+												
 												
 												
 												<?php
@@ -301,38 +313,41 @@ if(isset($_POST['delete']))
 												</div>
 												
 												<div class="col-md-6"> <!--Full payment boolean -->
-													<div class="form-group">
-												
-												<?php if(getPayment($finance['FID'] , $scout["SID"])){ 
-													echo "yes";
 													
-												}
-													else{
-														echo "no";
+													
+													<?php if(getPayment($finance['FID'] , $scout["SID"])){ 
+														echo "yes";
+														
 													}
-												?>
-													</div>
+														else{
+															echo "no";
+														}
+													?>
+													
 												</div>
-	
+												
 	
 												<?php } ?>
-																							
+											</div>		
+											<div class="col-md-4">	
 												<div class="row">
-													<div class="col-md-6">
+													<div class="col-md-12">
 													<h4>Cost: $<?php echo $finance["Amount"];?></h4>
 													</div>
-															
-													<div class="col-md-6">
-														<form action="editFinance.php" method="post">																		
-															<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
-															<button type="submit" class="btn btn-secondary btn-lg">Edit Record</button>
-														</form> 
-														<form action="Financial.php" Method="POST">
-														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
-														<button type="submit" class="btn btn-secondary btn-lg">Delete Finance</button>
-														</form>
-													</div>	
+												<div class="col-md-12"> <!--Full payment boolean -->
+													<form action="editFinance.php" method="post">																		
+														<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
+														<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+													</form> 
 												</div>
+												<div class="col-md-12">
+													<form action="Financial.php" Method="POST">
+														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
+														<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+													</form>
+												</div>
+												</div>
+											</div>
 											</div>
 										</ul>											
 									</div>
@@ -382,14 +397,16 @@ if(isset($_POST['delete']))
 									
 									<div id="collapse<?php echo $finance["FID"];?>" class="panel-collapse collapse" class="panel-collapse collapse">
 										<ul class="list-group">
-											<div class="container"> 													          	
-													
+											<div class="container-fluid"> 													          	
+												
+											<div class="col-md-8">											
 												<div class="col-md-6">
 												<label>Scouts</label>
 												</div>
 												<div class="col-md-6">
 													<label>Paid in Full?</label>
 												</div>
+												
 												
 												
 												<?php
@@ -402,7 +419,7 @@ if(isset($_POST['delete']))
 												</div>
 												
 												<div class="col-md-6"> <!--Full payment boolean -->
-													<div class="form-group">
+													
 													
 													<?php if(getPayment($finance['FID'] , $scout["SID"])){ 
 														echo "yes";
@@ -412,28 +429,31 @@ if(isset($_POST['delete']))
 															echo "no";
 														}
 													?>
-													</div>
+													
 												</div>
-	
+												
 	
 												<?php } ?>
-																								
+											</div>		
+											<div class="col-md-4">	
 												<div class="row">
-													<div class="col-md-6">
+													<div class="col-md-12">
 													<h4>Cost: $<?php echo $finance["Amount"];?></h4>
 													</div>
-															
-													<div class="col-md-6">
-														<form action="editFinance.php" method="post">																		
-															<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
-															<button type="submit" class="btn btn-secondary btn-lg">Edit Record</button>
-														</form> 
-														<form action="Financial.php" Method="POST">
-														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
-														<button type="submit" class="btn btn-secondary btn-lg">Delete Finance</button>
-														</form>
-													</div>	
+												<div class="col-md-12"> <!--Full payment boolean -->
+													<form action="editFinance.php" method="post">																		
+														<input type="hidden" name="sid" value="<?php echo $finance["FID"]; ?>">	
+														<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</button>
+													</form> 
 												</div>
+												<div class="col-md-12">
+													<form action="Financial.php" Method="POST">
+														<input type="hidden" name="delete" value="<?php echo $finance["FID"]; ?>">	
+														<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+													</form>
+												</div>
+												</div>
+											</div>
 											</div>
 										</ul>											
 									</div>

@@ -13,22 +13,26 @@ if(!isset($_SESSION['user']))
 #badge requirement delete
 if(isset($_POST['requirements'])){
 	deleteBadgeReq($_POST['requirements'],$_POST['sid']);
-	unset($_POST['requirements']);	
+	unset($_POST['requirements']);
+	echo '<script> alert("Badge Requirement(s) Deleted");</script>';
 }
 
 if(isset($_POST['Jrequirements'])){
 	deleteJourneyReq($_POST['Jrequirements'],$_POST['sid']);
 	unset($_POST['Jrequirements']);	
+	echo '<script> alert("Journey Requirement(s) Deleted");</script>';
 }
 
 if(isset($_POST['BRrequirements'])){
 	deleteBridgeReq($_POST['BRrequirements'],$_POST['sid']);
 	unset($_POST['BRrequirements']);	
+	echo '<script> alert("Bridge Requirement(s) Deleted");</script>';
 }
 
 if(isset($_POST['Arequirements'])){
 	deleteAwardReq($_POST['Arequirements'],$_POST['sid']);
 	unset($_POST['Arequirements']);	
+	echo '<script> alert("Award Requirement(s) Deleted");</script>';
 }
 
 
@@ -73,6 +77,15 @@ if($valid){
   </head>
 <body>
 
+<script>
+$(document).ready(function(){
+
+  if(window.location.hash != "") {
+      $('a[href="' + window.location.hash + '"]').click()
+  }
+
+});
+</script>
 
 <!---------------------------------------------------------------- NAV BAR STUFF -------------------------------------------------------->
 <?php include 'navBar.php'; ?>
@@ -122,7 +135,7 @@ if($valid){
 							<div class="col-md-12">
 							
 								<a id="daisy"></a>
-								<h4>Daisey</h4>
+								<h4 style="background-color: c3e5f1">Daisey</h4>
 								
 								<?php
 								$badges = getBadgesByScoutByRank($sid, 'd');
@@ -135,10 +148,10 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapseB<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapseB<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 												
@@ -174,7 +187,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -182,12 +195,14 @@ if($valid){
 										</div>
 									</div>
 								</div>
+								
 								<?php 
 								} 
 								}
 								?>
+								
 								<a id="brownie"></a>
-								<h4>Brownie</h4>
+								<h4 style="background-color: c9ad91">Brownie</h4>
 								<?php
 								$badges = getBadgesByScoutByRank($sid, "brownie");
 								if(count($badges) != 0)
@@ -198,11 +213,11 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapseB<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div><div class="row"></div></div></a>
 											</h4>
 										</div>
 										
-										<div id="collapse<?php echo $badge["BAID"];?>" class="panel-collapse collapse">
+										<div id="collapseB<?php echo $badge["BAID"];?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 													<?php
@@ -237,7 +252,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -246,8 +261,9 @@ if($valid){
 									</div>
 								</div>
 								<?php } }?>
+								
 								<a id="junior"></a>
-								<h4>Junior</h4>
+								<h4 style="background-color: cf9cd2">Junior</h4>
 								<?php
 								$badges = getBadgesByScoutByRank($sid, 'j');
 								if($badges)
@@ -258,10 +274,10 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapseB<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapseB<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 													<?php
@@ -296,7 +312,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -305,8 +321,9 @@ if($valid){
 									</div>
 								</div>
 								<?php } } ?>
+								
 								<a id="cadette"></a>
-								<h4>Cadette</h4>
+								<h4 style="background-color: f7a2aa">Cadette</h4>
 								<?php
 								$badges = getBadgesByScoutByRank($sid, 'c');
 								if($badges)
@@ -317,10 +334,10 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapseB<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapseB<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 													<?php
@@ -355,7 +372,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -364,8 +381,9 @@ if($valid){
 									</div>
 								</div>
 								<?php } }?>
+								
 								<a id="senior"></a>
-								<h4>Senior</h4>
+								<h4 style="background-color: f7c6aa">Senior</h4>
 								<?php
 								$badges = getBadgesByScoutByRank($sid, 's');
 								if($badges)
@@ -376,10 +394,10 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapseB?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapseB<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 													<?php
@@ -414,7 +432,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -423,8 +441,9 @@ if($valid){
 									</div>
 								</div>
 								<?php } } ?>
+								
 								<a id="ambassador"></a>
-								<h4>Ambassador</h4>
+								<h4 style="background-color: f7daaa">Ambassador</h4>
 								<?php
 								$badges = getBadgesByScoutByRank($sid, 'a');
 								if($badges)
@@ -435,10 +454,10 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapse<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $badge["Name"]; ?>" href="#collapseB<?php echo $badge["BAID"]?>"><div class="row"><?php echo $badge["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
+										<div id="collapseB<?php echo $badge["BAID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 													<?php
@@ -473,7 +492,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -498,7 +517,7 @@ if($valid){
 							<div class="col-md-12">
 							
 								<a id="daisy"></a>
-								<h4>Daisey</h4>
+								<h4 style="background-color: c3e5f1">Daisey</h4>
 								
 								<?php
 								$journeys = getJourneyByScoutByRank($sid, 'd');
@@ -510,14 +529,14 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapseJ<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
+										<div id="collapseJ<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 												<?php
-													echo "<table><form action='ScoutRecord.php' method='POST'>";
+													echo "<table><form action='ScoutRecord.php#Journeys' method='POST'>";
 													echo "<tr>";
 													echo "<td> <h3>Requirements</h3> </td>";
 													echo "<td>  </td>";
@@ -546,7 +565,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -556,7 +575,7 @@ if($valid){
 								</div>
 								<?php }} ?>
 								<a id="brownie"></a>
-								<h4>Brownie</h4>
+								<h4 style="background-color: c9ad91">Brownie</h4>
 								<?php
 								$journeys = getJourneyByScoutByRank($sid, 'b');
 								if($journeys != 'null'){
@@ -567,14 +586,14 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapseJ<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
+										<div id="collapseJ<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 												<?php
-													echo "<table><form action='ScoutRecord.php' method='POST'>";
+													echo "<table><form action='ScoutRecord.php#Journeys' method='POST'>";
 													echo "<tr>";
 													echo "<td> <h3>Requirements</h3> </td>";
 													echo "<td>  </td>";
@@ -603,7 +622,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -613,7 +632,7 @@ if($valid){
 								</div>
 								<?php }} ?>
 								<a id="junior"></a>
-								<h4>Junior</h4>
+								<h4 style="background-color: cf9cd2">Junior</h4>
 								<?php
 								$journeys = getJourneyByScoutByRank($sid, 'j');
 								if($journeys != 'null'){
@@ -623,14 +642,14 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapseJ<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
+										<div id="collapseJ<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 												<?php
-													echo "<table><form action='ScoutRecord.php' method='POST'>";
+													echo "<table><form action='ScoutRecord.php#Journeys' method='POST'>";
 													echo "<tr>";
 													echo "<td> <h3>Requirements</h3> </td>";
 													echo "<td>  </td>";
@@ -659,7 +678,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -669,7 +688,7 @@ if($valid){
 								</div>
 								<?php } }?>
 								<a id="cadette"></a>
-								<h4>Cadette</h4>
+								<h4 style="background-color: f7a2aa">Cadette</h4>
 								<?php
 								$journeys = getJourneyByScoutByRank($sid, 'c');
 								if($journeys != 'null'){
@@ -679,14 +698,14 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapseJ<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
+										<div id="collapseJ<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 												<?php
-													echo "<table><form action='ScoutRecord.php' method='POST'>";
+													echo "<table><form action='ScoutRecord.php#Journeys' method='POST'>";
 													echo "<tr>";
 													echo "<td> <h3>Requirements</h3> </td>";
 													echo "<td>  </td>";
@@ -715,7 +734,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -725,7 +744,7 @@ if($valid){
 								</div>
 								<?php } }?>
 								<a id="senior"></a>
-								<h4>Senior</h4>
+								<h4 style="background-color: f7c6aa">Senior</h4>
 								<?php
 								$journeys = getJourneyByScoutByRank($sid, 's');
 								if($journeys != 'null'){
@@ -735,14 +754,14 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapseJ<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
+										<div id="collapseJ<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 												<?php
-													echo "<table><form action='ScoutRecord.php' method='POST'>";
+													echo "<table><form action='ScoutRecord.php#Journeys' method='POST'>";
 													echo "<tr>";
 													echo "<td> <h3>Requirements</h3> </td>";
 													echo "<td>  </td>";
@@ -771,7 +790,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -781,7 +800,7 @@ if($valid){
 								</div>
 								<?php }} ?>
 								<a id="ambassador"></a>
-								<h4>Ambassador</h4>
+								<h4 style="background-color: f7daaa">Ambassador</h4>
 								<?php
 								$journeys = getJourneyByScoutByRank($sid, 'a');
 								if($journeys != 'null'){
@@ -791,14 +810,14 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapse<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $journey["Name"]; ?>" href="#collapseJ<?php echo $journey["JID"]?>"><div class="row"><?php echo $journey["Name"]; ?><div class="row"></div></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $journey["JID"]?>" class="panel-collapse collapse">
+										<div id="collapseJ<?php echo $journey["JID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 												<?php
-													echo "<table><form action='ScoutRecord.php' method='POST'>";
+													echo "<table><form action='ScoutRecord.php#Journeys' method='POST'>";
 													echo "<tr>";
 													echo "<td> <h3>Requirements</h3> </td>";
 													echo "<td>  </td>";
@@ -827,7 +846,7 @@ if($valid){
 														}
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -857,14 +876,14 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $award["Name"]; ?>" href="#collapse<?php echo $award["AID"]?>"><div class="row"><?php echo $award["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $award["Name"]; ?>" href="#collapseA<?php echo $award["AID"]?>"><div class="row"><?php echo $award["Name"]; ?></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $award["AID"]?>" class="panel-collapse collapse">
+										<div id="collapseA<?php echo $award["AID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 													<?php
-													echo "<table><form action='ScoutRecord.php' method='POST'>";
+													echo "<table><form action='ScoutRecord.php#Awards' method='POST'>";
 													echo "<tr>";
 													echo "<td> <h3>Requirements</h3> </td>";
 													echo "<td>  </td>";
@@ -887,7 +906,7 @@ if($valid){
 														echo "</tr>";	
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>
@@ -912,14 +931,14 @@ if($valid){
 									<div class="panel panel-default">
 										<div class="panel-heading">
 											<h4 class="panel-title">
-												<a data-toggle="collapse" id="<?php echo $bridge["Name"]; ?>" href="#collapse<?php echo $bridge["BID"]?>"><div class="row"><?php echo $bridge["Name"]; ?><div class="row"></div></div></a>
+												<a data-toggle="collapse" id="<?php echo $bridge["Name"]; ?>" href="#collapseBR<?php echo $bridge["BID"]?>"><div class="row"><?php echo $bridge["Name"]; ?></div></a>
 											</h4>
 										</div>
-										<div id="collapse<?php echo $bridge["BID"]?>" class="panel-collapse collapse">
+										<div id="collapseBR<?php echo $bridge["BID"]?>" class="panel-collapse collapse">
 											<ul class="list-group">
 												<li class="list-group-item">
 													<?php
-													echo "<table><form action='ScoutRecord.php' method='POST'>";
+													echo "<table><form action='ScoutRecord.php#Awards' method='POST'>";
 													echo "<tr>";
 													echo "<td> <h3>Requirements</h3> </td>";
 													echo "<td>  </td>";
@@ -950,7 +969,7 @@ if($valid){
 														
 													}
 													echo "<input type='hidden' name='sid' id='sid' value='". $sid ."'>";
-													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-remove'></span> Delete Selected</button></td></tr>";
+													echo "<tr><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span> Delete Selected</button></td></tr>";
 													echo "</form></table>";
 													?>
 												</li>

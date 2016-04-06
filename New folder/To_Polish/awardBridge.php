@@ -87,14 +87,14 @@ $(document).ready(function(){
 										</div>
 										<div id="collapse<?php echo $award["AID"]?>" class="panel-collapse collapse" >
 											<ul class="list-group">
-												<div class="container"> 
+												<div class="container-fluid"> 
 													       
 													<table  style="width: 90%;">														
 														<tbody><?php $c = getAwardScoutCount($award["AID"]); ?>
 															<tr>
-															<td rowspan="4"><img src="img/awards/<?php echo $award["AID"] ?>.png"></td>
+															<td rowspan="4"><img src="img/awards/<?php echo $award["AID"] ?>.jpg"></td>
 															<td align="right">Number of Scouts Earned: <?php echo $c[1]; ?></td>
-															<td rowspan="2" align="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $award["AID"]?>">Award Requirements</button></td>
+															<td rowspan="2" align="right"><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $award["AID"]?>"><span class="glyphicon glyphicon-list-alt"></span> Award Requirements</button></td>
 															</tr>
 															
 															<tr>
@@ -108,7 +108,7 @@ $(document).ready(function(){
 																<form action="UpdateAwardRecords.php#<?php echo $award["AID"]; ?>" method="post">
 																	<input type="hidden" name="BTab" value="1">	
 																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $award["AID"] ?>">	
-																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																	<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update Records </button>
 																</form> 
 															</td>
 															</tr>
@@ -177,14 +177,14 @@ $(document).ready(function(){
 										</div>
 										<div id="collapse<?php echo $bridge["BID"]?>B" class="panel-collapse collapse" >
 											<ul class="list-group">
-												<div class="container"> 
+												<div class="container-fluid"> 
 													           
 													<table  style="width: 90%;">														
 														<tbody><?php $c = getBridgeScoutCount($bridge["BID"]); ?>
 															<tr>
-															<td rowspan="4"><img src="img/bridges/<?php echo $bridge["BID"] ?>.png"></td>
+															<td rowspan="4"><img src="img/bridges/<?php echo $bridge["BID"] ?>.jpg"></td>
 															<td align="right">Number of Scouts Earned: <?php echo $c[1]; ?></td>
-															<td rowspan="2" align="right"> <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>">Bridge Requirements</button></td>
+															<td rowspan="2" align="right"> <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $bridge["BID"]?>"><span class="glyphicon glyphicon-list-alt"></span> Bridge Requirements</button></td>
 															</tr>
 															
 															<tr>
@@ -199,7 +199,7 @@ $(document).ready(function(){
 															<form action="UpdateBridgeRecords.php#<?php echo $bridge["BID"]; ?>" method="post">
 																<input type="hidden" name="BTab" value="1">	
 																<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $bridge["BID"] ?>">
-																<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update Records </button>
 															</form> 
 															</td>
 															</tr>

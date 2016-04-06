@@ -26,8 +26,8 @@ if(isset($_POST["submit"])=="Add Scout")
 	
 	$Name = $FirstName . " " . $LastName;
 	$DOB = $year . "-" . $month . "-" . $day;
-	$PhoneNumber = $PhoneNumAC . $PhoneNum;
-	$BackupPhoneNumber = $BackupPhoneNumAC . $BackupPhoneNum;
+	$PhoneNumber = '(' . $PhoneNumAC . ')' . $PhoneNum;
+	$BackupPhoneNumber = '('.  $BackupPhoneNumAC . ')' . $BackupPhoneNum;
 	
 	if (isset($_POST["Parent1"]) && isset($_POST["Parent2"]))
 	{
@@ -39,13 +39,19 @@ if(isset($_POST["submit"])=="Add Scout")
 		$Parents = $Parent1;
 	}
 	
-	
-	
-	editScout($ScoutID, $Name, $DOB, $Address, $PhoneNumber, $BackupPhoneNumber, $Email, $Parents, $Grade, $Rank, $_POST['oldsid']);
-	$_SESSION['EditScout'] = 1;
-	header('Location: MyTroop.php');
-}
-
-else{
-	echo "Not Working";
+	if($ScoutID == $_POST['oldsid']) 
+	{
+		editScout($ScoutID, $Name, $DOB, $Address, $PhoneNumber, $BackupPhoneNumber, $Email, $Parents, $Grade, $Rank, $_POST['oldsid']);
+		$_SESSION['EditScout'] = 1;
+		header('Location: MyTroop.php');
+	}
+	else if(!sidAvailable($ScoutID)){
+		$_SESSION['IDUN'] = $_POST['oldsid'];
+		header("location: EditScout.php");
+	}
+	else{
+		editScout($ScoutID, $Name, $DOB, $Address, $PhoneNumber, $BackupPhoneNumber, $Email, $Parents, $Grade, $Rank, $_POST['oldsid']);
+		$_SESSION['EditScout'] = 1;
+		header('Location: MyTroop.php');
+	}
 }

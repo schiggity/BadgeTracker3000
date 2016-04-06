@@ -62,15 +62,15 @@ $(document).ready(function(){
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 
+												<div class="container-fluid"> 
 													<?php foreach(getQuestsForJourney($j["JID"]) as $q){?>
 													<p><b><?php echo $q["Name"]?></b></p>            
 														<table  style="width: 90%;">														
 															<tbody><?php $c = getScoutCountForJourneyQuest($q["QID"]); ?>
 																<tr>
-																<td rowspan="4"><img src="IMG/Journey/daisy/<?php echo $j["JID"]?>.png"></td>
+																<td rowspan="4"><img src="IMG/Journey/daisy/<?php echo $j["JID"]?>.jpg"></td>
 																<td align="right" >Number of Scouts Earned: <?php echo $c[1]; ?></td>
-																<td rowspan="2" align ="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>">Badge Requirements</button></td>
+																<td rowspan="2" align ="right"><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>"><span class="glyphicon glyphicon-list-alt"></span> <span class="glyphicon glyphicon-list-alt"></span> Journey Requirements</button></td>
 																</tr>
 																
 																<tr>
@@ -84,7 +84,7 @@ $(document).ready(function(){
 																<form action="UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
 																	<input type="hidden" name="BTab" value="1">	
 																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
-																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																	<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update Records </button>
 																</form> 
 																</td>
 																</tr>
@@ -96,7 +96,7 @@ $(document).ready(function(){
 																	
 																	<div class="modal-dialog">
 
-																		<!-- Modal content displaying badge requirements-->
+																		<!-- Modal content displaying <span class="glyphicon glyphicon-list-alt"></span> Journey Requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -154,7 +154,7 @@ $(document).ready(function(){
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 
+												<div class="container-fluid"> 
 													<?php foreach(getQuestsForJourney($j["JID"]) as $q){?>
 													<p><b><?php echo $q["Name"]?></b></p>            
 														<table  style="width: 90%;">														
@@ -162,7 +162,7 @@ $(document).ready(function(){
 																<tr>
 																<td rowspan="4"><img src="IMG/Journeys/brownie/<?php echo $q["QID"]?>.jpg"></td>
 																<td align="right" >Number of Scouts Earned: <?php echo $c[1]; ?></td>
-																<td rowspan="2" align ="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>">Badge Requirements</button></td>
+																<td rowspan="2" align ="right"><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>"><span class="glyphicon glyphicon-list-alt"></span> Journey Requirements</button></td>
 																		
 																
 																
@@ -178,7 +178,7 @@ $(document).ready(function(){
 																<form action="UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
 																	<input type="hidden" name="BTab" value="2">	
 																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
-																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																	<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update Records </button>
 																</form> 
 																</td>
 																</tr>
@@ -190,7 +190,7 @@ $(document).ready(function(){
 																	
 																	<div class="modal-dialog">
 
-																		<!-- Modal content displaying badge requirements-->
+																		<!-- Modal content displaying <span class="glyphicon glyphicon-list-alt"></span> Journey Requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -247,7 +247,7 @@ $(document).ready(function(){
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 
+												<div class="container-fluid"> 
 													<?php foreach(getQuestsForJourney($j["JID"]) as $q){?>
 													<p><b><?php echo $q["Name"]?></b></p>            
 														<table  style="width: 90%;">														
@@ -255,7 +255,7 @@ $(document).ready(function(){
 																<tr>
 																<td rowspan="4"><img src="IMG/Journeys/junior/<?php echo $q["QID"]?>.jpg"></td>
 																<td align="right" >Number of Scouts Earned: <?php echo $c[1]; ?></td>
-																<td rowspan="2" align ="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>">Badge Requirements</button></td>
+																<td rowspan="2" align ="right"><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>"><span class="glyphicon glyphicon-list-alt"></span> Journey Requirements</button></td>
 																		
 																
 																
@@ -271,7 +271,7 @@ $(document).ready(function(){
 																<form action="UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
 																	<input type="hidden" name="BTab" value="3">	
 																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
-																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																	<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update Records </button>
 																</form> 
 																</td>
 																</tr>
@@ -283,7 +283,7 @@ $(document).ready(function(){
 																	
 																	<div class="modal-dialog">
 
-																		<!-- Modal content displaying badge requirements-->
+																		<!-- Modal content displaying <span class="glyphicon glyphicon-list-alt"></span> Journey Requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -340,15 +340,15 @@ $(document).ready(function(){
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 
+												<div class="container-fluid"> 
 													<?php foreach(getQuestsForJourney($j["JID"]) as $q){?>
 													<p><b><?php echo $q["Name"]?></b></p>            
 														<table  style="width: 90%;">														
 															<tbody><?php $c = getScoutCountForJourneyQuest($q["QID"]); ?>
 																<tr>
-																<td rowspan="4"><img src="IMG/Journeys/caddette/<?php echo $q["QID"]?>.png"></td>
+																<td rowspan="4"><img src="IMG/Journeys/caddette/<?php echo $q["QID"]?>.jpg"></td>
 																<td align="right" >Number of Scouts Earned: <?php echo $c[1]; ?></td>
-																<td rowspan="2" align ="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>">Badge Requirements</button></td>
+																<td rowspan="2" align ="right"><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>"><span class="glyphicon glyphicon-list-alt"></span> Journey Requirements</button></td>
 																		
 																
 																
@@ -364,7 +364,7 @@ $(document).ready(function(){
 																<form action="UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
 																	<input type="hidden" name="BTab" value="4">	
 																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
-																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																	<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update Records </button>
 																</form>
 																</td>
 																</tr>
@@ -376,7 +376,7 @@ $(document).ready(function(){
 																	
 																	<div class="modal-dialog">
 
-																		<!-- Modal content displaying badge requirements-->
+																		<!-- Modal content displaying <span class="glyphicon glyphicon-list-alt"></span> Journey Requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -433,15 +433,15 @@ $(document).ready(function(){
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 
+												<div class="container-fluid"> 
 													<?php foreach(getQuestsForJourney($j["JID"]) as $q){?>
 													<p><b><?php echo $q["Name"]?></b></p>            
 														<table  style="width: 90%;">														
 															<tbody><?php $c = getScoutCountForJourneyQuest($q["QID"]); ?>
 																<tr>
-																<td rowspan="4"><img src="IMG/Journeys/senior/<?php echo $q["QID"]?>.png"></td>
+																<td rowspan="4"><img src="IMG/Journeys/senior/<?php echo $q["QID"]?>.jpg"></td>
 																<td align="right" >Number of Scouts Earned: <?php echo $c[1]; ?></td>
-																<td rowspan="2" align ="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>">Badge Requirements</button></td>
+																<td rowspan="2" align ="right"><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>"><span class="glyphicon glyphicon-list-alt"></span> Journey Requirements</button></td>
 																		
 																
 																
@@ -457,7 +457,7 @@ $(document).ready(function(){
 																<form action="UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
 																	<input type="hidden" name="BTab" value="5">	
 																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
-																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																	<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update Records </button>
 																</form> 
 																</td>
 																</tr>
@@ -469,7 +469,7 @@ $(document).ready(function(){
 																	
 																	<div class="modal-dialog">
 
-																		<!-- Modal content displaying badge requirements-->
+																		<!-- Modal content displaying <span class="glyphicon glyphicon-list-alt"></span> Journey Requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -526,15 +526,15 @@ $(document).ready(function(){
 										</div>
 										<div id="collapse<?php echo $j["JID"]; ?>" class="panel-collapse collapse">
 											<ul class="list-group">
-												<div class="container"> 
+												<div class="container-fluid"> 
 													<?php foreach(getQuestsForJourney($j["JID"]) as $q){?>
 													<p><b><?php echo $q["Name"]?></b></p>            
 														<table  style="width: 90%;">														
 															<tbody><?php $c = getScoutCountForJourneyQuest($q["QID"]); ?>
 																<tr>
-																<td rowspan="4"><img src="IMG/Journeys/ambassador/<?php echo $q["QID"]?>.png"></td>
+																<td rowspan="4"><img src="IMG/Journeys/ambassador/<?php echo $q["QID"]?>.jpg"></td>
 																<td align="right" >Number of Scouts Earned: <?php echo $c[1]; ?></td>
-																<td rowspan="2" align ="right"><button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>">Badge Requirements</button></td>
+																<td rowspan="2" align ="right"><button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#Modal<?php echo $q["QID"]?>"><span class="glyphicon glyphicon-list-alt"></span> Journey Requirements</button></td>
 																		
 																
 																
@@ -550,7 +550,7 @@ $(document).ready(function(){
 																<form action="UpdateJourney.php#<?php echo $q["QID"] ?>" method="post">
 																	<input type="hidden" name="BTab" value="6">	
 																	<input type="hidden" name="Bcollapse" value="<?php echo "collapse" . $j["JID"] ?>">	
-																	<button type="submit" class="btn btn-secondary btn-lg">Update Records </button>
+																	<button type="submit" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-refresh"></span> Update Records </button>
 																</form> 
 																</td>
 																</tr>
@@ -562,7 +562,7 @@ $(document).ready(function(){
 																	
 																	<div class="modal-dialog">
 
-																		<!-- Modal content displaying badge requirements-->
+																		<!-- Modal content displaying <span class="glyphicon glyphicon-list-alt"></span> Journey Requirements-->
 																		<div class="modal-content">
 																			<div class="modal-header">
 																				<button type="button" class="close" data-dismiss="modal">&times;</button>
