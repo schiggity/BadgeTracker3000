@@ -1549,6 +1549,178 @@ function deleteFinance($fid)
 
 #endregion
 
+#region-------------------------- Events ---------------------------------------
+
+function getlastEID()
+{
+	global $conn;
+	$sql = "SELECT MAX(eid) from events";
+	if($result = $conn->query($sql)){
+		$row = $result->fetch_assoc();
+		return $row;		
+	}
+	else {
+		echo $conn->error;
+	}
+}
+
+function checkIfScoutsInserted($sid, $eid)
+{
+	global $conn;
+	$sql = "SELECT * FROM scoutsgotoevents WHERE SID='" . $sid . "'";
+	$flag = false;
+	if($result = $conn->query($sql)){
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			if($row['EID'] == $eid){
+				$flag = true;
+			} else {
+				$flag = false;
+			}
+		}	
+	} 
+	else {
+		echo $conn->error;
+	}
+	
+	return $flag;
+}
+
+function insertEvent($eid, $sidarr, $title, $desc, $startdate, $enddate, $fid, $amount, $purp)
+{
+	global $conn;
+	
+	//Creates event in Events table
+	$sql = "INSERT into events VALUES('" . $eid. "','" . $title . "','". $desc . "','" . $startdate ."','". $enddate ."');"; 
+	if($result = $conn->query($sql)){
+		echo 'inserted';		
+	}
+	else{
+		echo $conn->error;
+	}
+	
+	//Adds Scouts to event
+	
+	$sql = $conn->prepare("INSERT into scoutsgotoevents VALUES(?,?);");
+	echo $conn->error;
+	foreach($sidarr as $sid){
+		if(!checkIfScoutsInserted($sid,$eid)) {
+			$sql->bind_param('ii', $sid, $eid);
+			$sql->execute();
+		}
+	}
+	
+	insertFinance($fid, $amount, $sidarr, $purp);
+	
+	$sql = $conn->prepare("INSERT into financescreateduesevents VALUES(?,?);");
+	echo $conn->error;
+	$sql->bind_param('ii', $fid, $eid);
+	$sql->execute();
+}
+
+function updateEvent()
+{
+	
+}
+
+function deleteEvent($eid)
+{
+	global $conn;
+	$sql = "SELECT FID FROM financescreateduesevents WHERE EID='" . $eid . "'";
+	$result = $conn->query($sql);
+	$row = $result->fetch_assoc();
+	deleteFinance($row);
+	
+	$conn->query('SET foreign_key_checks = 0');
+	$sql = "DELETE FROM events where EID = '" . $eid . "';";
+	$conn->query($sql);
+	echo $conn->error;
+	$sql = "DELETE FROM financescreateduesevents where EID = '" . $eid . "';";
+	$conn->query($sql);
+	echo $conn->error;
+	$sql = "DELETE FROM scoutsgotoevents where EID = '" . $eid . "';";
+	$conn->query($sql);
+	echo $conn->error;
+
+	$conn->query('SET foreign_key_checks = 1');
+}
+
+function getAllEvents()
+{
+	global $conn;
+	$arr = array();
+	$sql = "SELECT * FROM events;";
+	
+	#fill array to be returned
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
+	}
+	return $arr;
+}
+
+function getAllEventsByScout($sid)
+{
+	global $conn;
+	$eventarr = array();
+	$sql = "SELECT * FROM events,scoutsgotoevents WHERE scoutsgotoevents.EID = events.EID AND scoutsgotoevents.SID='" . $sid . "'";
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$eventarr[$i] = $row;
+		}
+	}
+	
+	return $eventarr;
+}
+
+function getAScoutsFinancesPerEvent($eid, $sid)
+{
+	global $conn;
+	$sql = "SELECT scoutspayduesfinances.SID, events.Title, scoutspayduesfinances.DatePayed, scoutspayduesfinances.FullPayment FROM scoutspayduesfinances,events,financescreateduesevents WHERE events.EID='" . $eid . "' AND events.EID=financescreateduesevents.EID AND scoutspayduesfinances.SID='" . $sid . "'";
+	if($result = $conn->query($sql))
+	{
+		$row = $result->fetch_assoc();
+	} 
+	else {
+		echo $conn->error;
+	}
+	
+	return $row;
+}
+
+function getAllScoutsInEvent($eid){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT DISTINCT(scouts.SID), scouts.Name, scoutspayduesfinances.DatePayed,scoutspayduesfinances.FullPayment FROM scouts,scoutsgotoevents,scoutspayduesfinances,financescreateduesevents WHERE scoutsgotoevents.SID=scouts.SID AND scoutspayduesfinances.FID=financescreateduesevents.FID AND scoutsgotoevents.EID=financescreateduesevents.EID AND scoutsgotoevents.EID='" . $eid . "'";
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
+	}
+	
+	return $arr;
+}
+
+function checkIfScoutPayedForEvent($sid, $eid)
+{
+	global $conn;
+	$flag = false;
+	$sql = "SELECT scoutspayduesfinances.SID, financescreateduesevents.FID, scoutspayduesfinances.DatePayed, scoutspayduesfinances.FullPayment FROM scoutspayduesfinances, financescreateduesevents WHERE scoutspayduesfinances.FID=financescreateduesevents.FID AND financescreateduesevents.EID='" . $eid . "' AND scoutspayduesfinances.SID='" . $sid . "'";
+	if($result = $conn->query($sql)){
+		$row = $result->fetch_assoc();
+		if($row['FullPayment'] == 1){
+			$flag = true;
+		} 
+	}
+	
+	return $flag;
+}
+
+#endregion
+
 #region--------------------------Add / Edit--------------------------------------- 
 
 function addScout($sid, $name, $dob, $address, $phoneNum, $backupPhoneNum, $email, $parents, $grade, $rank){
