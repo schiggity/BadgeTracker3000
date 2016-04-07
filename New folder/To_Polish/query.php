@@ -1028,20 +1028,6 @@ function getAllFinance(){
 	return $arr;	
 }
 
-function getAllEvents(){
-	global $conn;
-	$arr = array();
-	$sql = "SELECT * FROM events WHERE eid IN (SELECT eid FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ") ORDER BY thedate;";
-	
-	#fill array to be returned
-	if($result = $conn->query($sql))
-	{
-		for($i = 0; $row = $result->fetch_assoc(); $i++){
-			$arr[$i] = $row;
-		}
-	}
-	return $arr;
-}
 #endregion
 
 #region--------------------------AWARDS-----------------------------------------
@@ -1551,6 +1537,21 @@ function deleteFinance($fid)
 
 #region-------------------------- Events ---------------------------------------
 
+function getAllEvents(){
+	global $conn;
+	$arr = array();
+	$sql = "SELECT DISTINCT(events.EID),events.Title,events.Description,events.StartDate,events.EndDate FROM events, scoutsgotoevents WHERE scoutsgotoevents.SID IN (SELECT SID FROM scoutsintroop WHERE tid = " . $_SESSION['tid'] . ");";
+	
+	#fill array to be returned
+	if($result = $conn->query($sql))
+	{
+		for($i = 0; $row = $result->fetch_assoc(); $i++){
+			$arr[$i] = $row;
+		}
+	}
+	return $arr;
+}
+
 function getlastEID()
 {
 	global $conn;
@@ -1642,22 +1643,6 @@ function deleteEvent($eid)
 	echo $conn->error;
 
 	$conn->query('SET foreign_key_checks = 1');
-}
-
-function getAllEvents()
-{
-	global $conn;
-	$arr = array();
-	$sql = "SELECT * FROM events;";
-	
-	#fill array to be returned
-	if($result = $conn->query($sql))
-	{
-		for($i = 0; $row = $result->fetch_assoc(); $i++){
-			$arr[$i] = $row;
-		}
-	}
-	return $arr;
 }
 
 function getAllEventsByScout($sid)

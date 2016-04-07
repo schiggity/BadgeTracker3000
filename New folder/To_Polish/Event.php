@@ -127,7 +127,7 @@ foreach($scouts as $scout) {
 <!-- End of all troop events tab -->
 
 <!-- Start of individual scout tab -->
-<div class="tab-pane active" id="Tab2">
+<div class="tab-pane" id="Tab2">
 <div class="row">
 <div class="col-md-12">
 <h3>Individual Scouts</h3>
@@ -136,6 +136,7 @@ foreach($scouts as $scout) {
 $scouts = getAllScouts();
 foreach($scouts as $scout){
 	$events = getAllEventsByScout($scout['SID']);
+	
 ?>
 <div class="panel-group">
 <div class="panel panel-default">
@@ -170,7 +171,8 @@ foreach($events as $event){
 		} else {
 			echo "YES";
 		}
-		echo "</td></tr>"
+		echo "</td></tr>";
+}
 ?> 													            
 </tbody>
 </table>
@@ -179,7 +181,7 @@ foreach($events as $event){
 </div>
 </div>
 </div>
-<?php }} ?>
+<?php } ?>
 </div>
 </div>
 </div>

@@ -14,7 +14,7 @@ header('location: CreateUser.php');
 <title>Template</title> <!-- Change Page Tiltle Here -->
 <!---------------------------------------------------- Stuff that is necessary for Bootstrap --------------------------------------------->
 <?php include 'bootstrap.html';?>
-<link rel="stylesheet" type="text/css" href="CreateEventCSS.css">
+<link rel="stylesheet" type="text/css" href="CreateUserCSS.css">
 </head>
 <body>
 
@@ -32,7 +32,7 @@ header('location: CreateUser.php');
 <div class="col-md-1">
 <!-- Intentionally left blank -->
 </div>
-<div id="addForm" class="col-md-10 ">
+<div id="addForm" class="col-md-10">
 <h1>Add Event</h1>
 <form role="form" method="post" action="AddEventOp.php">
 <!--Scout Amount owed Amount paid -->
