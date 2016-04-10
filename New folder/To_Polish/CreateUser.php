@@ -64,20 +64,20 @@ if(isset($_SESSION['noLog']))
 					<div class="col-md-6"> <!--Enter First name -->
 						<div class="form-group">
 							<!--<label for="FirstName">First</label>-->
-							<input class="form-control" id="FirstName" name="FirstName" type="text" pattern="[A-Za-z]+" placeholder="First Name" required>
+							<input class="form-control" id="FirstName" name="FirstName" type="text" pattern="[A-Za-z]+" placeholder="First Name" title="No numbers, spaces, or symbols" required>
 						</div>
 					</div>
 					<div class="col-md-6"> <!--Enter Last name -->
 						<div class="form-group">
 							<!--<label for="LastName">Last</label>-->
-							<input class="form-control" id="LastName" name="LastName" type="text" pattern="[A-Za-z]+" placeholder="Last Name"required>
+							<input class="form-control" id="LastName" name="LastName" type="text" pattern="[A-Za-z]+" placeholder="Last Name" title="No numbers, spaces, or symbols" required>
 						</div>
 					</div>
 					
 					<div class="col-md-12"> <!--Enter Email -->
 						<div class="form-group">
 							<!--<label for="Email">Email</label>-->
-							<input class="form-control" id="Email" name="Email" type="text" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email"required>
+							<input class="form-control" id="Email" name="Email" type="text" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email" title="Enter a valid email address, eg. Example@gmail.com" required>
 						</div>
 					</div>
 					
@@ -85,19 +85,19 @@ if(isset($_SESSION['noLog']))
 					<div class="col-md-12"> <!--Enter Username -->
 						<div class="form-group">
 							<!--<label for="Username">Username</label>-->
-							<input class="form-control" id="Username" name="Username" type="text" pattern="[A-Za-z0-9]{4,25}$" placeholder="Username"required>
+							<input class="form-control" id="Username" name="Username" type="text" pattern="[A-Za-z0-9]{4,25}$" placeholder="Username" title="No spaces, or symbols, Must be between 4 and 25 characters" required>
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter password -->
 						<div class="form-group">
 							<!--<label for="password">Password:</label>-->
-							<input type="password" class="form-control" id="Password" name="Password" pattern="^(?=^.{5,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="User Password"required>
+							<input type="password" class="form-control" id="Password" name="Password" pattern="^(?=^.{5,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="User Password" title="Must include at least an uppercase, and lowercase letter, and one number, at least 5 characters" required>
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Confirm password -->
 						<div class="form-group" id="confirmPassword">
 							<!--<label for="password">Confirm Password:</label>-->
-							<input type="password" class="form-control" id="CPassword" name="CPassword" onkeyup="checkPass(); return false;" placeholder="Confirm User Password" required >
+							<input type="password" class="form-control" id="CPassword" name="CPassword" onkeyup="checkPass(); return false;" placeholder="Confirm User Password" title="Must include at least an uppercase, and lowercase letter, and one number, at least 5 characters" required >
 							<span id="confirmMessage" class="confirmMessage"></span>
 						</div>
 					</div>
@@ -105,7 +105,7 @@ if(isset($_SESSION['noLog']))
 					<div class="col-md-6"> <!--Enter Troop Number -->
 						<div class="form-group">
 							<!--<label for="TroopNum">Troop Number</label>-->
-							<input class="form-control" id="TroopNum" name="TroopNum" type="text" pattern="[0-9]+" placeholder="Troop Number" required >
+							<input class="form-control" id="TroopNum" name="TroopNum" type="text" pattern="[0-9]+" placeholder="Troop Number" title="Only numbers allowed" required >
 						</div>
 					</div>
 					
@@ -129,12 +129,12 @@ if(isset($_SESSION['noLog']))
 					</div>
 					<div name="Council" class="col-md-6"> <!--Enter Council -->
 						<div class="form-group">
-							<input class="form-control" id="Council" name="Council" type="text" pattern="([A-Za-z]+)( )*([A-Za-z]*)" placeholder="Council Name" hidden>
+							<input class="form-control" id="Council" name="Council" type="text" pattern="([A-Za-z]+)( )*([A-Za-z]*)" placeholder="Council Name" title="Letters and spaces allowed"hidden>
 						</div>
 					</div>
 					<div name = "Leader" class="col-md-6"> <!--Enter Troop Leader -->
 						<div class="form-group">
-							<input class="form-control" id="Leader" name="Leader" type="text"  pattern="([A-Za-z]+) ([A-Za-z]+)" placeholder="Troop Leader">
+							<input class="form-control" id="Leader" name="Leader" type="text"  pattern="([A-Za-z]+) ([A-Za-z]+)" placeholder="Troop Leader" title="First and last name required">
 						</div>
 					</div>
 					

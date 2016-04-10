@@ -67,19 +67,19 @@ $sid = $scoutinfo["SID"];
 					<div class="col-md-6"> <!--Enter First name -->
 						<div class="form-group">
 							<label for="FirstName">First</label>
-							<input class="form-control" id="FirstName" name="FirstName" type="text" pattern="[A-Za-z]+" value ="<?php echo $first;?>">
+							<input class="form-control" id="FirstName" name="FirstName" type="text" pattern="[A-Za-z]+" value ="<?php echo $first;?>" title="No numbers, spaces, or symbols">
 						</div>
 					</div>
 					<div class="col-md-6"> <!--Enter Last name -->
 						<div class="form-group">
 							<label for="LastName">Last</label>
-							<input class="form-control" id="LastName" name="LastName" pattern="[A-Za-z]+" type="text" value ="<?php echo $last;?>">
+							<input class="form-control" id="LastName" name="LastName" pattern="[A-Za-z]+" type="text" value ="<?php echo $last;?>" title="No numbers, spaces, or symbols">
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Scout ID -->
 						<div class="form-group">
 							<label for="ScoutID">Scout ID #</label>
-							<input class="form-control" id="ScoutID" name="ScoutID" pattern="[0-9]+" type="text" value ="<?php echo $sid;?>">
+							<input class="form-control" id="ScoutID" name="ScoutID" pattern="[0-9]+" type="text" value ="<?php echo $sid;?>" title="Only numbers allowed">
 						</div>
 					</div>
 				
@@ -88,17 +88,17 @@ $sid = $scoutinfo["SID"];
 					</div>
 					<div class="col-md-4"> <!--Enter Date of Birth (Day)-->
 						<div class="form-group">
-							<input class="form-control" id="day" name="day" type="text" maxlength="2" placeholder="DD" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])" value ="<?php echo $day;?>">
+							<input class="form-control" id="day" name="day" type="text" maxlength="2" placeholder="DD" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])" value ="<?php echo $day;?>" title="Only numbers allowed">
 						</div>
 					</div>
 					<div class="col-md-4"> <!--Enter Date of Birth (Month)-->
 						<div class="form-group">
-							<input class="form-control" id="month" name="month" type="text" maxlength="2" placeholder="MM" pattern="(0[1-9]|1[012])" value ="<?php echo $month;?>">
+							<input class="form-control" id="month" name="month" type="text" maxlength="2" placeholder="MM" pattern="(0[1-9]|1[012])" value ="<?php echo $month;?>" title="Only numbers allowed">
 						</div>
 					</div>
 					<div class="col-md-4"> <!--Enter Date of Birth (Year)-->
 						<div class="form-group">
-							<input class="form-control" id="year" name="year" type="text" maxlength="4" placeholder="YYYY" pattern="[0-9]{4}" value ="<?php echo $year;?>">
+							<input class="form-control" id="year" name="year" type="text" maxlength="4" placeholder="YYYY" pattern="[0-9]{4}" value ="<?php echo $year;?>" title="Only numbers allowed">
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Address -->
@@ -112,12 +112,12 @@ $sid = $scoutinfo["SID"];
 					</div>
 					<div class="col-md-3"> <!--Enter Phone Number Area Code-->
 						<div class="form-group">
-							<input class="form-control" id="PhoneNumAC" name="PhoneNumAC" type="text" maxlength="3" placeholder="555" pattern="[0-9]{3}" value ="<?php echo $area1;?>">
+							<input class="form-control" id="PhoneNumAC" name="PhoneNumAC" type="text" maxlength="3" placeholder="555" pattern="[0-9]{3}" value ="<?php echo $area1;?>" title="Only numbers allowed">
 						</div>
 					</div>
 					<div class="col-md-9"> <!--Enter Phone Number -->
 						<div class="form-group">
-							<input class="form-control" id="PhoneNum" name="PhoneNum" type="text" maxlength="8" placeholder="555-5555" pattern="([0-9]{3})-([0-9]{4})" value ="<?php echo $rest1;?>">
+							<input class="form-control" id="PhoneNum" name="PhoneNum" type="text" maxlength="8" placeholder="555-5555" pattern="([0-9]{3})-([0-9]{4})" value ="<?php echo $rest1;?>" title="Must be in 555-5555 format">
 						</div>
 					</div>
 					<div class="col-md-12">
@@ -125,29 +125,29 @@ $sid = $scoutinfo["SID"];
 					</div>
 					<div class="col-md-3"> <!--Enter Backup Phone Number Area Code-->
 						<div class="form-group">
-							<input class="form-control" id="BackupPhoneNumAC" name="BackupPhoneNumAC" type="text" maxlength="3" placeholder="555" pattern="[0-9]{3}"  value ="<?php echo $area2;?>">
+							<input class="form-control" id="BackupPhoneNumAC" name="BackupPhoneNumAC" type="text" maxlength="3" placeholder="555" pattern="[0-9]{3}"  value ="<?php echo $area2;?>" title="Only numbers allowed">
 						</div>
 					</div>
 					<div class="col-md-9"> <!--Enter Backup Phone Number -->
 						<div class="form-group">
-							<input class="form-control" id="BackupPhoneNum" name="BackupPhoneNum" type="text" maxlength="8" placeholder="555-5555" pattern="([0-9]{3})-([0-9]{4})" value ="<?php echo $rest2;?>">
+							<input class="form-control" id="BackupPhoneNum" name="BackupPhoneNum" type="text" maxlength="8" placeholder="555-5555" pattern="([0-9]{3})-([0-9]{4})" value ="<?php echo $rest2;?>" title="Must be in 555-5555 format">
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Email -->
 						<div class="form-group">
 							<label for="TroopNum">Email</label>
-							<input class="form-control" id="Email" name="Email" type="text" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,3}$" value ="<?php echo $email;?>">
+							<input class="form-control" id="Email" name="Email" type="text" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,3}$" value ="<?php echo $email;?>" title="Enter a valid email address, eg. Example@gmail.com">
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Parent 1 -->
 						<div class="form-group">
 							<label for="TroopNum">Parent(s) or Parental Gaurdian(s)</label>
-							<input class="form-control" id="Parent1" name="Parent1" type="text" pattern="[A-Za-z]+ [A-Za-z]+" value ="<?php echo $parent1;?>">
+							<input class="form-control" id="Parent1" name="Parent1" type="text" pattern="[A-Za-z]+ [A-Za-z]+" value ="<?php echo $parent1;?>" title="First and last name required">
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Parent 2 -->
 						<div class="form-group">
-							<input class="form-control" id="Parent2" name="Parent2" type="text" pattern="[A-Za-z]+ [A-Za-z]+" value ="<?php echo $parent2;?>">
+							<input class="form-control" id="Parent2" name="Parent2" type="text" pattern="[A-Za-z]+ [A-Za-z]+" value ="<?php echo $parent2;?>" title="First and last name required">
 						</div>
 					</div>
 					<div class="col-md-12"> <!--Enter Email -->
