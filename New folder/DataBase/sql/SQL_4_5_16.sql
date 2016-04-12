@@ -5237,11 +5237,12 @@ INSERT INTO `emergencyinfo` (`SID`, `PrimaryCont`, `SecondaryCont`, `Allergies`,
 --
 
 CREATE TABLE `events` (
-  `EID` int(11) NOT NULL DEFAULT '0',
+  `EID` int(11) NOT NULL AUTO_INCREMENT,
   `Title` text NOT NULL,
   `Description` text NOT NULL,
   `StartDate` date NOT NULL,
-  `EndDate` date NOT NULL
+  `EndDate` date NOT NULL,
+  PRIMARY KEY(`EID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -6878,7 +6879,6 @@ ALTER TABLE `emergencyinfo`
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
-  ADD PRIMARY KEY (`EID`),
   ADD UNIQUE KEY `EID` (`EID`);
 
 --
